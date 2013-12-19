@@ -10,15 +10,3 @@ c:\users\diojoestar\documents\visual studio 2010\Projects\SteamCMD GUI\SteamCMD 
 c:\users\diojoestar\documents\visual studio 2010\Projects\SteamCMD GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD GUI.xml
 c:\users\diojoestar\documents\visual studio 2010\Projects\SteamCMD GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD GUI.pdb
 C:\Users\DioJoestar\Documents\Visual Studio 2010\Projects\SteamCMD GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD_GUI.Form2.resources
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\bin\Debug\SteamCMD GUI.exe
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\bin\Debug\SteamCMD GUI.pdb
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\bin\Debug\SteamCMD GUI.xml
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD_GUI.Form1.resources
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD_GUI.Form2.resources
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD_GUI.Resources.resources
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD GUI.exe
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD GUI.xml
-C:\Users\DioJoestar\Documents\GitHub\SteamCMD-GUI\SteamCMD GUI\obj\x86\Debug\SteamCMD GUI.pdb

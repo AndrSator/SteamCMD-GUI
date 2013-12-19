@@ -196,7 +196,7 @@ Public Class Form1
     End Sub
 
     Private Sub CheckUpdatesButton_Click() Handles CheckUpdatesButton.Click
-        Process.Start("http://gamebanana.com/members/submissions/tools/949805")
+        Process.Start("https://github.com/DioJoestar/SteamCMD-GUI")
     End Sub
 
     Private Sub SMButton_Click() Handles SMButton.Click

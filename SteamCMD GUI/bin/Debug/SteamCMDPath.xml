@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Config used by SteamCMD GUI-->
+<!--This config it's loaded automatically.-->
+<SteamCMD-Config>
+  <CMDPath>C:\Program Files (x86)\Steam\SteamApps\SteamCMD</CMDPath>
+</SteamCMD-Config>

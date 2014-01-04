@@ -74,9 +74,9 @@ Partial Class Form2
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(222, 14)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.Size = New System.Drawing.Size(25, 13)
         Me.Label3.TabIndex = 12
-        Me.Label3.Text = "- v1.1"
+        Me.Label3.Text = "- v2"
         '
         'Label2
         '

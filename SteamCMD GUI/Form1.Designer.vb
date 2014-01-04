@@ -36,14 +36,15 @@ Partial Class Form1
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.IdHelpButton = New System.Windows.Forms.Button()
         Me.BrowserButton = New System.Windows.Forms.Button()
+        Me.UpdateServerButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ServerPath = New System.Windows.Forms.TextBox()
         Me.AnonymousCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.UsernameTextBox = New System.Windows.Forms.TextBox()
         Me.PasswdTextBox = New System.Windows.Forms.MaskedTextBox()
-        Me.UpdateServerButton = New System.Windows.Forms.Button()
         Me.Status = New System.Windows.Forms.TextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -57,17 +58,81 @@ Partial Class Form1
         Me.ExePath = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.FolderBrowserDialog2 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.TabMenu = New System.Windows.Forms.TabControl()
+        Me.UpdateTab = New System.Windows.Forms.TabPage()
+        Me.RunTab = New System.Windows.Forms.TabPage()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.SaveButton = New System.Windows.Forms.Button()
+        Me.InsecureCheckBox = New System.Windows.Forms.CheckBox()
+        Me.DevModeCheckBox = New System.Windows.Forms.CheckBox()
+        Me.RunServerButton = New System.Windows.Forms.Button()
+        Me.ConsoleCheckBox = New System.Windows.Forms.CheckBox()
+        Me.BotsCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SourceTVCheckBox = New System.Windows.Forms.CheckBox()
+        Me.DebugModeCheckBox = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxMask = New System.Windows.Forms.CheckBox()
+        Me.UDPPortTexBox = New System.Windows.Forms.NumericUpDown()
+        Me.RconTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.NetworkComboBox = New System.Windows.Forms.ComboBox()
+        Me.ServerNameTextBox = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.MaxPlayersTexBox = New System.Windows.Forms.NumericUpDown()
+        Me.ModHelpButton = New System.Windows.Forms.Button()
+        Me.CustomModTextBox = New System.Windows.Forms.TextBox()
+        Me.ModList = New System.Windows.Forms.ComboBox()
+        Me.CustomModCheckBox = New System.Windows.Forms.CheckBox()
+        Me.MapList = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.SrcdsExePathOpen = New System.Windows.Forms.Button()
+        Me.SrcdsExeBrowserButton = New System.Windows.Forms.Button()
+        Me.SrcdsExePathTextBox = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.FolderBrowserDialog3 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolsMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CFGMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MOTDMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.TabMenu.SuspendLayout()
+        Me.UpdateTab.SuspendLayout()
+        Me.RunTab.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        CType(Me.UDPPortTexBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MaxPlayersTexBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox5.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GamesList
         '
         Me.GamesList.FormattingEnabled = True
+        Me.GamesList.IntegralHeight = False
         Me.GamesList.Items.AddRange(New Object() {"Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead 2", "Team Fortress 2"})
-        Me.GamesList.Location = New System.Drawing.Point(9, 19)
+        Me.GamesList.Location = New System.Drawing.Point(9, 20)
         Me.GamesList.Name = "GamesList"
         Me.GamesList.Size = New System.Drawing.Size(189, 21)
         Me.GamesList.TabIndex = 1
@@ -83,7 +148,7 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(418, 290)
+        Me.ProgressBar1.Location = New System.Drawing.Point(435, 312)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(165, 18)
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
@@ -92,11 +157,11 @@ Partial Class Form1
         'CustomIDCheckbox
         '
         Me.CustomIDCheckbox.AutoSize = True
-        Me.CustomIDCheckbox.Location = New System.Drawing.Point(286, 22)
+        Me.CustomIDCheckbox.Location = New System.Drawing.Point(284, 22)
         Me.CustomIDCheckbox.Name = "CustomIDCheckbox"
-        Me.CustomIDCheckbox.Size = New System.Drawing.Size(108, 17)
+        Me.CustomIDCheckbox.Size = New System.Drawing.Size(75, 17)
         Me.CustomIDCheckbox.TabIndex = 3
-        Me.CustomIDCheckbox.Text = "Custom Steam ID"
+        Me.CustomIDCheckbox.Text = "Custom ID"
         Me.CustomIDCheckbox.UseVisualStyleBackColor = True
         '
         'CustomIDTextBox
@@ -105,7 +170,7 @@ Partial Class Form1
         Me.CustomIDTextBox.Location = New System.Drawing.Point(204, 20)
         Me.CustomIDTextBox.MaxLength = 10
         Me.CustomIDTextBox.Name = "CustomIDTextBox"
-        Me.CustomIDTextBox.Size = New System.Drawing.Size(76, 20)
+        Me.CustomIDTextBox.Size = New System.Drawing.Size(74, 20)
         Me.CustomIDTextBox.TabIndex = 2
         '
         'GroupBox1
@@ -114,10 +179,10 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.SteamCMDDownloadButton)
         Me.GroupBox1.Controls.Add(Me.CheckUpdatesButton)
         Me.GroupBox1.Controls.Add(Me.VDCButton)
-        Me.GroupBox1.Location = New System.Drawing.Point(418, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(435, 34)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(165, 101)
-        Me.GroupBox1.TabIndex = 2
+        Me.GroupBox1.TabIndex = 99
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Tools"
         '
@@ -155,25 +220,27 @@ Partial Class Form1
         '
         'AboutButton
         '
-        Me.AboutButton.Location = New System.Drawing.Point(418, 261)
+        Me.AboutButton.Location = New System.Drawing.Point(435, 283)
         Me.AboutButton.Name = "AboutButton"
         Me.AboutButton.Size = New System.Drawing.Size(79, 23)
-        Me.AboutButton.TabIndex = 17
+        Me.AboutButton.TabIndex = 0
         Me.AboutButton.Text = "About"
         Me.AboutButton.UseVisualStyleBackColor = True
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(503, 261)
+        Me.ExitButton.Location = New System.Drawing.Point(520, 283)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(80, 23)
-        Me.ExitButton.TabIndex = 18
+        Me.ExitButton.TabIndex = 1
         Me.ExitButton.Text = "Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.IdHelpButton)
         Me.GroupBox2.Controls.Add(Me.BrowserButton)
+        Me.GroupBox2.Controls.Add(Me.UpdateServerButton)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.ServerPath)
         Me.GroupBox2.Controls.Add(Me.AnonymousCheckBox)
@@ -183,34 +250,57 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.CustomIDTextBox)
         Me.GroupBox2.Controls.Add(Me.GamesList)
         Me.GroupBox2.Controls.Add(Me.CustomIDCheckbox)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 66)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 60)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(397, 189)
+        Me.GroupBox2.Size = New System.Drawing.Size(397, 201)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Server Configuration"
         '
+        'IdHelpButton
+        '
+        Me.IdHelpButton.BackColor = System.Drawing.Color.Transparent
+        Me.IdHelpButton.BackgroundImage = CType(resources.GetObject("IdHelpButton.BackgroundImage"), System.Drawing.Image)
+        Me.IdHelpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.IdHelpButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.IdHelpButton.Location = New System.Drawing.Point(368, 18)
+        Me.IdHelpButton.Name = "IdHelpButton"
+        Me.IdHelpButton.Size = New System.Drawing.Size(23, 23)
+        Me.IdHelpButton.TabIndex = 12
+        Me.IdHelpButton.TabStop = False
+        Me.IdHelpButton.UseVisualStyleBackColor = False
+        '
         'BrowserButton
         '
-        Me.BrowserButton.Location = New System.Drawing.Point(323, 156)
+        Me.BrowserButton.Location = New System.Drawing.Point(323, 144)
         Me.BrowserButton.Name = "BrowserButton"
         Me.BrowserButton.Size = New System.Drawing.Size(68, 23)
         Me.BrowserButton.TabIndex = 7
         Me.BrowserButton.Text = "Browser"
         Me.BrowserButton.UseVisualStyleBackColor = True
         '
+        'UpdateServerButton
+        '
+        Me.UpdateServerButton.Enabled = False
+        Me.UpdateServerButton.Location = New System.Drawing.Point(292, 172)
+        Me.UpdateServerButton.Name = "UpdateServerButton"
+        Me.UpdateServerButton.Size = New System.Drawing.Size(99, 23)
+        Me.UpdateServerButton.TabIndex = 16
+        Me.UpdateServerButton.Text = "Update/Install"
+        Me.UpdateServerButton.UseVisualStyleBackColor = True
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 137)
+        Me.Label2.Location = New System.Drawing.Point(6, 130)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(62, 13)
+        Me.Label2.Size = New System.Drawing.Size(63, 13)
         Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Server path"
+        Me.Label2.Text = "Server Path"
         '
         'ServerPath
         '
-        Me.ServerPath.Location = New System.Drawing.Point(6, 158)
+        Me.ServerPath.Location = New System.Drawing.Point(6, 146)
         Me.ServerPath.Name = "ServerPath"
         Me.ServerPath.Size = New System.Drawing.Size(311, 20)
         Me.ServerPath.TabIndex = 0
@@ -221,7 +311,7 @@ Partial Class Form1
         Me.AnonymousCheckBox.AutoSize = True
         Me.AnonymousCheckBox.Checked = True
         Me.AnonymousCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.AnonymousCheckBox.Location = New System.Drawing.Point(112, 76)
+        Me.AnonymousCheckBox.Location = New System.Drawing.Point(112, 68)
         Me.AnonymousCheckBox.Name = "AnonymousCheckBox"
         Me.AnonymousCheckBox.Size = New System.Drawing.Size(124, 17)
         Me.AnonymousCheckBox.TabIndex = 6
@@ -231,7 +321,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 58)
+        Me.Label1.Location = New System.Drawing.Point(6, 50)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(33, 13)
         Me.Label1.TabIndex = 8
@@ -239,7 +329,7 @@ Partial Class Form1
         '
         'UsernameTextBox
         '
-        Me.UsernameTextBox.Location = New System.Drawing.Point(6, 74)
+        Me.UsernameTextBox.Location = New System.Drawing.Point(6, 66)
         Me.UsernameTextBox.Name = "UsernameTextBox"
         Me.UsernameTextBox.Size = New System.Drawing.Size(100, 20)
         Me.UsernameTextBox.TabIndex = 4
@@ -247,30 +337,20 @@ Partial Class Form1
         'PasswdTextBox
         '
         Me.PasswdTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswdTextBox.Location = New System.Drawing.Point(6, 98)
+        Me.PasswdTextBox.Location = New System.Drawing.Point(6, 90)
         Me.PasswdTextBox.Name = "PasswdTextBox"
         Me.PasswdTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.PasswdTextBox.Size = New System.Drawing.Size(100, 22)
         Me.PasswdTextBox.TabIndex = 5
-        '
-        'UpdateServerButton
-        '
-        Me.UpdateServerButton.Enabled = False
-        Me.UpdateServerButton.Location = New System.Drawing.Point(313, 261)
-        Me.UpdateServerButton.Name = "UpdateServerButton"
-        Me.UpdateServerButton.Size = New System.Drawing.Size(99, 23)
-        Me.UpdateServerButton.TabIndex = 16
-        Me.UpdateServerButton.Text = "Update/Install"
-        Me.UpdateServerButton.UseVisualStyleBackColor = True
         '
         'Status
         '
         Me.Status.BackColor = System.Drawing.SystemColors.Control
         Me.Status.Enabled = False
         Me.Status.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.Status.Location = New System.Drawing.Point(12, 290)
+        Me.Status.Location = New System.Drawing.Point(12, 335)
         Me.Status.Name = "Status"
-        Me.Status.Size = New System.Drawing.Size(397, 20)
+        Me.Status.Size = New System.Drawing.Size(588, 20)
         Me.Status.TabIndex = 4
         '
         'GroupBox3
@@ -279,10 +359,10 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.ESButton)
         Me.GroupBox3.Controls.Add(Me.MMButton)
         Me.GroupBox3.Controls.Add(Me.SMButton)
-        Me.GroupBox3.Location = New System.Drawing.Point(418, 119)
+        Me.GroupBox3.Location = New System.Drawing.Point(435, 141)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(165, 136)
-        Me.GroupBox3.TabIndex = 11
+        Me.GroupBox3.TabIndex = 100
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Addons"
         '
@@ -327,7 +407,7 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.ExeBrowserButton)
         Me.GroupBox4.Controls.Add(Me.ExePath)
         Me.GroupBox4.Controls.Add(Me.Label4)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(397, 48)
         Me.GroupBox4.TabIndex = 0
@@ -354,29 +434,508 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(3, 20)
+        Me.Label4.Location = New System.Drawing.Point(6, 20)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(85, 13)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "SteamCMD path"
         '
+        'TabMenu
+        '
+        Me.TabMenu.Controls.Add(Me.UpdateTab)
+        Me.TabMenu.Controls.Add(Me.RunTab)
+        Me.TabMenu.Location = New System.Drawing.Point(12, 27)
+        Me.TabMenu.Name = "TabMenu"
+        Me.TabMenu.SelectedIndex = 0
+        Me.TabMenu.Size = New System.Drawing.Size(417, 303)
+        Me.TabMenu.TabIndex = 0
+        '
+        'UpdateTab
+        '
+        Me.UpdateTab.Controls.Add(Me.GroupBox4)
+        Me.UpdateTab.Controls.Add(Me.GroupBox2)
+        Me.UpdateTab.Location = New System.Drawing.Point(4, 22)
+        Me.UpdateTab.Name = "UpdateTab"
+        Me.UpdateTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.UpdateTab.Size = New System.Drawing.Size(409, 277)
+        Me.UpdateTab.TabIndex = 0
+        Me.UpdateTab.Text = "Update/Install"
+        Me.UpdateTab.UseVisualStyleBackColor = True
+        '
+        'RunTab
+        '
+        Me.RunTab.Controls.Add(Me.GroupBox6)
+        Me.RunTab.Controls.Add(Me.GroupBox5)
+        Me.RunTab.Location = New System.Drawing.Point(4, 22)
+        Me.RunTab.Name = "RunTab"
+        Me.RunTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.RunTab.Size = New System.Drawing.Size(409, 277)
+        Me.RunTab.TabIndex = 1
+        Me.RunTab.Text = "Run Server"
+        Me.RunTab.UseVisualStyleBackColor = True
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.SaveButton)
+        Me.GroupBox6.Controls.Add(Me.InsecureCheckBox)
+        Me.GroupBox6.Controls.Add(Me.DevModeCheckBox)
+        Me.GroupBox6.Controls.Add(Me.RunServerButton)
+        Me.GroupBox6.Controls.Add(Me.ConsoleCheckBox)
+        Me.GroupBox6.Controls.Add(Me.BotsCheckBox)
+        Me.GroupBox6.Controls.Add(Me.SourceTVCheckBox)
+        Me.GroupBox6.Controls.Add(Me.DebugModeCheckBox)
+        Me.GroupBox6.Controls.Add(Me.CheckBoxMask)
+        Me.GroupBox6.Controls.Add(Me.UDPPortTexBox)
+        Me.GroupBox6.Controls.Add(Me.RconTextBox)
+        Me.GroupBox6.Controls.Add(Me.Label11)
+        Me.GroupBox6.Controls.Add(Me.Label10)
+        Me.GroupBox6.Controls.Add(Me.NetworkComboBox)
+        Me.GroupBox6.Controls.Add(Me.ServerNameTextBox)
+        Me.GroupBox6.Controls.Add(Me.Label7)
+        Me.GroupBox6.Controls.Add(Me.MaxPlayersTexBox)
+        Me.GroupBox6.Controls.Add(Me.ModHelpButton)
+        Me.GroupBox6.Controls.Add(Me.CustomModTextBox)
+        Me.GroupBox6.Controls.Add(Me.ModList)
+        Me.GroupBox6.Controls.Add(Me.CustomModCheckBox)
+        Me.GroupBox6.Controls.Add(Me.MapList)
+        Me.GroupBox6.Controls.Add(Me.Label6)
+        Me.GroupBox6.Controls.Add(Me.Label8)
+        Me.GroupBox6.Controls.Add(Me.Label5)
+        Me.GroupBox6.Location = New System.Drawing.Point(6, 60)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(397, 201)
+        Me.GroupBox6.TabIndex = 2
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Game Configuration"
+        '
+        'SaveButton
+        '
+        Me.SaveButton.BackgroundImage = CType(resources.GetObject("SaveButton.BackgroundImage"), System.Drawing.Image)
+        Me.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.SaveButton.Location = New System.Drawing.Point(368, 172)
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.Size = New System.Drawing.Size(23, 23)
+        Me.SaveButton.TabIndex = 20
+        Me.SaveButton.UseVisualStyleBackColor = True
+        '
+        'InsecureCheckBox
+        '
+        Me.InsecureCheckBox.AutoSize = True
+        Me.InsecureCheckBox.Location = New System.Drawing.Point(11, 179)
+        Me.InsecureCheckBox.Name = "InsecureCheckBox"
+        Me.InsecureCheckBox.Size = New System.Drawing.Size(67, 17)
+        Me.InsecureCheckBox.TabIndex = 16
+        Me.InsecureCheckBox.Text = "Insecure"
+        Me.InsecureCheckBox.UseVisualStyleBackColor = True
+        '
+        'DevModeCheckBox
+        '
+        Me.DevModeCheckBox.AutoSize = True
+        Me.DevModeCheckBox.Location = New System.Drawing.Point(196, 179)
+        Me.DevModeCheckBox.Name = "DevModeCheckBox"
+        Me.DevModeCheckBox.Size = New System.Drawing.Size(97, 17)
+        Me.DevModeCheckBox.TabIndex = 18
+        Me.DevModeCheckBox.Text = "Dev Messages"
+        Me.DevModeCheckBox.UseVisualStyleBackColor = True
+        '
+        'RunServerButton
+        '
+        Me.RunServerButton.Enabled = False
+        Me.RunServerButton.Location = New System.Drawing.Point(292, 172)
+        Me.RunServerButton.Name = "RunServerButton"
+        Me.RunServerButton.Size = New System.Drawing.Size(70, 23)
+        Me.RunServerButton.TabIndex = 19
+        Me.RunServerButton.Text = "Run"
+        Me.RunServerButton.UseVisualStyleBackColor = True
+        '
+        'ConsoleCheckBox
+        '
+        Me.ConsoleCheckBox.AutoSize = True
+        Me.ConsoleCheckBox.Checked = True
+        Me.ConsoleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ConsoleCheckBox.Location = New System.Drawing.Point(196, 156)
+        Me.ConsoleCheckBox.Name = "ConsoleCheckBox"
+        Me.ConsoleCheckBox.Size = New System.Drawing.Size(94, 17)
+        Me.ConsoleCheckBox.TabIndex = 15
+        Me.ConsoleCheckBox.Text = "Console Mode"
+        Me.ConsoleCheckBox.UseVisualStyleBackColor = True
+        '
+        'BotsCheckBox
+        '
+        Me.BotsCheckBox.AutoSize = True
+        Me.BotsCheckBox.Location = New System.Drawing.Point(105, 179)
+        Me.BotsCheckBox.Name = "BotsCheckBox"
+        Me.BotsCheckBox.Size = New System.Drawing.Size(85, 17)
+        Me.BotsCheckBox.TabIndex = 17
+        Me.BotsCheckBox.Text = "Disable Bots"
+        Me.BotsCheckBox.UseVisualStyleBackColor = True
+        '
+        'SourceTVCheckBox
+        '
+        Me.SourceTVCheckBox.AutoSize = True
+        Me.SourceTVCheckBox.Location = New System.Drawing.Point(105, 156)
+        Me.SourceTVCheckBox.Name = "SourceTVCheckBox"
+        Me.SourceTVCheckBox.Size = New System.Drawing.Size(74, 17)
+        Me.SourceTVCheckBox.TabIndex = 14
+        Me.SourceTVCheckBox.Text = "SourceTV"
+        Me.SourceTVCheckBox.UseVisualStyleBackColor = True
+        '
+        'DebugModeCheckBox
+        '
+        Me.DebugModeCheckBox.AutoSize = True
+        Me.DebugModeCheckBox.Location = New System.Drawing.Point(11, 156)
+        Me.DebugModeCheckBox.Name = "DebugModeCheckBox"
+        Me.DebugModeCheckBox.Size = New System.Drawing.Size(88, 17)
+        Me.DebugModeCheckBox.TabIndex = 13
+        Me.DebugModeCheckBox.Text = "Debug Mode"
+        Me.DebugModeCheckBox.UseVisualStyleBackColor = True
+        '
+        'CheckBoxMask
+        '
+        Me.CheckBoxMask.AutoSize = True
+        Me.CheckBoxMask.Checked = True
+        Me.CheckBoxMask.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxMask.Location = New System.Drawing.Point(374, 130)
+        Me.CheckBoxMask.Name = "CheckBoxMask"
+        Me.CheckBoxMask.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBoxMask.TabIndex = 12
+        Me.CheckBoxMask.UseVisualStyleBackColor = True
+        '
+        'UDPPortTexBox
+        '
+        Me.UDPPortTexBox.Location = New System.Drawing.Point(79, 128)
+        Me.UDPPortTexBox.Maximum = New Decimal(New Integer() {49151, 0, 0, 0})
+        Me.UDPPortTexBox.Minimum = New Decimal(New Integer() {1025, 0, 0, 0})
+        Me.UDPPortTexBox.Name = "UDPPortTexBox"
+        Me.UDPPortTexBox.Size = New System.Drawing.Size(100, 20)
+        Me.UDPPortTexBox.TabIndex = 10
+        Me.UDPPortTexBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.UDPPortTexBox.Value = New Decimal(New Integer() {27015, 0, 0, 0})
+        '
+        'RconTextBox
+        '
+        Me.RconTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.RconTextBox.Location = New System.Drawing.Point(284, 125)
+        Me.RconTextBox.Name = "RconTextBox"
+        Me.RconTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.RconTextBox.Size = New System.Drawing.Size(84, 22)
+        Me.RconTextBox.TabIndex = 11
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(238, 130)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(38, 13)
+        Me.Label11.TabIndex = 15
+        Me.Label11.Text = "RCON"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 130)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(52, 13)
+        Me.Label10.TabIndex = 12
+        Me.Label10.Text = "UDP Port"
+        '
+        'NetworkComboBox
+        '
+        Me.NetworkComboBox.FormattingEnabled = True
+        Me.NetworkComboBox.Items.AddRange(New Object() {"Internet", "LAN"})
+        Me.NetworkComboBox.Location = New System.Drawing.Point(79, 100)
+        Me.NetworkComboBox.Name = "NetworkComboBox"
+        Me.NetworkComboBox.Size = New System.Drawing.Size(128, 21)
+        Me.NetworkComboBox.TabIndex = 8
+        '
+        'ServerNameTextBox
+        '
+        Me.ServerNameTextBox.Location = New System.Drawing.Point(79, 47)
+        Me.ServerNameTextBox.MaxLength = 50
+        Me.ServerNameTextBox.Name = "ServerNameTextBox"
+        Me.ServerNameTextBox.Size = New System.Drawing.Size(199, 20)
+        Me.ServerNameTextBox.TabIndex = 6
+        Me.ServerNameTextBox.Text = "Source Dedicated Server"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(6, 50)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(69, 13)
+        Me.Label7.TabIndex = 9
+        Me.Label7.Text = "Server Name"
+        '
+        'MaxPlayersTexBox
+        '
+        Me.MaxPlayersTexBox.Location = New System.Drawing.Point(322, 101)
+        Me.MaxPlayersTexBox.Maximum = New Decimal(New Integer() {32, 0, 0, 0})
+        Me.MaxPlayersTexBox.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.MaxPlayersTexBox.Name = "MaxPlayersTexBox"
+        Me.MaxPlayersTexBox.Size = New System.Drawing.Size(46, 20)
+        Me.MaxPlayersTexBox.TabIndex = 9
+        Me.MaxPlayersTexBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.MaxPlayersTexBox.Value = New Decimal(New Integer() {24, 0, 0, 0})
+        '
+        'ModHelpButton
+        '
+        Me.ModHelpButton.BackColor = System.Drawing.Color.Transparent
+        Me.ModHelpButton.BackgroundImage = CType(resources.GetObject("ModHelpButton.BackgroundImage"), System.Drawing.Image)
+        Me.ModHelpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ModHelpButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.ModHelpButton.Location = New System.Drawing.Point(368, 18)
+        Me.ModHelpButton.Name = "ModHelpButton"
+        Me.ModHelpButton.Size = New System.Drawing.Size(23, 23)
+        Me.ModHelpButton.TabIndex = 5
+        Me.ModHelpButton.TabStop = False
+        Me.ModHelpButton.UseVisualStyleBackColor = False
+        '
+        'CustomModTextBox
+        '
+        Me.CustomModTextBox.Enabled = False
+        Me.CustomModTextBox.Location = New System.Drawing.Point(204, 20)
+        Me.CustomModTextBox.MaxLength = 15
+        Me.CustomModTextBox.Name = "CustomModTextBox"
+        Me.CustomModTextBox.Size = New System.Drawing.Size(74, 20)
+        Me.CustomModTextBox.TabIndex = 3
+        '
+        'ModList
+        '
+        Me.ModList.FormattingEnabled = True
+        Me.ModList.Items.AddRange(New Object() {"Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead 2", "Team Fortress 2"})
+        Me.ModList.Location = New System.Drawing.Point(9, 20)
+        Me.ModList.Name = "ModList"
+        Me.ModList.Size = New System.Drawing.Size(189, 21)
+        Me.ModList.TabIndex = 2
+        '
+        'CustomModCheckBox
+        '
+        Me.CustomModCheckBox.AutoSize = True
+        Me.CustomModCheckBox.Location = New System.Drawing.Point(284, 22)
+        Me.CustomModCheckBox.Name = "CustomModCheckBox"
+        Me.CustomModCheckBox.Size = New System.Drawing.Size(85, 17)
+        Me.CustomModCheckBox.TabIndex = 4
+        Me.CustomModCheckBox.Text = "Custom Mod"
+        Me.CustomModCheckBox.UseVisualStyleBackColor = True
+        '
+        'MapList
+        '
+        Me.MapList.Enabled = False
+        Me.MapList.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.MapList.FormattingEnabled = True
+        Me.MapList.ItemHeight = 13
+        Me.MapList.Location = New System.Drawing.Point(79, 73)
+        Me.MapList.Name = "MapList"
+        Me.MapList.Size = New System.Drawing.Size(199, 21)
+        Me.MapList.TabIndex = 7
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(238, 103)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 13)
+        Me.Label6.TabIndex = 0
+        Me.Label6.Text = "Max Players"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(6, 103)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(47, 13)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "Network"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(6, 76)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(28, 13)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Map"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.SrcdsExePathOpen)
+        Me.GroupBox5.Controls.Add(Me.SrcdsExeBrowserButton)
+        Me.GroupBox5.Controls.Add(Me.SrcdsExePathTextBox)
+        Me.GroupBox5.Controls.Add(Me.Label3)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(397, 48)
+        Me.GroupBox5.TabIndex = 1
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Srcds Configuration"
+        '
+        'SrcdsExePathOpen
+        '
+        Me.SrcdsExePathOpen.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder_6222
+        Me.SrcdsExePathOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.SrcdsExePathOpen.Enabled = False
+        Me.SrcdsExePathOpen.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.SrcdsExePathOpen.Location = New System.Drawing.Point(368, 15)
+        Me.SrcdsExePathOpen.Name = "SrcdsExePathOpen"
+        Me.SrcdsExePathOpen.Size = New System.Drawing.Size(23, 23)
+        Me.SrcdsExePathOpen.TabIndex = 1
+        Me.SrcdsExePathOpen.TabStop = False
+        Me.SrcdsExePathOpen.UseVisualStyleBackColor = True
+        '
+        'SrcdsExeBrowserButton
+        '
+        Me.SrcdsExeBrowserButton.Location = New System.Drawing.Point(294, 15)
+        Me.SrcdsExeBrowserButton.Name = "SrcdsExeBrowserButton"
+        Me.SrcdsExeBrowserButton.Size = New System.Drawing.Size(68, 23)
+        Me.SrcdsExeBrowserButton.TabIndex = 0
+        Me.SrcdsExeBrowserButton.Text = "Browser"
+        Me.SrcdsExeBrowserButton.UseVisualStyleBackColor = True
+        '
+        'SrcdsExePathTextBox
+        '
+        Me.SrcdsExePathTextBox.Location = New System.Drawing.Point(70, 17)
+        Me.SrcdsExePathTextBox.Name = "SrcdsExePathTextBox"
+        Me.SrcdsExePathTextBox.Size = New System.Drawing.Size(218, 20)
+        Me.SrcdsExePathTextBox.TabIndex = 0
+        Me.SrcdsExePathTextBox.TabStop = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(6, 20)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(58, 13)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "Srcds path"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 48)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(183, 22)
+        Me.ToolStripMenuItem1.Text = "ToolStripMenuItem1"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(183, 22)
+        Me.ToolStripMenuItem2.Text = "ToolStripMenuItem2"
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.BackColor = System.Drawing.SystemColors.Menu
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.ToolsMenu, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.MenuStrip1.Size = New System.Drawing.Size(611, 24)
+        Me.MenuStrip1.TabIndex = 20
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileMenu
+        '
+        Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveMenu, Me.LoadMenu, Me.ToolStripSeparator1, Me.ExitMenu})
+        Me.FileMenu.Name = "FileMenu"
+        Me.FileMenu.Size = New System.Drawing.Size(37, 20)
+        Me.FileMenu.Text = "File"
+        '
+        'SaveMenu
+        '
+        Me.SaveMenu.Name = "SaveMenu"
+        Me.SaveMenu.Size = New System.Drawing.Size(134, 22)
+        Me.SaveMenu.Text = "Save"
+        '
+        'LoadMenu
+        '
+        Me.LoadMenu.Name = "LoadMenu"
+        Me.LoadMenu.Size = New System.Drawing.Size(134, 22)
+        Me.LoadMenu.Text = "Load"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(131, 6)
+        '
+        'ExitMenu
+        '
+        Me.ExitMenu.Name = "ExitMenu"
+        Me.ExitMenu.ShortcutKeyDisplayString = "Alt+F4"
+        Me.ExitMenu.Size = New System.Drawing.Size(134, 22)
+        Me.ExitMenu.Text = "Exit"
+        '
+        'ToolsMenu
+        '
+        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CFGMenu, Me.MOTDMenu})
+        Me.ToolsMenu.Name = "ToolsMenu"
+        Me.ToolsMenu.Size = New System.Drawing.Size(39, 20)
+        Me.ToolsMenu.Text = "Edit"
+        '
+        'CFGMenu
+        '
+        Me.CFGMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewFileToolStripMenuItem, Me.ToolStripSeparator2})
+        Me.CFGMenu.Enabled = False
+        Me.CFGMenu.Name = "CFGMenu"
+        Me.CFGMenu.Size = New System.Drawing.Size(152, 22)
+        Me.CFGMenu.Text = "Cfg Files"
+        '
+        'NewFileToolStripMenuItem
+        '
+        Me.NewFileToolStripMenuItem.Name = "NewFileToolStripMenuItem"
+        Me.NewFileToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.NewFileToolStripMenuItem.Text = "New File"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(116, 6)
+        '
+        'MOTDMenu
+        '
+        Me.MOTDMenu.Enabled = False
+        Me.MOTDMenu.Name = "MOTDMenu"
+        Me.MOTDMenu.Size = New System.Drawing.Size(152, 22)
+        Me.MOTDMenu.Text = "MOTD"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'XmlConfigOpenFileDialog
+        '
+        Me.XmlConfigOpenFileDialog.RestoreDirectory = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(595, 318)
-        Me.Controls.Add(Me.GroupBox4)
+        Me.ClientSize = New System.Drawing.Size(611, 359)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.TabMenu)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.UpdateServerButton)
-        Me.Controls.Add(Me.AboutButton)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.ProgressBar1)
+        Me.Controls.Add(Me.AboutButton)
         Me.Controls.Add(Me.ExitButton)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximumSize = New System.Drawing.Size(611, 356)
-        Me.MinimumSize = New System.Drawing.Size(611, 356)
+        Me.MainMenuStrip = Me.MenuStrip1
+        Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(627, 397)
+        Me.MinimumSize = New System.Drawing.Size(627, 397)
         Me.Name = "Form1"
         Me.Text = "SteamCMD GUI"
         Me.GroupBox1.ResumeLayout(False)
@@ -385,6 +944,18 @@ Partial Class Form1
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.TabMenu.ResumeLayout(False)
+        Me.UpdateTab.ResumeLayout(False)
+        Me.RunTab.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        CType(Me.UDPPortTexBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MaxPlayersTexBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -422,5 +993,60 @@ Partial Class Form1
     Friend WithEvents ExePath As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents FolderBrowserDialog2 As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents TabMenu As System.Windows.Forms.TabControl
+    Friend WithEvents UpdateTab As System.Windows.Forms.TabPage
+    Friend WithEvents RunTab As System.Windows.Forms.TabPage
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents SrcdsExeBrowserButton As System.Windows.Forms.Button
+    Friend WithEvents SrcdsExePathTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents CustomModTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ModList As System.Windows.Forms.ComboBox
+    Friend WithEvents CustomModCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents MapList As System.Windows.Forms.ComboBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents ModHelpButton As System.Windows.Forms.Button
+    Friend WithEvents IdHelpButton As System.Windows.Forms.Button
+    Friend WithEvents RunServerButton As System.Windows.Forms.Button
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents MaxPlayersTexBox As System.Windows.Forms.NumericUpDown
+    Friend WithEvents ServerNameTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents NetworkComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents RconTextBox As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents UDPPortTexBox As System.Windows.Forms.NumericUpDown
+    Friend WithEvents CheckBoxMask As System.Windows.Forms.CheckBox
+    Friend WithEvents FolderBrowserDialog3 As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents InsecureCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents DebugModeCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents DevModeCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents ConsoleCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents BotsCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents SourceTVCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents FileMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LoadMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ExitMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveButton As System.Windows.Forms.Button
+    Friend WithEvents XmlConfigOpenFileDialog As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SrcdsExePathOpen As System.Windows.Forms.Button
+    Friend WithEvents ToolsMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CFGMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents NewFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents MOTDMenu As System.Windows.Forms.ToolStripMenuItem
 
 End Class

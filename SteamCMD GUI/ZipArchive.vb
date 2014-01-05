@@ -1,4 +1,0 @@
-﻿
-Class ZipArchive
-
-End Class

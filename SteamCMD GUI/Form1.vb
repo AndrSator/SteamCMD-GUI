@@ -253,11 +253,13 @@ Public Class Form1
                 SrcdsExePathOpen.Enabled = True
                 CFGMenu.Enabled = True
                 MOTDMenu.Enabled = True
+                RunServerButton.Enabled = True
             Else
                 SrcdsExePathOpen.Enabled = False
                 MapList.Enabled = False
                 CFGMenu.Enabled = False
                 MOTDMenu.Enabled = False
+                RunServerButton.Enabled = False
                 Status.Text = "Can't find the file 'srcds.exe'!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _

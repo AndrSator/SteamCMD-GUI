@@ -880,7 +880,7 @@ Partial Class Form1
         Me.CFGMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewFileToolStripMenuItem, Me.ToolStripSeparator2})
         Me.CFGMenu.Enabled = False
         Me.CFGMenu.Name = "CFGMenu"
-        Me.CFGMenu.Size = New System.Drawing.Size(152, 22)
+        Me.CFGMenu.Size = New System.Drawing.Size(119, 22)
         Me.CFGMenu.Text = "Cfg Files"
         '
         'NewFileToolStripMenuItem
@@ -898,7 +898,7 @@ Partial Class Form1
         '
         Me.MOTDMenu.Enabled = False
         Me.MOTDMenu.Name = "MOTDMenu"
-        Me.MOTDMenu.Size = New System.Drawing.Size(152, 22)
+        Me.MOTDMenu.Size = New System.Drawing.Size(119, 22)
         Me.MOTDMenu.Text = "MOTD"
         '
         'HelpToolStripMenuItem

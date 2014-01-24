@@ -435,30 +435,37 @@ Public Class Form1
     End Sub
 
     Private Sub RunServerButton_Click() Handles RunServerButton.Click
-        If GameMod = Nothing Then
-            Status.Text = "Please, select a game."
-            Status.BackColor = Color.FromArgb(240, 200, 200)
-            My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
-        Else
-            If ServerName = Nothing Then
-                Status.Text = "Please, type a name for the server."
+        If My.Computer.FileSystem.FileExists(SrcdsExePathTextBox.Text & "\srcds.exe") Then
+            If GameMod = Nothing Then
+                Status.Text = "Please, select a game."
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
                     System.Media.SystemSounds.Hand)
             Else
-                If ServerMap = Nothing Then
-                    Status.Text = "Select the default map."
+                If ServerName = Nothing Then
+                    Status.Text = "Please, type a name for the server."
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
                         System.Media.SystemSounds.Hand)
                 Else
-                    Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
-                    Status.Text = "Running server..."
-                    Status.BackColor = Color.FromArgb(240, 240, 240)
-                    Process.Start(SrcdsExePath & "\srcds.exe", Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex)
+                    If ServerMap = Nothing Then
+                        Status.Text = "Select the default map."
+                        Status.BackColor = Color.FromArgb(240, 200, 200)
+                        My.Computer.Audio.PlaySystemSound( _
+                            System.Media.SystemSounds.Hand)
+                    Else
+                        Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
+                        Status.Text = "Running server..."
+                        Status.BackColor = Color.FromArgb(240, 240, 240)
+                        Process.Start(SrcdsExePath & "\srcds.exe", Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex)
+                    End If
                 End If
             End If
+        Else
+            Status.Text = "Can't find the file 'srcds.exe'!"
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+            My.Computer.Audio.PlaySystemSound( _
+                System.Media.SystemSounds.Hand)
         End If
     End Sub
 
@@ -674,5 +681,25 @@ Public Class Form1
             Process.Start(MotdPath)
             Status.Text = "MODT file not found. New one created."
         End If
+    End Sub
+
+    Private Sub SrcdsExePathOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SrcdsExePathOpen.Click
+
+    End Sub
+
+    Private Sub ModHelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModHelpButton.Click
+
+    End Sub
+
+    Private Sub SaveMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveMenu.Click, SaveButton.Click
+
+    End Sub
+
+    Private Sub IdHelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IdHelpButton.Click
+
+    End Sub
+
+    Private Sub OpenFolderButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenFolderButton.Click
+
     End Sub
 End Class

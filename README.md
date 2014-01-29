@@ -8,8 +8,8 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Changelog
 ============
-Version 2.0.1.0
------------
+######Version 2.0.1.0
+
 * Added the changelog file
 * Added the license file
 * Removed useless content

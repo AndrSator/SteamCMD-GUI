@@ -1,0 +1,5 @@
+﻿	Version 2.0.1.0
+- Added the changelog file
+- Added the license file
+- Removed useless content
+- Updated "?" button in the "Update/Install" tab with a new URL

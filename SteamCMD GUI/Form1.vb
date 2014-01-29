@@ -143,7 +143,7 @@ Public Class Form1
     End Sub
 
     Private Sub IdHelpButton_Click() Handles IdHelpButton.Click
-        Process.Start("https://developer.valvesoftware.com/wiki/SteamCMD#Supported_Servers")
+        Process.Start("https://developer.valvesoftware.com/wiki/Dedicated_Servers_List")
     End Sub
 
     Private Sub BrowserButton_Browser() Handles BrowserButton.Click, ServerPath.Click
@@ -681,25 +681,5 @@ Public Class Form1
             Process.Start(MotdPath)
             Status.Text = "MODT file not found. New one created."
         End If
-    End Sub
-
-    Private Sub SrcdsExePathOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SrcdsExePathOpen.Click
-
-    End Sub
-
-    Private Sub ModHelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModHelpButton.Click
-
-    End Sub
-
-    Private Sub SaveMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveMenu.Click, SaveButton.Click
-
-    End Sub
-
-    Private Sub IdHelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IdHelpButton.Click
-
-    End Sub
-
-    Private Sub OpenFolderButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenFolderButton.Click
-
     End Sub
 End Class

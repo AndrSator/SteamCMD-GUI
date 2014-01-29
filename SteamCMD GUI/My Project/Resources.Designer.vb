@@ -88,6 +88,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property by_nc_sa() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("by-nc-sa", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property Folder_6222() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Folder_6222", resourceCulture)

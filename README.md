@@ -6,14 +6,13 @@ License
 ============
 SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
 
-Changelog
+Last Version
 ============
-######Version 2.0.1.0
+######Version 2.0.1.1
 
-* Added the changelog file
-* Added the license file
-* Removed useless content
-* Updated "?" button in the "Update/Install" tab with a new URL
+* Documented all the changes in changelog
+* Edited "About" window design
+* License and changelog files are shown in RAW mode if cant find the local file
 
 Mirrors
 ============

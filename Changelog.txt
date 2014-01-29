@@ -1,5 +1,28 @@
-﻿	Version 2.0.1.0
+﻿	Version 2.0.1.1
+- Documented all the changes in changelog
+- Edited "About" window design
+- License and changelog files are shown in RAW mode if cant find the local file
+
+	Version 2.0.1.0
 - Added the changelog file
 - Added the license file
 - Removed useless content
 - Updated "?" button in the "Update/Install" tab with a new URL
+
+	Version 2.0.0.1
+- Fixed a crash related when the user try to run a server with a wrong path
+- Added a sample config
+
+	Version 2
+- Run Server Tab
+- Autosave SteamCMD path
+- New menu
+	- Save/Load configuration
+	- List of current CFG files
+	- Direct link to MOTD
+
+	Version 1.0.0.1
+- Added an input to choose the path where is located the file steamcmd.exe
+
+	Version 1
+- Release

@@ -1,4 +1,8 @@
-﻿	Version 2.0.1.1
+﻿	Version 2.0.1.2
+- New icon
+- Added a loading screen
+
+	Version 2.0.1.1
 - Documented all the changes in changelog
 - Edited "About" window design
 - License and changelog files are shown in RAW mode if cant find the local file

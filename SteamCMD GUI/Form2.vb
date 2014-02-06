@@ -2,7 +2,7 @@
 
 Public Class Form2
     Private Sub Form2_Load() Handles MyBase.Load
-        VersionLabel.Text = My.Application.Info.Version.ToString()
+        VersionLabel.Text = System.String.Format(VersionLabel.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
     End Sub
 
     Private Sub LicenseURL_Click() Handles LicenseURL.Click
@@ -23,5 +23,9 @@ Public Class Form2
 
     Private Sub Close2_Click() Handles Close2.Click
         Me.Close()
+    End Sub
+
+    Private Sub LicenseURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LicenseURL.Click
+
     End Sub
 End Class

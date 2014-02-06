@@ -1,6 +1,6 @@
 SteamCMD-GUI
 ============
-SteamCMD Gui allows the user to use SteamCMD on Windows without command lines and/or batch files. Also, can be used to run servers with parameters (srcds.exe).
+SteamCMD GUI allows the user to use SteamCMD on Windows without command lines and/or batch files. Also, can be used to run servers with parameters (srcds.exe).
 
 License
 ============
@@ -8,11 +8,10 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Version
 ============
-######Version 2.0.1.1
+######Version 2.0.1.2
 
-* Documented all the changes in changelog
-* Edited "About" window design
-* License and changelog files are shown in RAW mode if cant find the local file
+* New icon
+* Added a loading screen
 
 Mirrors
 ============

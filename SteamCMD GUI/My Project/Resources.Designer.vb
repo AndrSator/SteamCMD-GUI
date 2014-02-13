@@ -67,23 +67,37 @@ Namespace My.Resources
             End Get
         End Property
         
-        Friend ReadOnly Property by_nc_sa() As System.Drawing.Bitmap
+        Friend ReadOnly Property CCLicense() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("by-nc-sa", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("CCLicense", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
-        Friend ReadOnly Property Folder_6222() As System.Drawing.Bitmap
+        Friend ReadOnly Property Folder() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Folder_6222", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Folder", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
-        Friend ReadOnly Property steamcmdgui_256x256() As System.Drawing.Bitmap
+        Friend ReadOnly Property Help() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("steamcmdgui_256x256", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Help", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property Save() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Save", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property SteamCMDGUI_Logo() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("SteamCMDGUI_Logo", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

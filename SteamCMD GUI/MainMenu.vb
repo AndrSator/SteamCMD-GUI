@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Xml
+Imports System.Net.Dns
 
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation As String
@@ -10,7 +11,7 @@ Module Module1
 End Module
 
 
-Public Class Form1
+Public Class MainMenu
     Dim WithEvents WC As New WebClient
 
     Private Sub Form1_Load() Handles MyBase.Load
@@ -19,11 +20,9 @@ Public Class Form1
         NetworkComboBox.SelectedIndex = 0
         Status.Text = ""
         Tips()
-
         If Not System.IO.Directory.Exists("Settings") Then
             System.IO.Directory.CreateDirectory("Settings")
         End If
-
         If File.Exists("SteamCMDPath.xml") Then
             Dim XmlConfig As XmlReader = New XmlTextReader("SteamCMDPath.xml")
             While (XmlConfig.Read())
@@ -252,13 +251,15 @@ Public Class Form1
                 Status.BackColor = Color.FromArgb(240, 240, 240)
                 SrcdsExePathOpen.Enabled = True
                 CFGMenu.Enabled = True
-                MOTDMenu.Enabled = True
+                CommonFilesMenu.Enabled = True
+                SMMenu.Enabled = True
                 RunServerButton.Enabled = True
             Else
                 SrcdsExePathOpen.Enabled = False
                 MapList.Enabled = False
                 CFGMenu.Enabled = False
-                MOTDMenu.Enabled = False
+                CommonFilesMenu.Enabled = False
+                SMMenu.Enabled = False
                 RunServerButton.Enabled = False
                 Status.Text = "Can't find the file 'srcds.exe'!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -495,7 +496,7 @@ Public Class Form1
     End Sub
 
     Private Sub AboutButton_Click() Handles AboutButton.Click, AboutToolStripMenuItem.Click
-        Form2.Show()
+        AboutWindow.Show()
     End Sub
 
     Private Sub ExitButton_Click() Handles ExitButton.Click, ExitMenu.Click
@@ -590,7 +591,8 @@ Public Class Form1
                         SrcdsExePathTextBox.Text = SrcdsExePath
                         MapList.Enabled = True
                         CFGMenu.Enabled = True
-                        MOTDMenu.Enabled = True
+                        CommonFilesMenu.Enabled = True
+                        SMMenu.Enabled = True
                         RunServerButton.Enabled = True
                         SrcdsExePathOpen.Enabled = True
                     End If
@@ -651,7 +653,7 @@ Public Class Form1
                 Next
             End If
         Else
-            Status.Text = "The 'cfg' folder is empty or doesn't exist!"
+            Status.Text = "Can't find the server files!"
         End If
     End Sub
 
@@ -672,14 +674,41 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub MOTD_Click() Handles MOTDMenu.Click
-        Dim MotdPath As String = SrcdsExePath & "\" & GameMod & "\motd.txt"
+    Private Sub MenuTxt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MotdTxtButton.Click, MapcycleTxtButton.Click, MaplistTxtButton.Click
+        Dim TxtFile As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
+        Dim MotdPath As String = SrcdsExePath & "\" & GameMod & "\" & TxtFile.Text & ".txt"
         If File.Exists(MotdPath) Then
             Process.Start(MotdPath)
         Else
             File.Create(MotdPath).Dispose()
             Process.Start(MotdPath)
-            Status.Text = "MODT file not found. New one created."
+            Status.Text = TxtFile.Text & " file not found. New one created."
         End If
+    End Sub
+
+    Private Sub SMMenu_Click() Handles SMMenu.MouseHover, SMMenu.Click
+        If SMMenu.Enabled = True Then
+            SMMenu.DropDownItems.Clear()
+            Dim SMFilesPath As String
+            SMFilesPath = SrcdsExePathTextBox.Text & "\" & GameMod & "\addons\sourcemod\configs"
+            If System.IO.Directory.Exists(SMFilesPath) Then
+                'Create new submenu for each cfg and txt file
+                For Each SMFile As String In My.Computer.FileSystem.GetFiles _
+                        (SMFilesPath, FileIO.SearchOption.SearchTopLevelOnly, "*.cfg", "*.txt", "*.ini")
+                    Dim text = System.IO.Path.GetFileNameWithoutExtension(SMFile)
+                    Dim item As ToolStripItem = SMMenu.DropDownItems.Add(text)
+                    item.Tag = SMFile
+                    AddHandler item.Click, AddressOf SMFileMenuItems_Click
+                Next
+            Else
+                Status.Text = "Seems that SourceMod isn't installed."
+            End If
+        End If
+    End Sub
+
+    Private Sub SMFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item = CType(sender, ToolStripItem)
+        Dim path = CStr(item.Tag)
+        Process.Start(path)
     End Sub
 End Class

@@ -1,4 +1,12 @@
-﻿	Version 2.0.1.2
+﻿	Version 2.0.2.0
+- Updated correctly the license
+- Reorganized resources
+- Renamed all forms
+- Added direct button for open maplist.txt and mapcycle.txt
+- Added a list for config files of SourceMod (.txt, .cfg, and .ini)
+- Added shortcutkeys for Save (Ctrl + S) and Load (Ctrl + O)
+
+	Version 2.0.1.2
 - New icon
 - Added a loading screen
 

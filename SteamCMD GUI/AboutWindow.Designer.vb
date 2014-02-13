@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form2
+Partial Class AboutWindow
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,7 +22,7 @@ Partial Class Form2
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AboutWindow))
         Me.VersionLabel = New System.Windows.Forms.Label()
         Me.AutorLabel = New System.Windows.Forms.Label()
         Me.Close2 = New System.Windows.Forms.Button()
@@ -108,7 +108,7 @@ Partial Class Form2
         '
         'LicenseURL
         '
-        Me.LicenseURL.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.by_nc_sa
+        Me.LicenseURL.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.CCLicense
         Me.LicenseURL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.LicenseURL.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LicenseURL.Location = New System.Drawing.Point(208, 78)
@@ -119,7 +119,7 @@ Partial Class Form2
         '
         'PictureBox2
         '
-        Me.PictureBox2.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.steamcmdgui_256x256
+        Me.PictureBox2.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.SteamCMDGUI_Logo
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox2.Location = New System.Drawing.Point(5, 2)
         Me.PictureBox2.Name = "PictureBox2"

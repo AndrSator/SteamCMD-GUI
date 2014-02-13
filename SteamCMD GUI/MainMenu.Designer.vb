@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class MainMenu
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMenu))
         Me.GamesList = New System.Windows.Forms.ComboBox()
         Me.SteamCMDDownloadButton = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
@@ -103,10 +103,15 @@ Partial Class Form1
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CommonFilesMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MotdTxtButton = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MapcycleTxtButton = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MaplistTxtButton = New System.Windows.Forms.ToolStripMenuItem()
         Me.CFGMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.MOTDMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SMMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
@@ -188,7 +193,7 @@ Partial Class Form1
         '
         'OpenFolderButton
         '
-        Me.OpenFolderButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder_6222
+        Me.OpenFolderButton.BackgroundImage = CType(resources.GetObject("OpenFolderButton.BackgroundImage"), System.Drawing.Image)
         Me.OpenFolderButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.OpenFolderButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.OpenFolderButton.Location = New System.Drawing.Point(136, 15)
@@ -252,7 +257,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.CustomIDCheckbox)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 60)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(397, 201)
+        Me.GroupBox2.Size = New System.Drawing.Size(397, 211)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Server Configuration"
@@ -503,7 +508,7 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.Label5)
         Me.GroupBox6.Location = New System.Drawing.Point(6, 60)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(397, 201)
+        Me.GroupBox6.Size = New System.Drawing.Size(397, 211)
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Game Configuration"
@@ -512,7 +517,7 @@ Partial Class Form1
         '
         Me.SaveButton.BackgroundImage = CType(resources.GetObject("SaveButton.BackgroundImage"), System.Drawing.Image)
         Me.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.SaveButton.Location = New System.Drawing.Point(368, 172)
+        Me.SaveButton.Location = New System.Drawing.Point(368, 173)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(23, 23)
         Me.SaveButton.TabIndex = 20
@@ -541,9 +546,9 @@ Partial Class Form1
         'RunServerButton
         '
         Me.RunServerButton.Enabled = False
-        Me.RunServerButton.Location = New System.Drawing.Point(292, 172)
+        Me.RunServerButton.Location = New System.Drawing.Point(299, 173)
         Me.RunServerButton.Name = "RunServerButton"
-        Me.RunServerButton.Size = New System.Drawing.Size(70, 23)
+        Me.RunServerButton.Size = New System.Drawing.Size(63, 23)
         Me.RunServerButton.TabIndex = 19
         Me.RunServerButton.Text = "Run"
         Me.RunServerButton.UseVisualStyleBackColor = True
@@ -615,7 +620,7 @@ Partial Class Form1
         'RconTextBox
         '
         Me.RconTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.RconTextBox.Location = New System.Drawing.Point(284, 125)
+        Me.RconTextBox.Location = New System.Drawing.Point(278, 125)
         Me.RconTextBox.Name = "RconTextBox"
         Me.RconTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.RconTextBox.Size = New System.Drawing.Size(84, 22)
@@ -771,7 +776,7 @@ Partial Class Form1
         '
         'SrcdsExePathOpen
         '
-        Me.SrcdsExePathOpen.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder_6222
+        Me.SrcdsExePathOpen.BackgroundImage = CType(resources.GetObject("SrcdsExePathOpen.BackgroundImage"), System.Drawing.Image)
         Me.SrcdsExePathOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.SrcdsExePathOpen.Enabled = False
         Me.SrcdsExePathOpen.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
@@ -847,40 +852,68 @@ Partial Class Form1
         'SaveMenu
         '
         Me.SaveMenu.Name = "SaveMenu"
-        Me.SaveMenu.Size = New System.Drawing.Size(134, 22)
+        Me.SaveMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveMenu.Size = New System.Drawing.Size(143, 22)
         Me.SaveMenu.Text = "Save"
         '
         'LoadMenu
         '
         Me.LoadMenu.Name = "LoadMenu"
-        Me.LoadMenu.Size = New System.Drawing.Size(134, 22)
+        Me.LoadMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.LoadMenu.Size = New System.Drawing.Size(143, 22)
         Me.LoadMenu.Text = "Load"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(131, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(140, 6)
         '
         'ExitMenu
         '
         Me.ExitMenu.Name = "ExitMenu"
         Me.ExitMenu.ShortcutKeyDisplayString = "Alt+F4"
-        Me.ExitMenu.Size = New System.Drawing.Size(134, 22)
+        Me.ExitMenu.Size = New System.Drawing.Size(143, 22)
         Me.ExitMenu.Text = "Exit"
         '
         'ToolsMenu
         '
-        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CFGMenu, Me.MOTDMenu})
+        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CommonFilesMenu, Me.CFGMenu, Me.ToolStripSeparator4, Me.SMMenu})
         Me.ToolsMenu.Name = "ToolsMenu"
         Me.ToolsMenu.Size = New System.Drawing.Size(39, 20)
         Me.ToolsMenu.Text = "Edit"
+        '
+        'CommonFilesMenu
+        '
+        Me.CommonFilesMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MotdTxtButton, Me.MapcycleTxtButton, Me.MaplistTxtButton})
+        Me.CommonFilesMenu.Enabled = False
+        Me.CommonFilesMenu.Name = "CommonFilesMenu"
+        Me.CommonFilesMenu.Size = New System.Drawing.Size(152, 22)
+        Me.CommonFilesMenu.Text = "Common Files"
+        '
+        'MotdTxtButton
+        '
+        Me.MotdTxtButton.Name = "MotdTxtButton"
+        Me.MotdTxtButton.Size = New System.Drawing.Size(125, 22)
+        Me.MotdTxtButton.Text = "motd"
+        '
+        'MapcycleTxtButton
+        '
+        Me.MapcycleTxtButton.Name = "MapcycleTxtButton"
+        Me.MapcycleTxtButton.Size = New System.Drawing.Size(125, 22)
+        Me.MapcycleTxtButton.Text = "mapcycle"
+        '
+        'MaplistTxtButton
+        '
+        Me.MaplistTxtButton.Name = "MaplistTxtButton"
+        Me.MaplistTxtButton.Size = New System.Drawing.Size(125, 22)
+        Me.MaplistTxtButton.Text = "maplist"
         '
         'CFGMenu
         '
         Me.CFGMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewFileToolStripMenuItem, Me.ToolStripSeparator2})
         Me.CFGMenu.Enabled = False
         Me.CFGMenu.Name = "CFGMenu"
-        Me.CFGMenu.Size = New System.Drawing.Size(119, 22)
+        Me.CFGMenu.Size = New System.Drawing.Size(152, 22)
         Me.CFGMenu.Text = "Cfg Files"
         '
         'NewFileToolStripMenuItem
@@ -894,12 +927,16 @@ Partial Class Form1
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(116, 6)
         '
-        'MOTDMenu
+        'ToolStripSeparator4
         '
-        Me.MOTDMenu.Enabled = False
-        Me.MOTDMenu.Name = "MOTDMenu"
-        Me.MOTDMenu.Size = New System.Drawing.Size(119, 22)
-        Me.MOTDMenu.Text = "MOTD"
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(149, 6)
+        '
+        'SMMenu
+        '
+        Me.SMMenu.Name = "SMMenu"
+        Me.SMMenu.Size = New System.Drawing.Size(152, 22)
+        Me.SMMenu.Text = "SourceMod"
         '
         'HelpToolStripMenuItem
         '
@@ -918,7 +955,7 @@ Partial Class Form1
         '
         Me.XmlConfigOpenFileDialog.RestoreDirectory = True
         '
-        'Form1
+        'MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -936,7 +973,7 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(627, 397)
         Me.MinimumSize = New System.Drawing.Size(627, 397)
-        Me.Name = "Form1"
+        Me.Name = "MainMenu"
         Me.Text = "SteamCMD GUI"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1047,6 +1084,11 @@ Partial Class Form1
     Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
     Friend WithEvents NewFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents MOTDMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CommonFilesMenu As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MotdTxtButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MapcycleTxtButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MaplistTxtButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents SMMenu As System.Windows.Forms.ToolStripMenuItem
 
 End Class

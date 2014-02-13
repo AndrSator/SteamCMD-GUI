@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class SplashScreen1
+Partial Class LoadingScreen
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -26,6 +26,7 @@ Partial Class SplashScreen1
         Me.VersionLabelSplash = New System.Windows.Forms.Label()
         Me.BannerSplash = New System.Windows.Forms.PictureBox()
         Me.LoadingLabelSplash = New System.Windows.Forms.Label()
+        Me.Copyright = New System.Windows.Forms.Label()
         CType(Me.BannerSplash, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -34,7 +35,7 @@ Partial Class SplashScreen1
         Me.AuthorLabelSplash.AutoSize = True
         Me.AuthorLabelSplash.BackColor = System.Drawing.Color.Transparent
         Me.AuthorLabelSplash.ForeColor = System.Drawing.SystemColors.Menu
-        Me.AuthorLabelSplash.Location = New System.Drawing.Point(540, 113)
+        Me.AuthorLabelSplash.Location = New System.Drawing.Point(540, 99)
         Me.AuthorLabelSplash.Name = "AuthorLabelSplash"
         Me.AuthorLabelSplash.Size = New System.Drawing.Size(60, 13)
         Me.AuthorLabelSplash.TabIndex = 3
@@ -46,7 +47,7 @@ Partial Class SplashScreen1
         Me.VersionLabelSplash.AutoSize = True
         Me.VersionLabelSplash.BackColor = System.Drawing.Color.Transparent
         Me.VersionLabelSplash.ForeColor = System.Drawing.SystemColors.Menu
-        Me.VersionLabelSplash.Location = New System.Drawing.Point(518, 129)
+        Me.VersionLabelSplash.Location = New System.Drawing.Point(518, 115)
         Me.VersionLabelSplash.Name = "VersionLabelSplash"
         Me.VersionLabelSplash.Size = New System.Drawing.Size(113, 13)
         Me.VersionLabelSplash.TabIndex = 3
@@ -77,6 +78,18 @@ Partial Class SplashScreen1
         Me.LoadingLabelSplash.TabIndex = 5
         Me.LoadingLabelSplash.Text = "Loading..."
         '
+        'Copyright
+        '
+        Me.Copyright.AutoSize = True
+        Me.Copyright.BackColor = System.Drawing.Color.Transparent
+        Me.Copyright.ForeColor = System.Drawing.SystemColors.Menu
+        Me.Copyright.Location = New System.Drawing.Point(509, 131)
+        Me.Copyright.Name = "Copyright"
+        Me.Copyright.Size = New System.Drawing.Size(91, 13)
+        Me.Copyright.TabIndex = 3
+        Me.Copyright.Text = "CC BY-NC-SA 4.0"
+        Me.Copyright.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
         'SplashScreen1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -85,6 +98,7 @@ Partial Class SplashScreen1
         Me.ClientSize = New System.Drawing.Size(629, 270)
         Me.ControlBox = False
         Me.Controls.Add(Me.LoadingLabelSplash)
+        Me.Controls.Add(Me.Copyright)
         Me.Controls.Add(Me.VersionLabelSplash)
         Me.Controls.Add(Me.AuthorLabelSplash)
         Me.Controls.Add(Me.BannerSplash)
@@ -104,5 +118,6 @@ Partial Class SplashScreen1
     Friend WithEvents BannerSplash As System.Windows.Forms.PictureBox
     Friend WithEvents VersionLabelSplash As System.Windows.Forms.Label
     Friend WithEvents LoadingLabelSplash As System.Windows.Forms.Label
+    Friend WithEvents Copyright As System.Windows.Forms.Label
 
 End Class

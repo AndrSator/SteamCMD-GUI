@@ -32,12 +32,12 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.SteamCMD_GUI.Form1
+            Me.MainForm = Global.SteamCMD_GUI.MainMenu
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateSplashScreen()
-            Me.SplashScreen = Global.SteamCMD_GUI.SplashScreen1
+            Me.SplashScreen = Global.SteamCMD_GUI.LoadingScreen
         End Sub
     End Class
 End Namespace

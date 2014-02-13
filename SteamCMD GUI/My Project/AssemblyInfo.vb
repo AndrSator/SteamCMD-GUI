@@ -14,7 +14,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Graphical interface for SteamCMD")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("SteamCMD GUI")> 
-<Assembly: AssemblyCopyright("Copyright ©  2014")> 
+<Assembly: AssemblyCopyright("CC BY-NC-SA 4.0")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.0.1.2")> 
-<Assembly: AssemblyFileVersion("2.0.1.2")> 
+<Assembly: AssemblyVersion("2.0.2.0")> 
+<Assembly: AssemblyFileVersion("2.0.2.0")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en")> 

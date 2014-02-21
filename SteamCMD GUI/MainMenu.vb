@@ -6,7 +6,7 @@ Imports System.Net.Dns
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation As String
     ' Run Server
-    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode As String
+    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands As String
     Public Parameters As String
 End Module
 
@@ -39,6 +39,12 @@ Public Class MainMenu
         End If
     End Sub
 
+    Private Sub Tips()
+        ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
+        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
+        ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
+    End Sub
+
     ' Update/install server inputs
     Private Sub SteamCMDDownload_Click() Handles SteamCMDDownloadButton.Click
         SteamCMDDownloadButton.Enabled = False
@@ -69,11 +75,6 @@ Public Class MainMenu
               System.Media.SystemSounds.Exclamation)
             SteamCMDDownloadButton.Enabled = True
         End If
-    End Sub
-
-    Private Sub Tips()
-        ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
-        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
     End Sub
 
     Private Sub ExePath_Browser() Handles ExePath.Click, ExeBrowserButton.Click
@@ -435,6 +436,10 @@ Public Class MainMenu
         End If
     End Sub
 
+    Private Sub AddButton_Click() Handles AddButton.Click
+        CommandLineOptionsWindow.Show()
+    End Sub
+
     Private Sub RunServerButton_Click() Handles RunServerButton.Click
         If My.Computer.FileSystem.FileExists(SrcdsExePathTextBox.Text & "\srcds.exe") Then
             If GameMod = Nothing Then
@@ -458,7 +463,7 @@ Public Class MainMenu
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
-                        Process.Start(SrcdsExePath & "\srcds.exe", Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex)
+                        Process.Start(SrcdsExePath & "\srcds.exe", Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex & " " & AdditionalCommands)
                     End If
                 End If
             End If
@@ -562,6 +567,11 @@ Public Class MainMenu
                     .WriteString(UDPPort)
                     .WriteEndElement()
 
+                    If Not AdditionalCommands = Nothing Then
+                        .WriteStartElement("AdditionalCommands")
+                        .WriteString(AdditionalCommands)
+                        .WriteEndElement()
+                    End If
                     .WriteEndDocument()
                 End With
                 XmlWrt.Close()
@@ -624,6 +634,9 @@ Public Class MainMenu
                     If (XmlConfig.Name = "Port") Then
                         UDPPort = XmlConfig.ReadInnerXml.ToString
                         UDPPortTexBox.Value = UDPPort
+                    End If
+                    If (XmlConfig.Name = "AdditionalCommands") Then
+                        AdditionalCommands = XmlConfig.ReadInnerXml.ToString
                     End If
                 End If
             End While

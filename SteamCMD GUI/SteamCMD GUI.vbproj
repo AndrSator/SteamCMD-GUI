@@ -80,6 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="CommandsWindow.Designer.vb">
+      <DependentUpon>CommandsWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CommandsWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainMenu.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommandsWindow.resx">
+      <DependentUpon>CommandsWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.vb</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +160,7 @@
     <None Include="Resources\Icons\Folder.png" />
     <None Include="Resources\Icons\Help.png" />
     <None Include="Resources\Icons\Save.png" />
+    <None Include="Resources\Icons\Add.png" />
     <Content Include="SteamCMDGUI_Icon.ico" />
   </ItemGroup>
   <ItemGroup />

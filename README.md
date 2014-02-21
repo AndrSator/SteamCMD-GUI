@@ -11,13 +11,9 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Version
 ============
-######Version 2.0.2.0	
-* Updated correctly the license
-* Reorganized resources
-* Renamed all forms
-* Added direct button for open maplist.txt and mapcycle.txt
-* Added a list for config files of SourceMod (.txt, .cfg, and .ini)
-* Added shortcutkeys for Save (Ctrl + S) and Load (Ctrl + O)
+######Version 2.1.0.0
+* Added a textbox for add more command-line options, with a help button. This options can be saved and loaded with the config file
+* Little change on BannerSplash image
 
 Mirrors
 ============

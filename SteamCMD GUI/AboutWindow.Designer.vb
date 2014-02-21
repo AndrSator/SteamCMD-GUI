@@ -22,7 +22,6 @@ Partial Class AboutWindow
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AboutWindow))
         Me.VersionLabel = New System.Windows.Forms.Label()
         Me.AutorLabel = New System.Windows.Forms.Label()
         Me.Close2 = New System.Windows.Forms.Button()
@@ -127,7 +126,7 @@ Partial Class AboutWindow
         Me.PictureBox2.TabIndex = 16
         Me.PictureBox2.TabStop = False
         '
-        'Form2
+        'AboutWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -141,10 +140,9 @@ Partial Class AboutWindow
         Me.Controls.Add(Me.Close2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox2)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximumSize = New System.Drawing.Size(324, 185)
         Me.MinimumSize = New System.Drawing.Size(324, 185)
-        Me.Name = "Form2"
+        Me.Name = "AboutWindow"
         Me.Text = "SteamCMD GUI"
         CType(Me.LicenseURL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()

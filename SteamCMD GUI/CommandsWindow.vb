@@ -24,4 +24,8 @@
     Private Sub CommandHelpButton_Click() Handles CommandHelpButton.Click
         Process.Start("https://developer.valvesoftware.com/wiki/Command_Line_Options")
     End Sub
+
+    Private Sub CommandHelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CommandHelpButton.Click
+
+    End Sub
 End Class

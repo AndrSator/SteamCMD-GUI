@@ -15,6 +15,7 @@ Public Class MainMenu
     Dim WithEvents WC As New WebClient
 
     Private Sub Form1_Load() Handles MyBase.Load
+        Me.Icon = My.Resources.SteamCMDGUI_Icon
         GamesList.SelectedIndex = 0
         ModList.SelectedIndex = 0
         NetworkComboBox.SelectedIndex = 0

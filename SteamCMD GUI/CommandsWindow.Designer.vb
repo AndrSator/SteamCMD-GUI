@@ -22,7 +22,6 @@ Partial Class CommandLineOptionsWindow
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CommandLineOptionsWindow))
         Me.CommandsTextbox = New System.Windows.Forms.TextBox()
         Me.CommandHelpButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -37,7 +36,7 @@ Partial Class CommandLineOptionsWindow
         'CommandHelpButton
         '
         Me.CommandHelpButton.BackColor = System.Drawing.Color.Transparent
-        Me.CommandHelpButton.BackgroundImage = CType(resources.GetObject("CommandHelpButton.BackgroundImage"), System.Drawing.Image)
+        Me.CommandHelpButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Help
         Me.CommandHelpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.CommandHelpButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.CommandHelpButton.Location = New System.Drawing.Point(677, 8)
@@ -55,7 +54,6 @@ Partial Class CommandLineOptionsWindow
         Me.Controls.Add(Me.CommandHelpButton)
         Me.Controls.Add(Me.CommandsTextbox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "CommandLineOptionsWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Custom Commands"

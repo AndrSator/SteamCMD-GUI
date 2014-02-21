@@ -50,7 +50,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>SteamCMDGUI_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\SteamCMDGUI_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -161,7 +161,7 @@
     <None Include="Resources\Icons\Help.png" />
     <None Include="Resources\Icons\Save.png" />
     <None Include="Resources\Icons\Add.png" />
-    <Content Include="SteamCMDGUI_Icon.ico" />
+    <None Include="Resources\Icons\SteamCMDGUI_Icon.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

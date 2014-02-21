@@ -23,7 +23,6 @@ Partial Class MainMenu
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMenu))
         Me.GamesList = New System.Windows.Forms.ComboBox()
         Me.SteamCMDDownloadButton = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
@@ -115,10 +114,10 @@ Partial Class MainMenu
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFolderButton = New System.Windows.Forms.Button()
         Me.IdHelpButton = New System.Windows.Forms.Button()
+        Me.AddButton = New System.Windows.Forms.Button()
+        Me.SaveButton = New System.Windows.Forms.Button()
         Me.ModHelpButton = New System.Windows.Forms.Button()
         Me.SrcdsExePathOpen = New System.Windows.Forms.Button()
-        Me.SaveButton = New System.Windows.Forms.Button()
-        Me.AddButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -795,26 +794,26 @@ Partial Class MainMenu
         '
         Me.SaveMenu.Name = "SaveMenu"
         Me.SaveMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveMenu.Size = New System.Drawing.Size(152, 22)
+        Me.SaveMenu.Size = New System.Drawing.Size(143, 22)
         Me.SaveMenu.Text = "Save"
         '
         'LoadMenu
         '
         Me.LoadMenu.Name = "LoadMenu"
         Me.LoadMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.LoadMenu.Size = New System.Drawing.Size(152, 22)
+        Me.LoadMenu.Size = New System.Drawing.Size(143, 22)
         Me.LoadMenu.Text = "Load"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(140, 6)
         '
         'ExitMenu
         '
         Me.ExitMenu.Name = "ExitMenu"
         Me.ExitMenu.ShortcutKeyDisplayString = "Alt+F4"
-        Me.ExitMenu.Size = New System.Drawing.Size(152, 22)
+        Me.ExitMenu.Size = New System.Drawing.Size(143, 22)
         Me.ExitMenu.Text = "Exit"
         '
         'ToolsMenu
@@ -905,7 +904,7 @@ Partial Class MainMenu
         '
         'OpenFolderButton
         '
-        Me.OpenFolderButton.BackgroundImage = CType(resources.GetObject("OpenFolderButton.BackgroundImage"), System.Drawing.Image)
+        Me.OpenFolderButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder
         Me.OpenFolderButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.OpenFolderButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.OpenFolderButton.Location = New System.Drawing.Point(136, 15)
@@ -917,8 +916,7 @@ Partial Class MainMenu
         '
         'IdHelpButton
         '
-        Me.IdHelpButton.BackColor = System.Drawing.Color.Transparent
-        Me.IdHelpButton.BackgroundImage = CType(resources.GetObject("IdHelpButton.BackgroundImage"), System.Drawing.Image)
+        Me.IdHelpButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Help
         Me.IdHelpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.IdHelpButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.IdHelpButton.Location = New System.Drawing.Point(368, 18)
@@ -928,10 +926,30 @@ Partial Class MainMenu
         Me.IdHelpButton.TabStop = False
         Me.IdHelpButton.UseVisualStyleBackColor = False
         '
+        'AddButton
+        '
+        Me.AddButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Add
+        Me.AddButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.AddButton.Location = New System.Drawing.Point(293, 173)
+        Me.AddButton.Name = "AddButton"
+        Me.AddButton.Size = New System.Drawing.Size(23, 23)
+        Me.AddButton.TabIndex = 22
+        Me.AddButton.UseVisualStyleBackColor = True
+        '
+        'SaveButton
+        '
+        Me.SaveButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Save
+        Me.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.SaveButton.Location = New System.Drawing.Point(368, 173)
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.Size = New System.Drawing.Size(23, 23)
+        Me.SaveButton.TabIndex = 20
+        Me.SaveButton.UseVisualStyleBackColor = True
+        '
         'ModHelpButton
         '
         Me.ModHelpButton.BackColor = System.Drawing.Color.Transparent
-        Me.ModHelpButton.BackgroundImage = CType(resources.GetObject("ModHelpButton.BackgroundImage"), System.Drawing.Image)
+        Me.ModHelpButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Help
         Me.ModHelpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ModHelpButton.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.ModHelpButton.Location = New System.Drawing.Point(368, 18)
@@ -943,7 +961,7 @@ Partial Class MainMenu
         '
         'SrcdsExePathOpen
         '
-        Me.SrcdsExePathOpen.BackgroundImage = CType(resources.GetObject("SrcdsExePathOpen.BackgroundImage"), System.Drawing.Image)
+        Me.SrcdsExePathOpen.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder
         Me.SrcdsExePathOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.SrcdsExePathOpen.Enabled = False
         Me.SrcdsExePathOpen.Font = New System.Drawing.Font("Wingdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
@@ -953,26 +971,6 @@ Partial Class MainMenu
         Me.SrcdsExePathOpen.TabIndex = 1
         Me.SrcdsExePathOpen.TabStop = False
         Me.SrcdsExePathOpen.UseVisualStyleBackColor = True
-        '
-        'SaveButton
-        '
-        Me.SaveButton.BackgroundImage = CType(resources.GetObject("SaveButton.BackgroundImage"), System.Drawing.Image)
-        Me.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.SaveButton.Location = New System.Drawing.Point(368, 173)
-        Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.Size = New System.Drawing.Size(23, 23)
-        Me.SaveButton.TabIndex = 20
-        Me.SaveButton.UseVisualStyleBackColor = True
-        '
-        'AddButton
-        '
-        Me.AddButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Add
-        Me.AddButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.AddButton.Location = New System.Drawing.Point(293, 173)
-        Me.AddButton.Name = "AddButton"
-        Me.AddButton.Size = New System.Drawing.Size(23, 23)
-        Me.AddButton.TabIndex = 22
-        Me.AddButton.UseVisualStyleBackColor = True
         '
         'MainMenu
         '
@@ -987,7 +985,6 @@ Partial Class MainMenu
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.AboutButton)
         Me.Controls.Add(Me.ExitButton)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(627, 397)

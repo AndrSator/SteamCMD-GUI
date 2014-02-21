@@ -3,6 +3,7 @@
 Public Class AboutWindow
     Private Sub Form2_Load() Handles MyBase.Load
         VersionLabel.Text = System.String.Format(VersionLabel.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
+        Me.Icon = My.Resources.SteamCMDGUI_Icon
     End Sub
 
     Private Sub LicenseURL_Click() Handles LicenseURL.Click

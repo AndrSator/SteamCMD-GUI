@@ -11,9 +11,8 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Version
 ============
-######Version 2.1.0.1
-* Improved the code with adding the icon file as resource
-* Moved the icon file to Resource/Icons folder
+######Version 2.1.1.0
+* Added a button for SteamCMD log files
 
 Mirrors
 ============

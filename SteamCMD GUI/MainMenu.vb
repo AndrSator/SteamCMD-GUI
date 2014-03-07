@@ -33,6 +33,7 @@ Public Class MainMenu
                         ExePath.Text = XmlConfig.ReadInnerXml.ToString()
                         FolderBrowserDialog2.SelectedPath = ExePath.Text
                         SteamCMDExePath = ExePath.Text
+                        LogMenu.Enabled = True
                     End If
                 End If
             End While
@@ -103,9 +104,11 @@ Public Class MainMenu
                 End With
                 XmlWrt.Close()
 
+                LogMenu.Enabled = True
                 Status.Text = "Current path of 'steamcmd.exe' is " & FolderBrowserDialog2.SelectedPath
                 Status.BackColor = Color.FromArgb(240, 240, 240)
             Else
+                LogMenu.Enabled = False
                 Status.Text = "Can't find the file 'steamcmd.exe'!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
@@ -242,7 +245,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    ' Run server inputs
+    'Run server inputs
     Private Sub SrcdsExePath_Browser() Handles SrcdsExePathTextBox.Click, SrcdsExeBrowserButton.Click
         If FolderBrowserDialog3.ShowDialog() = DialogResult.OK Then
             If My.Computer.FileSystem.FileExists(FolderBrowserDialog3.SelectedPath & "\srcds.exe") Then
@@ -612,7 +615,7 @@ Public Class MainMenu
                     End If
                     If (XmlConfig.Name = "Mod") Then
                         ModList.Text = XmlConfig.ReadInnerXml.ToString()
-                        ' Define the game with ModList.Text
+                        'Define the game with ModList.Text
                         ModList_SelectedIndex()
                     End If
                     If (XmlConfig.Name = "Map") Then
@@ -663,7 +666,7 @@ Public Class MainMenu
                     Dim item As ToolStripItem = CFGMenu.DropDownItems.Add(text)
                     item.Tag = CfgFile
                     AddHandler item.Click, AddressOf CfgMenuItems_Click
-                    ' This works thanks to Hans Passant ^^
+                    'This works thanks to Hans Passant ^^
                 Next
             End If
         Else
@@ -721,6 +724,30 @@ Public Class MainMenu
     End Sub
 
     Private Sub SMFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item = CType(sender, ToolStripItem)
+        Dim path = CStr(item.Tag)
+        Process.Start(path)
+    End Sub
+
+    Private Sub LogMenu_Click() Handles LogMenu.MouseHover, LogMenu.Click
+        If LogMenu.Enabled = True Then
+            LogMenu.DropDownItems.Clear()
+            Dim LogFilesPath As String
+            LogFilesPath = ExePath.Text & "\logs"
+            If System.IO.Directory.Exists(LogFilesPath) Then
+                'Create new submenu for each txt file
+                For Each LogFile As String In My.Computer.FileSystem.GetFiles _
+                        (LogFilesPath, FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                    Dim text = System.IO.Path.GetFileNameWithoutExtension(LogFile)
+                    Dim item As ToolStripItem = LogMenu.DropDownItems.Add(text)
+                    item.Tag = LogFile
+                    AddHandler item.Click, AddressOf LogFileMenuItems_Click
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub LogFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)

@@ -1,4 +1,7 @@
-﻿	Version 2.1.0.1
+﻿	Version 2.1.1.0
+- Added a button for SteamCMD log files
+
+	Version 2.1.0.1
 - Improved the code with adding the icon file as resource
 - Moved the icon file to Resource/Icons folder
 

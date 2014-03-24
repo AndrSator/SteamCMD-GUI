@@ -130,7 +130,7 @@ Partial Class AboutWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(308, 147)
+        Me.ClientSize = New System.Drawing.Size(319, 151)
         Me.Controls.Add(Me.ChangelogButton)
         Me.Controls.Add(Me.LicenseURL)
         Me.Controls.Add(Me.AuthorLabel2)
@@ -140,8 +140,9 @@ Partial Class AboutWindow
         Me.Controls.Add(Me.Close2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox2)
-        Me.MaximumSize = New System.Drawing.Size(324, 185)
-        Me.MinimumSize = New System.Drawing.Size(324, 185)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximumSize = New System.Drawing.Size(325, 175)
+        Me.MinimumSize = New System.Drawing.Size(325, 175)
         Me.Name = "AboutWindow"
         Me.Text = "SteamCMD GUI"
         CType(Me.LicenseURL, System.ComponentModel.ISupportInitialize).EndInit()

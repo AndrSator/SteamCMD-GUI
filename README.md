@@ -11,8 +11,11 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Version
 ============
-######Version 2.1.1.0
-* Added a button for SteamCMD log files
+######Version 2.1.1.1
+* Added a checkbox for enable/disable the validation files ~ Request by CyberStars @ AlliedModders
+* Added a header image for the Steam library
+* Little improvement in logo and icon
+* Removed the arrows when hover the cursor at borders of the window
 
 Mirrors
 ============

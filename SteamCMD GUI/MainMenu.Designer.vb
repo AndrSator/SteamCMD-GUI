@@ -35,6 +35,7 @@ Partial Class MainMenu
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ValidateCheckBox = New System.Windows.Forms.CheckBox()
         Me.IdHelpButton = New System.Windows.Forms.Button()
         Me.BrowserButton = New System.Windows.Forms.Button()
         Me.UpdateServerButton = New System.Windows.Forms.Button()
@@ -115,11 +116,11 @@ Partial Class MainMenu
         Me.Empty = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -246,6 +247,7 @@ Partial Class MainMenu
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.ValidateCheckBox)
         Me.GroupBox2.Controls.Add(Me.IdHelpButton)
         Me.GroupBox2.Controls.Add(Me.BrowserButton)
         Me.GroupBox2.Controls.Add(Me.UpdateServerButton)
@@ -264,6 +266,19 @@ Partial Class MainMenu
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Server Configuration"
+        '
+        'ValidateCheckBox
+        '
+        Me.ValidateCheckBox.AutoSize = True
+        Me.ValidateCheckBox.Checked = True
+        Me.ValidateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ValidateCheckBox.Location = New System.Drawing.Point(9, 178)
+        Me.ValidateCheckBox.Name = "ValidateCheckBox"
+        Me.ValidateCheckBox.Size = New System.Drawing.Size(88, 17)
+        Me.ValidateCheckBox.TabIndex = 17
+        Me.ValidateCheckBox.TabStop = False
+        Me.ValidateCheckBox.Text = "Validate Files"
+        Me.ValidateCheckBox.UseVisualStyleBackColor = True
         '
         'IdHelpButton
         '
@@ -851,7 +866,7 @@ Partial Class MainMenu
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.MenuStrip1.Size = New System.Drawing.Size(611, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(621, 24)
         Me.MenuStrip1.TabIndex = 20
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -969,24 +984,24 @@ Partial Class MainMenu
         Me.LogMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem4})
         Me.LogMenu.Enabled = False
         Me.LogMenu.Name = "LogMenu"
-        Me.LogMenu.Size = New System.Drawing.Size(152, 22)
+        Me.LogMenu.Size = New System.Drawing.Size(107, 22)
         Me.LogMenu.Text = "Logs"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(77, 22)
+        Me.ToolStripMenuItem4.Text = " "
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'XmlConfigOpenFileDialog
         '
         Me.XmlConfigOpenFileDialog.RestoreDirectory = True
-        '
-        'ToolStripMenuItem4
-        '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem4.Text = " "
         '
         'MainMenu
         '
@@ -1001,6 +1016,7 @@ Partial Class MainMenu
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.AboutButton)
         Me.Controls.Add(Me.ExitButton)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(627, 397)
@@ -1126,5 +1142,6 @@ Partial Class MainMenu
     Friend WithEvents SaveButton As System.Windows.Forms.Button
     Friend WithEvents LogMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ValidateCheckBox As System.Windows.Forms.CheckBox
 
 End Class

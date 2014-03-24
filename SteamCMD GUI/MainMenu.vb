@@ -4,7 +4,7 @@ Imports System.Xml
 Imports System.Net.Dns
 
 Module Module1
-    Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation As String
+    Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp As String
     ' Run Server
     Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands As String
     Public Parameters As String
@@ -194,6 +194,15 @@ Public Class MainMenu
         Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
 
+    Private Sub ValidateCheckBox_CheckedChanged() Handles ValidateCheckBox.CheckedChanged
+        If ValidateCheckBox.Checked = True Then
+            ValidateApp = " validate"
+            Status.Text = "The files will be checked and validated."
+        Else
+            ValidateApp = ""
+        End If
+    End Sub
+
     Private Sub UpdateServerButton_Click() Handles UpdateServerButton.Click
         If My.Computer.FileSystem.FileExists(FolderBrowserDialog2.SelectedPath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
@@ -232,7 +241,7 @@ Public Class MainMenu
                             ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
                             Status.Text = "Installing/Updating..."
                             Status.BackColor = Color.FromArgb(240, 240, 240)
-                            Process.Start(SteamCMDExePath & "\steamcmd.exe", "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & " +app_update " & SteamAppID & " validate")
+                            Process.Start(SteamCMDExePath & "\steamcmd.exe", "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & " +app_update " & SteamAppID & ValidateApp)
                         End If
                     End If
                 End If
@@ -365,7 +374,7 @@ Public Class MainMenu
     Private Sub CheckBoxMask_CheckedChanged() Handles CheckBoxMask.CheckedChanged
         If CheckBoxMask.Checked = True Then
             RconTextBox.PasswordChar = "*"
-            RconTextBox.Font = New Font("Microsoft Sans Serif", 9.75, FontStyle.Bold) 'Microsoft Sans Serif, 9.75pt, style=Bold
+            RconTextBox.Font = New Font("Microsoft Sans Serif", 9.75, FontStyle.Bold)
         Else
             RconTextBox.PasswordChar = ""
             RconTextBox.Font = New Font("Microsoft Sans Serif", 8.25, FontStyle.Regular)

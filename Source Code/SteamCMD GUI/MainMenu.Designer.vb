@@ -140,7 +140,7 @@ Partial Class MainMenu
         '
         Me.GamesList.FormattingEnabled = True
         Me.GamesList.IntegralHeight = False
-        Me.GamesList.Items.AddRange(New Object() {"Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead 2", "Team Fortress 2"})
+        Me.GamesList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
         Me.GamesList.Location = New System.Drawing.Point(9, 20)
         Me.GamesList.Name = "GamesList"
         Me.GamesList.Size = New System.Drawing.Size(189, 21)
@@ -735,7 +735,7 @@ Partial Class MainMenu
         'ModList
         '
         Me.ModList.FormattingEnabled = True
-        Me.ModList.Items.AddRange(New Object() {"Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead 2", "Team Fortress 2"})
+        Me.ModList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
         Me.ModList.Location = New System.Drawing.Point(9, 20)
         Me.ModList.Name = "ModList"
         Me.ModList.Size = New System.Drawing.Size(189, 21)
@@ -1007,7 +1007,7 @@ Partial Class MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(611, 359)
+        Me.ClientSize = New System.Drawing.Size(621, 369)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.TabMenu)

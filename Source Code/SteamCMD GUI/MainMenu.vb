@@ -16,8 +16,8 @@ Public Class MainMenu
 
     Private Sub Form1_Load() Handles MyBase.Load
         Me.Icon = My.Resources.SteamCMDGUI_Icon
-        GamesList.SelectedIndex = 0
-        ModList.SelectedIndex = 0
+        GamesList.SelectedIndex = 1
+        ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
         Status.Text = ""
         Tips()
@@ -169,6 +169,9 @@ Public Class MainMenu
     End Sub
 
     Private Sub GamesList_SelectedIndexChanged() Handles GamesList.SelectedIndexChanged, GamesList.EnabledChanged
+        If GamesList.Text = "Alien Swarm" Then
+            SteamAppID = "635"
+        End If
         If GamesList.Text = "Counter-Strike: Global Offensive" Then
             SteamAppID = "740"
         End If
@@ -178,11 +181,17 @@ Public Class MainMenu
         If GamesList.Text = "Day of Defeat: Source" Then
             SteamAppID = "232290"
         End If
+        If GamesList.Text = "Dota 2" Then
+            SteamAppID = "570"
+        End If
         If GamesList.Text = "Garry's Mod" Then
             SteamAppID = "4020"
         End If
         If GamesList.Text = "Half-Life 2: Deathmatch" Then
             SteamAppID = "232370"
+        End If
+        If GamesList.Text = "Left 4 Dead" Then
+            SteamAppID = "510"
         End If
         If GamesList.Text = "Left 4 Dead 2" Then
             SteamAppID = "222860"
@@ -288,6 +297,9 @@ Public Class MainMenu
     End Sub
 
     Private Sub ModList_SelectedIndex() Handles ModList.SelectedIndexChanged, ModList.EnabledChanged
+        If ModList.Text = "Alien Swarm" Then
+            GameMod = "alienswarm"
+        End If
         If ModList.Text = "Counter-Strike: Global Offensive" Then
             GameMod = "csgo"
         End If
@@ -297,11 +309,17 @@ Public Class MainMenu
         If ModList.Text = "Day of Defeat: Source" Then
             GameMod = "dod"
         End If
+        If ModList.Text = "Dota 2" Then
+            GameMod = "dota"
+        End If
         If ModList.Text = "Garry's Mod" Then
             GameMod = "garrysmod"
         End If
         If ModList.Text = "Half-Life 2: Deathmatch" Then
             GameMod = "hl2mp"
+        End If
+        If ModList.Text = "Left 4 Dead" Then
+            GameMod = "left4dead"
         End If
         If ModList.Text = "Left 4 Dead 2" Then
             GameMod = "left4dead2"

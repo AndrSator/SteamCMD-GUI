@@ -9,14 +9,18 @@ License
 ============
 SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
 
-Last Version
+Last Changes
 ============
 ######Version 2.1.1.2
 * Added Alien Swarm, Dota 2, and Left 4 Dead to the game list
  * (The Dota 2 servers needs additional files for work properly.)
 
-Mirrors
+Download
 ============
+Get the last version from GitHub right [here](https://github.com/DioJoestar/SteamCMD-GUI/releases/latest) or use one of the mirrors from below.
+
+######Mirrors
 * [Gamebanana] (http://steam.gamebanana.com/tools/5560)
 * [Spanish Development Kit (OnlineSDK)] (http://onlinesdk.webege.com/recursos/SteamCMD%20GUI.zip)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
+

@@ -1,7 +1,7 @@
 SteamCMD GUI
 ============
 <img align="left" src="https://dl.dropboxusercontent.com/u/12664902/SteamCMDGUI.png" />
-SteamCMD GUI allows the user to use SteamCMD on Windows without command lines and/or batch files using a very simple and intuitive graphical interface.
+SteamCMD GUI allows the user to use [SteamCMD] (https://developer.valvesoftware.com/wiki/SteamCMD) on Windows without command lines and/or batch files using a very simple and intuitive graphical interface.
 
 Also, can be used to run servers with parameters (srcds.exe), open and edit files like MOTD and maplist with a few clicks without browser on all the directories.
 

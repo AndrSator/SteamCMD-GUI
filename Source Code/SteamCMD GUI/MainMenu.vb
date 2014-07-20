@@ -4,10 +4,9 @@ Imports System.Xml
 Imports System.Net.Dns
 
 Module Module1
-    Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp As String
+    Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
     ' Run Server
-    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands As String
-    Public Parameters As String
+    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
 End Module
 
 
@@ -16,13 +15,18 @@ Public Class MainMenu
 
     Private Sub Form1_Load() Handles MyBase.Load
         Me.Icon = My.Resources.SteamCMDGUI_Icon
+        TabMenu.Size = New Size(417, 303)
         GamesList.SelectedIndex = 1
         ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
+        ConsoleCommandList.SelectedIndex = 0
         Status.Text = ""
         Tips()
         If Not System.IO.Directory.Exists("Settings") Then
             System.IO.Directory.CreateDirectory("Settings")
+        End If
+        If Not System.IO.Directory.Exists("Logs") Then
+            System.IO.Directory.CreateDirectory("Logs")
         End If
         If File.Exists("SteamCMDPath.xml") Then
             Dim XmlConfig As XmlReader = New XmlTextReader("SteamCMDPath.xml")
@@ -45,6 +49,42 @@ Public Class MainMenu
         ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
         ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
+        ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
+        ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
+        ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
+        ToolTip1.SetToolTip(ConsoleClearLog, "Clear Log")
+    End Sub
+
+    ' Autosave log
+    Private Sub SaveLog()
+        Dim ConsoleContent As String = DateTime.Now & " from " & Program & vbCrLf & "______________________" & vbCrLf & Game & vbCrLf & PathForLog & vbCrLf & "______________________" & vbCrLf & ConsoleOutput.Text
+
+        Dim LogFileName As String = Program & " Log-" & DateTime.Now.ToString("dd.MM.yyyy") & " @ " & DateTime.Now.ToString("HH;mm")
+        File.WriteAllText("Logs\" & LogFileName & ".txt", ConsoleContent)
+        Status.Text = "File " & LogFileName & " has been saved in Logs folder."
+    End Sub
+
+    ' Resize tabs
+    Private Sub Tab_Click() Handles UpdateTab.Enter, RunTab.Enter
+        If GroupBox1.Visible = False Then
+            GroupBox1.Show()
+            GroupBox3.Show()
+            AboutButton.Show()
+            ExitButton.Show()
+            DonwloadBar.Show()
+            TabMenu.Size = New Size(417, 303)
+        End If
+    End Sub
+
+    Private Sub ConsoleTab_Click() Handles ConsoleTab.Enter
+        GroupBox1.Hide()
+        GroupBox3.Hide()
+        AboutButton.Hide()
+        ExitButton.Hide()
+        DonwloadBar.Hide()
+        TabMenu.Size = New Size(588, 303)
+        ConsoleTab.Size = New Size(580, 277)
+        ConsoleOutput.Size = New Size(539, 238)
     End Sub
 
     ' Update/install server inputs
@@ -68,11 +108,11 @@ Public Class MainMenu
     End Sub
 
     Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
-        ProgressBar1.Value = e.ProgressPercentage
-        If ProgressBar1.Value = 100 Then
+        DonwloadBar.Value = e.ProgressPercentage
+        If DonwloadBar.Value = 100 Then
             Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
             Status.BackColor = Color.FromArgb(240, 240, 240)
-            ProgressBar1.Value = 0
+            DonwloadBar.Value = 0
             My.Computer.Audio.PlaySystemSound( _
               System.Media.SystemSounds.Exclamation)
             SteamCMDDownloadButton.Enabled = True
@@ -187,6 +227,9 @@ Public Class MainMenu
         If GamesList.Text = "Garry's Mod" Then
             SteamAppID = "4020"
         End If
+        If GamesList.Text = "Half-Life Dedicated Server" Then
+            SteamAppID = "90"
+        End If
         If GamesList.Text = "Half-Life 2: Deathmatch" Then
             SteamAppID = "232370"
         End If
@@ -198,6 +241,17 @@ Public Class MainMenu
         End If
         If GamesList.Text = "Team Fortress 2" Then
             SteamAppID = "232250"
+        End If
+        If Not GamesList.Text = "Half-Life Dedicated Server" Then
+            CustomIDTextBox.Show()
+            CustomIDCheckbox.Show()
+            GoldSrcModInput.Hide()
+            GoldSrcModLabel.Hide()
+        Else
+            CustomIDTextBox.Hide()
+            CustomIDCheckbox.Hide()
+            GoldSrcModInput.Show()
+            GoldSrcModLabel.Show()
         End If
         Status.Text = "Game to install: " & GamesList.Text & " - Steam App ID:" & SteamAppID
         Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -247,10 +301,57 @@ Public Class MainMenu
                             My.Computer.Audio.PlaySystemSound( _
                                 System.Media.SystemSounds.Hand)
                         Else
+                            If GoldSrcModInput.Visible = True _
+                                And Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
+                                GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text 
+                            Else
+                                Status.Text = "Half-Life mod not defined. Installing a default one."
+                                Status.BackColor = Color.FromArgb(240, 200, 200)
+                                My.Computer.Audio.PlaySystemSound( _
+                                    System.Media.SystemSounds.Hand)
+                            End If
                             ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
                             Status.Text = "Installing/Updating..."
                             Status.BackColor = Color.FromArgb(240, 240, 240)
-                            Process.Start(SteamCMDExePath & "\steamcmd.exe", "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & " +app_update " & SteamAppID & ValidateApp)
+
+                            Dim p As New Process
+
+                            With (p.StartInfo)
+                                .FileName = SteamCMDExePath & "\steamcmd.exe"
+                                .UseShellExecute = False
+                                .CreateNoWindow = False
+                                .RedirectStandardOutput = True
+                                .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
+                            End With
+
+                            ConsoleTab_Click()
+                            TabMenu.SelectedTab = ConsoleTab
+
+                            ' Clear console, Run process and stream
+                            ConsoleOutput.Clear()
+                            p.Start()
+                            Dim sr As System.IO.StreamReader = p.StandardOutput
+                            Dim line As String
+                            Do
+                                line = sr.ReadLine()
+                                If Not (line Is Nothing) Then
+                                    ConsoleOutput.SelectionStart = ConsoleOutput.TextLength
+                                    ConsoleOutput.ScrollToCaret()
+                                    ConsoleOutput.Text = ConsoleOutput.Text + line + Environment.NewLine
+                                End If
+                            Loop Until p.HasExited
+
+                            If p.HasExited = True Then
+                                ' Autosave log
+                                If CustomIDCheckbox.Checked Then
+                                    Game = "Steam App ID: " & SteamAppID
+                                Else
+                                    Game = "Game: " & GamesList.Text
+                                End If
+                                Program = "SteamCmd.exe"
+                                PathForLog = "Server path: " & ServerPathInstallation
+                                SaveLog()
+                            End If
                         End If
                     End If
                 End If
@@ -494,7 +595,43 @@ Public Class MainMenu
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
-                        Process.Start(SrcdsExePath & "\srcds.exe", Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex & " " & AdditionalCommands)
+                        Dim p As New Process
+
+                        With (p.StartInfo)
+                            .FileName = SrcdsExePath & "\srcds.exe"
+                            .UseShellExecute = False
+                            .CreateNoWindow = False
+                            .RedirectStandardOutput = True
+                            .Arguments = Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex & " " & AdditionalCommands
+                        End With
+
+                        ConsoleTab_Click()
+                        TabMenu.SelectedTab = ConsoleTab
+
+                        ' Clear console, Run process and stream
+                        ConsoleOutput.Clear()
+                        p.Start()
+                        Dim sr As System.IO.StreamReader = p.StandardOutput
+                        Dim line As String
+                        Do
+                            line = sr.ReadLine()
+                            If Not (line Is Nothing) Then
+                                ConsoleOutput.SelectionStart = ConsoleOutput.TextLength
+                                ConsoleOutput.ScrollToCaret()
+                                ConsoleOutput.Text = ConsoleOutput.Text + line + Environment.NewLine
+                            End If
+                        Loop Until line Is Nothing
+                        If p.HasExited = True Then
+                            ' Autosave log
+                            If CustomModCheckBox.Checked = True Then
+                                Game = "Server from mod: " & GameMod
+                            Else
+                                Game = "Server from: " & ModList.Text
+                            End If
+                            Program = "Srcds.exe"
+                            PathForLog = "Server path: " & SrcdsExePath
+                            SaveLog()
+                        End If
                     End If
                 End If
             End If
@@ -673,6 +810,8 @@ Public Class MainMenu
             End While
             XmlConfig.Close()
             TabMenu.SelectedTab = RunTab
+            GroupBox1.Show()
+            GroupBox3.Show()
             Status.Text = "The config file has been loaded."
             Status.BackColor = Color.FromArgb(240, 240, 240)
         End If
@@ -685,7 +824,7 @@ Public Class MainMenu
             CFGMenu.DropDownItems.Add("-")
             Dim cfgfolderpath As String
             cfgfolderpath = SrcdsExePathTextBox.Text & "\" & GameMod & "\cfg"
-            If System.IO.Directory.Exists(cfgfolderpath) Then
+            If System.IO.Directory.Exists(cfgfolderpath) = True Then
                 'Create new submenu for each cfg file
                 For Each CfgFile As String In My.Computer.FileSystem.GetFiles _
                         (cfgfolderpath, FileIO.SearchOption.SearchTopLevelOnly, "*.cfg")
@@ -695,9 +834,15 @@ Public Class MainMenu
                     AddHandler item.Click, AddressOf CfgMenuItems_Click
                     'This works thanks to Hans Passant ^^
                 Next
+            Else
+                Status.Text = "Can't find the CFG folder. New one created."
+                Directory.CreateDirectory(cfgfolderpath)
             End If
         Else
             Status.Text = "Can't find the server files!"
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+            My.Computer.Audio.PlaySystemSound( _
+                System.Media.SystemSounds.Hand)
         End If
     End Sub
 
@@ -708,13 +853,13 @@ Public Class MainMenu
     End Sub
 
     Private Sub NewFile_Click() Handles NewFileToolStripMenuItem.Click
-        SaveFileDialog2.InitialDirectory = SrcdsExePathTextBox.Text & "\" & GameMod & "\cfg"
-        SaveFileDialog2.Filter = "Configuration files (*.cfg)|*.cfg"
-        SaveFileDialog2.FileName = "Config.cfg"
-        If SaveFileDialog2.ShowDialog() = DialogResult.OK Then
-            File.Create(SaveFileDialog2.FileName).Dispose()
-            Process.Start(SaveFileDialog2.FileName)
-            Status.Text = "File " & SaveFileDialog2.FileName & " has been saved"
+        SaveFileDialog1.InitialDirectory = SrcdsExePathTextBox.Text & "\" & GameMod & "\cfg"
+        SaveFileDialog1.Filter = "Configuration files (*.cfg)|*.cfg"
+        SaveFileDialog1.FileName = "Config.cfg"
+        If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
+            File.Create(SaveFileDialog1.FileName).Dispose()
+            Process.Start(SaveFileDialog1.FileName)
+            Status.Text = "File " & SaveFileDialog1.FileName & " has been saved."
         End If
     End Sub
 
@@ -778,5 +923,32 @@ Public Class MainMenu
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
+    End Sub
+
+    ' Console Tab
+    Private Sub ConsoleOpenLog_Click() Handles ConsoleOpenLog.Click
+        Process.Start("explorer.exe", ".\Logs")
+    End Sub
+
+    Private Sub ConsoleSaveLog_Click() Handles ConsoleSaveLog.Click
+        SaveFileDialog1.InitialDirectory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Logs")
+        SaveFileDialog1.DefaultExt = "*.txt"
+        SaveFileDialog1.Filter = "Text Files (*.txt)|*.txt"
+        SaveFileDialog1.FileName = "log.txt"
+
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) _
+            And (SaveFileDialog1.FileName.Length > 0) Then
+            File.WriteAllText(SaveFileDialog1.FileName, ConsoleOutput.Text)
+            Process.Start(SaveFileDialog1.FileName)
+            Status.Text = "File " & Path.GetFileName(SaveFileDialog1.FileName) & " has been saved in Logs folder."
+        End If
+    End Sub
+
+    Private Sub ConsoleClearLog_Click() Handles ConsoleClearLog.Click
+        Dim result As Integer = MessageBox.Show("Really want to clear all the content?", "Clear console", MessageBoxButtons.YesNo)
+        If result = DialogResult.Yes Then
+            ConsoleOutput.Clear()
+            Status.Text = "The console has been cleaned."
+        End If
     End Sub
 End Class

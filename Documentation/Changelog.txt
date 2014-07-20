@@ -1,4 +1,12 @@
-﻿	Version 2.1.1.2
+﻿	Version 3.0.0.0 (Not Released/Unstable)
+- Added Half-Life Dedicated Server to the game list
+	(This supports all the mods that works on GoldSrc engine)
+- Added a console
+- Added new folder for logs
+- Disabled the option to write in combo boxes
+- When the program doesn't find the CFG folder in the server, it creates a new one
+
+	Version 2.1.1.2
 - Added Alien Swarm, Dota 2, and Left 4 Dead to the game list
 	(The Dota 2 servers needs additional files for work properly.)
 

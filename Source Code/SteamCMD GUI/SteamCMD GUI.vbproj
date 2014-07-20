@@ -120,6 +120,7 @@
     <Compile Include="LoadingScreen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Words.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommandsWindow.resx">
@@ -133,9 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingScreen.resx">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
@@ -163,7 +164,10 @@
     <None Include="Resources\Icons\Add.png" />
     <None Include="Resources\Icons\SteamCMDGUI_Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Icons\Clear.png" />
+    <Content Include="Resources\Icons\Connect.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

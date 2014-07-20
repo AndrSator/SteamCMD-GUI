@@ -25,7 +25,7 @@ Partial Class MainMenu
         Me.components = New System.ComponentModel.Container()
         Me.GamesList = New System.Windows.Forms.ComboBox()
         Me.SteamCMDDownloadButton = New System.Windows.Forms.Button()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.DonwloadBar = New System.Windows.Forms.ProgressBar()
         Me.CustomIDCheckbox = New System.Windows.Forms.CheckBox()
         Me.CustomIDTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -45,6 +45,8 @@ Partial Class MainMenu
         Me.Label1 = New System.Windows.Forms.Label()
         Me.UsernameTextBox = New System.Windows.Forms.TextBox()
         Me.PasswdTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.GoldSrcModLabel = New System.Windows.Forms.Label()
+        Me.GoldSrcModInput = New System.Windows.Forms.TextBox()
         Me.Status = New System.Windows.Forms.TextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -93,6 +95,15 @@ Partial Class MainMenu
         Me.SrcdsExeBrowserButton = New System.Windows.Forms.Button()
         Me.SrcdsExePathTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ConsoleTab = New System.Windows.Forms.TabPage()
+        Me.ConsoleConnect = New System.Windows.Forms.Button()
+        Me.ConsoleClearLog = New System.Windows.Forms.Button()
+        Me.ConsoleOpenLog = New System.Windows.Forms.Button()
+        Me.ConsoleSaveLog = New System.Windows.Forms.Button()
+        Me.ConsoleCommandList = New System.Windows.Forms.ComboBox()
+        Me.ConsoleButton = New System.Windows.Forms.Button()
+        Me.ConsoleInput = New System.Windows.Forms.TextBox()
+        Me.ConsoleOutput = New System.Windows.Forms.RichTextBox()
         Me.FolderBrowserDialog3 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -120,7 +131,6 @@ Partial Class MainMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -132,15 +142,17 @@ Partial Class MainMenu
         CType(Me.UDPPortTexBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MaxPlayersTexBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
+        Me.ConsoleTab.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GamesList
         '
+        Me.GamesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.GamesList.FormattingEnabled = True
         Me.GamesList.IntegralHeight = False
-        Me.GamesList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
+        Me.GamesList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life Dedicated Server", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
         Me.GamesList.Location = New System.Drawing.Point(9, 20)
         Me.GamesList.Name = "GamesList"
         Me.GamesList.Size = New System.Drawing.Size(189, 21)
@@ -155,13 +167,13 @@ Partial Class MainMenu
         Me.SteamCMDDownloadButton.Text = "Download SteamCMD"
         Me.SteamCMDDownloadButton.UseVisualStyleBackColor = True
         '
-        'ProgressBar1
+        'DonwloadBar
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(435, 312)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(165, 18)
-        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.ProgressBar1.TabIndex = 0
+        Me.DonwloadBar.Location = New System.Drawing.Point(435, 312)
+        Me.DonwloadBar.Name = "DonwloadBar"
+        Me.DonwloadBar.Size = New System.Drawing.Size(165, 18)
+        Me.DonwloadBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.DonwloadBar.TabIndex = 0
         '
         'CustomIDCheckbox
         '
@@ -191,7 +203,7 @@ Partial Class MainMenu
         Me.GroupBox1.Location = New System.Drawing.Point(435, 34)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(165, 101)
-        Me.GroupBox1.TabIndex = 99
+        Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Tools"
         '
@@ -260,6 +272,8 @@ Partial Class MainMenu
         Me.GroupBox2.Controls.Add(Me.CustomIDTextBox)
         Me.GroupBox2.Controls.Add(Me.GamesList)
         Me.GroupBox2.Controls.Add(Me.CustomIDCheckbox)
+        Me.GroupBox2.Controls.Add(Me.GoldSrcModLabel)
+        Me.GroupBox2.Controls.Add(Me.GoldSrcModInput)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 60)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(397, 211)
@@ -365,6 +379,24 @@ Partial Class MainMenu
         Me.PasswdTextBox.Size = New System.Drawing.Size(100, 22)
         Me.PasswdTextBox.TabIndex = 5
         '
+        'GoldSrcModLabel
+        '
+        Me.GoldSrcModLabel.AutoSize = True
+        Me.GoldSrcModLabel.Location = New System.Drawing.Point(284, 22)
+        Me.GoldSrcModLabel.Name = "GoldSrcModLabel"
+        Me.GoldSrcModLabel.Size = New System.Drawing.Size(69, 13)
+        Me.GoldSrcModLabel.TabIndex = 19
+        Me.GoldSrcModLabel.Text = "GoldSrc Mod"
+        Me.GoldSrcModLabel.Visible = False
+        '
+        'GoldSrcModInput
+        '
+        Me.GoldSrcModInput.Location = New System.Drawing.Point(204, 20)
+        Me.GoldSrcModInput.Name = "GoldSrcModInput"
+        Me.GoldSrcModInput.Size = New System.Drawing.Size(74, 20)
+        Me.GoldSrcModInput.TabIndex = 18
+        Me.GoldSrcModInput.Visible = False
+        '
         'Status
         '
         Me.Status.BackColor = System.Drawing.SystemColors.Control
@@ -466,10 +498,11 @@ Partial Class MainMenu
         '
         Me.TabMenu.Controls.Add(Me.UpdateTab)
         Me.TabMenu.Controls.Add(Me.RunTab)
+        Me.TabMenu.Controls.Add(Me.ConsoleTab)
         Me.TabMenu.Location = New System.Drawing.Point(12, 27)
         Me.TabMenu.Name = "TabMenu"
         Me.TabMenu.SelectedIndex = 0
-        Me.TabMenu.Size = New System.Drawing.Size(417, 303)
+        Me.TabMenu.Size = New System.Drawing.Size(588, 303)
         Me.TabMenu.TabIndex = 0
         '
         'UpdateTab
@@ -479,7 +512,7 @@ Partial Class MainMenu
         Me.UpdateTab.Location = New System.Drawing.Point(4, 22)
         Me.UpdateTab.Name = "UpdateTab"
         Me.UpdateTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.UpdateTab.Size = New System.Drawing.Size(409, 277)
+        Me.UpdateTab.Size = New System.Drawing.Size(580, 277)
         Me.UpdateTab.TabIndex = 0
         Me.UpdateTab.Text = "Update/Install"
         Me.UpdateTab.UseVisualStyleBackColor = True
@@ -491,7 +524,7 @@ Partial Class MainMenu
         Me.RunTab.Location = New System.Drawing.Point(4, 22)
         Me.RunTab.Name = "RunTab"
         Me.RunTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.RunTab.Size = New System.Drawing.Size(409, 277)
+        Me.RunTab.Size = New System.Drawing.Size(580, 277)
         Me.RunTab.TabIndex = 1
         Me.RunTab.Text = "Run Server"
         Me.RunTab.UseVisualStyleBackColor = True
@@ -734,8 +767,9 @@ Partial Class MainMenu
         '
         'ModList
         '
+        Me.ModList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ModList.FormattingEnabled = True
-        Me.ModList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
+        Me.ModList.Items.AddRange(New Object() {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike: Source", "Day of Defeat: Source", "Dota 2", "Garry's Mod", "Half-Life Dedicated Server", "Half-Life 2: Deathmatch", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2"})
         Me.ModList.Location = New System.Drawing.Point(9, 20)
         Me.ModList.Name = "ModList"
         Me.ModList.Size = New System.Drawing.Size(189, 21)
@@ -841,6 +875,102 @@ Partial Class MainMenu
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Srcds path"
         '
+        'ConsoleTab
+        '
+        Me.ConsoleTab.Controls.Add(Me.ConsoleConnect)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleClearLog)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleOpenLog)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleSaveLog)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleCommandList)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleButton)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleInput)
+        Me.ConsoleTab.Controls.Add(Me.ConsoleOutput)
+        Me.ConsoleTab.Location = New System.Drawing.Point(4, 22)
+        Me.ConsoleTab.Name = "ConsoleTab"
+        Me.ConsoleTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.ConsoleTab.Size = New System.Drawing.Size(580, 277)
+        Me.ConsoleTab.TabIndex = 2
+        Me.ConsoleTab.Text = "Console"
+        Me.ConsoleTab.UseVisualStyleBackColor = True
+        '
+        'ConsoleConnect
+        '
+        Me.ConsoleConnect.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Connect
+        Me.ConsoleConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ConsoleConnect.Location = New System.Drawing.Point(551, 6)
+        Me.ConsoleConnect.Name = "ConsoleConnect"
+        Me.ConsoleConnect.Size = New System.Drawing.Size(23, 23)
+        Me.ConsoleConnect.TabIndex = 4
+        Me.ConsoleConnect.UseVisualStyleBackColor = True
+        '
+        'ConsoleClearLog
+        '
+        Me.ConsoleClearLog.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Clear
+        Me.ConsoleClearLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ConsoleClearLog.Location = New System.Drawing.Point(551, 93)
+        Me.ConsoleClearLog.Name = "ConsoleClearLog"
+        Me.ConsoleClearLog.Size = New System.Drawing.Size(23, 23)
+        Me.ConsoleClearLog.TabIndex = 7
+        Me.ConsoleClearLog.UseVisualStyleBackColor = True
+        '
+        'ConsoleOpenLog
+        '
+        Me.ConsoleOpenLog.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Folder
+        Me.ConsoleOpenLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ConsoleOpenLog.Location = New System.Drawing.Point(551, 35)
+        Me.ConsoleOpenLog.Name = "ConsoleOpenLog"
+        Me.ConsoleOpenLog.Size = New System.Drawing.Size(23, 23)
+        Me.ConsoleOpenLog.TabIndex = 5
+        Me.ConsoleOpenLog.UseVisualStyleBackColor = True
+        '
+        'ConsoleSaveLog
+        '
+        Me.ConsoleSaveLog.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.Save
+        Me.ConsoleSaveLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ConsoleSaveLog.Location = New System.Drawing.Point(551, 64)
+        Me.ConsoleSaveLog.Name = "ConsoleSaveLog"
+        Me.ConsoleSaveLog.Size = New System.Drawing.Size(23, 23)
+        Me.ConsoleSaveLog.TabIndex = 6
+        Me.ConsoleSaveLog.UseVisualStyleBackColor = True
+        '
+        'ConsoleCommandList
+        '
+        Me.ConsoleCommandList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ConsoleCommandList.FormattingEnabled = True
+        Me.ConsoleCommandList.Items.AddRange(New Object() {"Empty", "say", "rcon", "echo"})
+        Me.ConsoleCommandList.Location = New System.Drawing.Point(6, 250)
+        Me.ConsoleCommandList.Name = "ConsoleCommandList"
+        Me.ConsoleCommandList.Size = New System.Drawing.Size(88, 21)
+        Me.ConsoleCommandList.TabIndex = 1
+        '
+        'ConsoleButton
+        '
+        Me.ConsoleButton.Location = New System.Drawing.Point(519, 248)
+        Me.ConsoleButton.Name = "ConsoleButton"
+        Me.ConsoleButton.Size = New System.Drawing.Size(55, 23)
+        Me.ConsoleButton.TabIndex = 3
+        Me.ConsoleButton.Text = "Send"
+        Me.ConsoleButton.UseVisualStyleBackColor = True
+        '
+        'ConsoleInput
+        '
+        Me.ConsoleInput.Location = New System.Drawing.Point(100, 250)
+        Me.ConsoleInput.Name = "ConsoleInput"
+        Me.ConsoleInput.Size = New System.Drawing.Size(413, 20)
+        Me.ConsoleInput.TabIndex = 2
+        '
+        'ConsoleOutput
+        '
+        Me.ConsoleOutput.BackColor = System.Drawing.SystemColors.Control
+        Me.ConsoleOutput.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ConsoleOutput.Location = New System.Drawing.Point(6, 6)
+        Me.ConsoleOutput.Name = "ConsoleOutput"
+        Me.ConsoleOutput.ReadOnly = True
+        Me.ConsoleOutput.Size = New System.Drawing.Size(539, 238)
+        Me.ConsoleOutput.TabIndex = 101
+        Me.ConsoleOutput.TabStop = False
+        Me.ConsoleOutput.Text = ""
+        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2})
@@ -866,7 +996,7 @@ Partial Class MainMenu
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.MenuStrip1.Size = New System.Drawing.Size(621, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(609, 24)
         Me.MenuStrip1.TabIndex = 20
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -984,8 +1114,8 @@ Partial Class MainMenu
         Me.LogMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem4})
         Me.LogMenu.Enabled = False
         Me.LogMenu.Name = "LogMenu"
-        Me.LogMenu.Size = New System.Drawing.Size(107, 22)
-        Me.LogMenu.Text = "Logs"
+        Me.LogMenu.Size = New System.Drawing.Size(162, 22)
+        Me.LogMenu.Text = "SteamCMD Logs"
         '
         'ToolStripMenuItem4
         '
@@ -996,7 +1126,7 @@ Partial Class MainMenu
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'XmlConfigOpenFileDialog
@@ -1007,20 +1137,20 @@ Partial Class MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(621, 369)
+        Me.ClientSize = New System.Drawing.Size(609, 369)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.TabMenu)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Status)
-        Me.Controls.Add(Me.ProgressBar1)
+        Me.Controls.Add(Me.DonwloadBar)
         Me.Controls.Add(Me.AboutButton)
         Me.Controls.Add(Me.ExitButton)
+        Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(627, 397)
-        Me.MinimumSize = New System.Drawing.Size(627, 397)
+        Me.MaximumSize = New System.Drawing.Size(615, 397)
+        Me.MinimumSize = New System.Drawing.Size(615, 397)
         Me.Name = "MainMenu"
         Me.Text = "SteamCMD GUI"
         Me.GroupBox1.ResumeLayout(False)
@@ -1038,6 +1168,8 @@ Partial Class MainMenu
         CType(Me.MaxPlayersTexBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.ConsoleTab.ResumeLayout(False)
+        Me.ConsoleTab.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -1047,7 +1179,7 @@ Partial Class MainMenu
     End Sub
     Friend WithEvents GamesList As System.Windows.Forms.ComboBox
     Friend WithEvents SteamCMDDownloadButton As System.Windows.Forms.Button
-    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents DonwloadBar As System.Windows.Forms.ProgressBar
     Friend WithEvents CustomIDCheckbox As System.Windows.Forms.CheckBox
     Friend WithEvents CustomIDTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
@@ -1128,7 +1260,6 @@ Partial Class MainMenu
     Friend WithEvents SrcdsExePathOpen As System.Windows.Forms.Button
     Friend WithEvents ToolsMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CFGMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SaveFileDialog2 As System.Windows.Forms.SaveFileDialog
     Friend WithEvents NewFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CommonFilesMenu As System.Windows.Forms.ToolStripMenuItem
@@ -1143,5 +1274,16 @@ Partial Class MainMenu
     Friend WithEvents LogMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ValidateCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents ConsoleOutput As System.Windows.Forms.RichTextBox
+    Friend WithEvents ConsoleTab As System.Windows.Forms.TabPage
+    Friend WithEvents ConsoleButton As System.Windows.Forms.Button
+    Friend WithEvents ConsoleInput As System.Windows.Forms.TextBox
+    Friend WithEvents ConsoleCommandList As System.Windows.Forms.ComboBox
+    Friend WithEvents ConsoleSaveLog As System.Windows.Forms.Button
+    Friend WithEvents ConsoleConnect As System.Windows.Forms.Button
+    Friend WithEvents ConsoleClearLog As System.Windows.Forms.Button
+    Friend WithEvents ConsoleOpenLog As System.Windows.Forms.Button
+    Friend WithEvents GoldSrcModLabel As System.Windows.Forms.Label
+    Friend WithEvents GoldSrcModInput As System.Windows.Forms.TextBox
 
 End Class

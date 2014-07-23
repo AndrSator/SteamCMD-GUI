@@ -5,6 +5,8 @@ SteamCMD GUI allows the user to use [SteamCMD] (https://developer.valvesoftware.
 
 Also, can be used to run servers with parameters (srcds.exe), open and edit files like MOTD and maplist with a few clicks without browser on all the directories.
 
+[Video guide by iLuZiioNz] (https://www.youtube.com/watch?v=ZLY76YVFKqk)
+
 License
 ============
 SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).

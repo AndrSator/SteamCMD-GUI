@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Xml
-Imports System.Net.Dns
 
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
@@ -14,7 +13,7 @@ Public Class MainMenu
     Dim WithEvents WC As New WebClient
 
     Private Sub Form1_Load() Handles MyBase.Load
-        Me.Icon = My.Resources.SteamCMDGUI_Icon
+        Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
         GamesList.SelectedIndex = 1
         ModList.SelectedIndex = 1
@@ -22,11 +21,11 @@ Public Class MainMenu
         ConsoleCommandList.SelectedIndex = 0
         Status.Text = ""
         Tips()
-        If Not System.IO.Directory.Exists("Settings") Then
-            System.IO.Directory.CreateDirectory("Settings")
+        If Not Directory.Exists("Settings") Then
+            Directory.CreateDirectory("Settings")
         End If
-        If Not System.IO.Directory.Exists("Logs") Then
-            System.IO.Directory.CreateDirectory("Logs")
+        If Not Directory.Exists("Logs") Then
+            Directory.CreateDirectory("Logs")
         End If
         If File.Exists("SteamCMDPath.xml") Then
             Dim XmlConfig As XmlReader = New XmlTextReader("SteamCMDPath.xml")
@@ -94,7 +93,7 @@ Public Class MainMenu
             Status.Text = "The file has already been downloaded!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
             SteamCMDDownloadButton.Enabled = True
         Else
             WC.DownloadFileAsync(New Uri("http://media.steampowered.com/installer/steamcmd.zip"), "steamcmd.zip")
@@ -107,14 +106,14 @@ Public Class MainMenu
         Process.Start("explorer.exe", ".")
     End Sub
 
-    Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
+    Private Sub WC_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
         DonwloadBar.Value = e.ProgressPercentage
         If DonwloadBar.Value = 100 Then
             Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
             Status.BackColor = Color.FromArgb(240, 240, 240)
             DonwloadBar.Value = 0
             My.Computer.Audio.PlaySystemSound( _
-              System.Media.SystemSounds.Exclamation)
+              Media.SystemSounds.Exclamation)
             SteamCMDDownloadButton.Enabled = True
         End If
     End Sub
@@ -152,7 +151,7 @@ Public Class MainMenu
                 Status.Text = "Can't find the file 'steamcmd.exe'!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
-                    System.Media.SystemSounds.Hand)
+                    Media.SystemSounds.Hand)
             End If
         End If
     End Sub
@@ -170,7 +169,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub CustomIDTextBox_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CustomIDTextBox.KeyPress
+    Private Sub CustomIDTextBox_KeyPress(sender As Object, e As Windows.Forms.KeyPressEventArgs) Handles CustomIDTextBox.KeyPress
         If InStr(1, "0123456789" & Chr(8), e.KeyChar) = 0 Then
             e.KeyChar = ""
         End If
@@ -200,7 +199,7 @@ Public Class MainMenu
             Status.Text = "Please, select a folder for install/update the server"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
         Else
             Status.Text = "The server will be installed/updated in '" & ServerPath.Text & "'"
             Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -272,7 +271,7 @@ Public Class MainMenu
                 Status.Text = "Steam App ID not defined"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
-                    System.Media.SystemSounds.Hand)
+                    Media.SystemSounds.Hand)
             Else
                 If AnonymousCheckBox.Checked = True Then
                     Login = "anonymous"
@@ -283,32 +282,32 @@ Public Class MainMenu
                     Passwd = PasswdTextBox.Text
                     Login = UserName & " " & Passwd
                 End If
-                If UsernameTextBox.Text = Nothing And AnonymousCheckBox.Checked = False Then
+                If UsernameTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
                     Status.Text = "Please, type your Steam name."
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
-                        System.Media.SystemSounds.Hand)
+                        Media.SystemSounds.Hand)
                 Else
-                    If PasswdTextBox.Text = Nothing And AnonymousCheckBox.Checked = False Then
+                    If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
                         Status.Text = "Please, type your Steam password. You can install many games as 'anonymous'."
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
-                            System.Media.SystemSounds.Hand)
+                            Media.SystemSounds.Hand)
                     Else
                         If ServerPath.Text = Nothing Then
                             Status.Text = "Please, select the path where you want to install the server!"
                             Status.BackColor = Color.FromArgb(240, 200, 200)
                             My.Computer.Audio.PlaySystemSound( _
-                                System.Media.SystemSounds.Hand)
+                                Media.SystemSounds.Hand)
                         Else
                             If GoldSrcModInput.Visible = True _
-                                And Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
-                                GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text 
+                                AndAlso Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
+                                GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text
                             Else
                                 Status.Text = "Half-Life mod not defined. Installing a default one."
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
                                 My.Computer.Audio.PlaySystemSound( _
-                                    System.Media.SystemSounds.Hand)
+                                    Media.SystemSounds.Hand)
                             End If
                             ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
                             Status.Text = "Installing/Updating..."
@@ -330,7 +329,7 @@ Public Class MainMenu
                             ' Clear console, Run process and stream
                             ConsoleOutput.Clear()
                             p.Start()
-                            Dim sr As System.IO.StreamReader = p.StandardOutput
+                            Dim sr As StreamReader = p.StandardOutput
                             Dim line As String
                             Do
                                 line = sr.ReadLine()
@@ -360,7 +359,7 @@ Public Class MainMenu
             Status.Text = "Can't find the file 'steamcmd.exe'!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
         End If
     End Sub
 
@@ -388,7 +387,7 @@ Public Class MainMenu
                 Status.Text = "Can't find the file 'srcds.exe'!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
-                    System.Media.SystemSounds.Hand)
+                    Media.SystemSounds.Hand)
             End If
         End If
     End Sub
@@ -472,16 +471,16 @@ Public Class MainMenu
         MapList.Items.Clear()
         Dim mapfolderpath As String
         mapfolderpath = SrcdsExePathTextBox.Text & "\" & GameMod & "\maps"
-        If System.IO.Directory.Exists(mapfolderpath) Then
+        If Directory.Exists(mapfolderpath) Then
             For Each MapFile As String In My.Computer.FileSystem.GetFiles _
                 (mapfolderpath, FileIO.SearchOption.SearchTopLevelOnly, "*.bsp")
-                MapList.Items.Add(System.IO.Path.GetFileNameWithoutExtension(MapFile))
+                MapList.Items.Add(Path.GetFileNameWithoutExtension(MapFile))
             Next
         Else
             Status.Text = "The 'map' folder is empty or doesn't exist!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
         End If
     End Sub
 
@@ -578,19 +577,19 @@ Public Class MainMenu
                 Status.Text = "Please, select a game."
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
-                    System.Media.SystemSounds.Hand)
+                    Media.SystemSounds.Hand)
             Else
                 If ServerName = Nothing Then
                     Status.Text = "Please, type a name for the server."
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
-                        System.Media.SystemSounds.Hand)
+                        Media.SystemSounds.Hand)
                 Else
                     If ServerMap = Nothing Then
                         Status.Text = "Select the default map."
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
-                            System.Media.SystemSounds.Hand)
+                            Media.SystemSounds.Hand)
                     Else
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
@@ -611,7 +610,7 @@ Public Class MainMenu
                         ' Clear console, Run process and stream
                         ConsoleOutput.Clear()
                         p.Start()
-                        Dim sr As System.IO.StreamReader = p.StandardOutput
+                        Dim sr As StreamReader = p.StandardOutput
                         Dim line As String
                         Do
                             line = sr.ReadLine()
@@ -639,7 +638,7 @@ Public Class MainMenu
             Status.Text = "Can't find the file 'srcds.exe'!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
         End If
     End Sub
 
@@ -673,12 +672,12 @@ Public Class MainMenu
     End Sub
 
     Private Sub ExitButton_Click() Handles ExitButton.Click, ExitMenu.Click
-        Me.Close()
+        Close()
     End Sub
 
     'Menu buttons
     Private Sub SaveMenu_Click() Handles SaveMenu.Click, SaveButton.Click
-        SaveFileDialog1.InitialDirectory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Settings")
+        SaveFileDialog1.InitialDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Settings")
         SaveFileDialog1.Filter = "Extensible Markup Language (*.xml)|*.xml"
         SaveFileDialog1.FileName = "Config.xml"
 
@@ -746,13 +745,13 @@ Public Class MainMenu
                 Status.Text = Path.GetFileName(ConfigFile) & " file saved."
                 Status.BackColor = Color.FromArgb(240, 240, 240)
                 My.Computer.Audio.PlaySystemSound( _
-                  System.Media.SystemSounds.Exclamation)
+                  Media.SystemSounds.Exclamation)
             End If
         End If
     End Sub
 
     Private Sub LoadMenu_Click() Handles LoadMenu.Click
-        XmlConfigOpenFileDialog.InitialDirectory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Settings")
+        XmlConfigOpenFileDialog.InitialDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Settings")
         XmlConfigOpenFileDialog.FileName = "*.xml"
         XmlConfigOpenFileDialog.Filter = "Extensible Markup Language (*.xml)|*.xml"
 
@@ -824,11 +823,11 @@ Public Class MainMenu
             CFGMenu.DropDownItems.Add("-")
             Dim cfgfolderpath As String
             cfgfolderpath = SrcdsExePathTextBox.Text & "\" & GameMod & "\cfg"
-            If System.IO.Directory.Exists(cfgfolderpath) = True Then
+            If Directory.Exists(cfgfolderpath) = True Then
                 'Create new submenu for each cfg file
                 For Each CfgFile As String In My.Computer.FileSystem.GetFiles _
                         (cfgfolderpath, FileIO.SearchOption.SearchTopLevelOnly, "*.cfg")
-                    Dim text = System.IO.Path.GetFileNameWithoutExtension(CfgFile)
+                    Dim text = Path.GetFileNameWithoutExtension(CfgFile)
                     Dim item As ToolStripItem = CFGMenu.DropDownItems.Add(text)
                     item.Tag = CfgFile
                     AddHandler item.Click, AddressOf CfgMenuItems_Click
@@ -842,11 +841,11 @@ Public Class MainMenu
             Status.Text = "Can't find the server files!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
-                System.Media.SystemSounds.Hand)
+                Media.SystemSounds.Hand)
         End If
     End Sub
 
-    Private Sub CfgMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub CfgMenuItems_Click(sender As Object, e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
@@ -863,7 +862,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub MenuTxt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MotdTxtButton.Click, MapcycleTxtButton.Click, MaplistTxtButton.Click
+    Private Sub MenuTxt_Click(sender As System.Object, e As EventArgs) Handles MotdTxtButton.Click, MapcycleTxtButton.Click, MaplistTxtButton.Click
         Dim TxtFile As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
         Dim MotdPath As String = SrcdsExePath & "\" & GameMod & "\" & TxtFile.Text & ".txt"
         If File.Exists(MotdPath) Then
@@ -880,11 +879,11 @@ Public Class MainMenu
             SMMenu.DropDownItems.Clear()
             Dim SMFilesPath As String
             SMFilesPath = SrcdsExePathTextBox.Text & "\" & GameMod & "\addons\sourcemod\configs"
-            If System.IO.Directory.Exists(SMFilesPath) Then
+            If Directory.Exists(SMFilesPath) Then
                 'Create new submenu for each cfg and txt file
                 For Each SMFile As String In My.Computer.FileSystem.GetFiles _
                         (SMFilesPath, FileIO.SearchOption.SearchTopLevelOnly, "*.cfg", "*.txt", "*.ini")
-                    Dim text = System.IO.Path.GetFileNameWithoutExtension(SMFile)
+                    Dim text = Path.GetFileNameWithoutExtension(SMFile)
                     Dim item As ToolStripItem = SMMenu.DropDownItems.Add(text)
                     item.Tag = SMFile
                     AddHandler item.Click, AddressOf SMFileMenuItems_Click
@@ -895,7 +894,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub SMFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub SMFileMenuItems_Click(sender As Object, e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
@@ -906,11 +905,11 @@ Public Class MainMenu
             LogMenu.DropDownItems.Clear()
             Dim LogFilesPath As String
             LogFilesPath = ExePath.Text & "\logs"
-            If System.IO.Directory.Exists(LogFilesPath) Then
+            If Directory.Exists(LogFilesPath) Then
                 'Create new submenu for each txt file
                 For Each LogFile As String In My.Computer.FileSystem.GetFiles _
                         (LogFilesPath, FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                    Dim text = System.IO.Path.GetFileNameWithoutExtension(LogFile)
+                    Dim text = Path.GetFileNameWithoutExtension(LogFile)
                     Dim item As ToolStripItem = LogMenu.DropDownItems.Add(text)
                     item.Tag = LogFile
                     AddHandler item.Click, AddressOf LogFileMenuItems_Click
@@ -919,7 +918,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub LogFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub LogFileMenuItems_Click(sender As Object, e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
@@ -931,13 +930,13 @@ Public Class MainMenu
     End Sub
 
     Private Sub ConsoleSaveLog_Click() Handles ConsoleSaveLog.Click
-        SaveFileDialog1.InitialDirectory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Logs")
+        SaveFileDialog1.InitialDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Logs")
         SaveFileDialog1.DefaultExt = "*.txt"
         SaveFileDialog1.Filter = "Text Files (*.txt)|*.txt"
         SaveFileDialog1.FileName = "log.txt"
 
         If (SaveFileDialog1.ShowDialog() = DialogResult.OK) _
-            And (SaveFileDialog1.FileName.Length > 0) Then
+            AndAlso (SaveFileDialog1.FileName.Length > 0) Then
             File.WriteAllText(SaveFileDialog1.FileName, ConsoleOutput.Text)
             Process.Start(SaveFileDialog1.FileName)
             Status.Text = "File " & Path.GetFileName(SaveFileDialog1.FileName) & " has been saved in Logs folder."

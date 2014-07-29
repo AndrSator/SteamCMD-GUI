@@ -1,3 +1,6 @@
+﻿	Version 3.0.0.1 (Not Released/Unstable)
+- Improved Codestyle / Code formatting ~ By Giswald @ GitHub
+
 ﻿	Version 3.0.0.0 (Not Released/Unstable)
 - Added Half-Life Dedicated Server to the game list
 	(This supports all the mods that works on GoldSrc engine)

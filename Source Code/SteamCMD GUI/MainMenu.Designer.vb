@@ -937,7 +937,7 @@ Partial Class MainMenu
         '
         Me.ConsoleCommandList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ConsoleCommandList.FormattingEnabled = True
-        Me.ConsoleCommandList.Items.AddRange(New Object() {"Empty", "say", "rcon", "echo"})
+        Me.ConsoleCommandList.Items.AddRange(New Object() {"None", "say", "rcon", "echo"})
         Me.ConsoleCommandList.Location = New System.Drawing.Point(6, 250)
         Me.ConsoleCommandList.Name = "ConsoleCommandList"
         Me.ConsoleCommandList.Size = New System.Drawing.Size(88, 21)
@@ -945,6 +945,7 @@ Partial Class MainMenu
         '
         'ConsoleButton
         '
+        Me.ConsoleButton.Enabled = False
         Me.ConsoleButton.Location = New System.Drawing.Point(519, 248)
         Me.ConsoleButton.Name = "ConsoleButton"
         Me.ConsoleButton.Size = New System.Drawing.Size(55, 23)
@@ -954,6 +955,7 @@ Partial Class MainMenu
         '
         'ConsoleInput
         '
+        Me.ConsoleInput.Enabled = False
         Me.ConsoleInput.Location = New System.Drawing.Point(100, 250)
         Me.ConsoleInput.Name = "ConsoleInput"
         Me.ConsoleInput.Size = New System.Drawing.Size(413, 20)

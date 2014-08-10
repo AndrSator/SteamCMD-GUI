@@ -13,9 +13,8 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Changes
 ============
-######Version 2.1.1.2
-* Added Alien Swarm, Dota 2, and Left 4 Dead to the game list
- * (The Dota 2 servers needs additional files for work properly.)
+######Version 3.0.0.2
+* SteamCMD uses the new console
 
 Download
 ============

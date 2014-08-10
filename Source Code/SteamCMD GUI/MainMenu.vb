@@ -1,20 +1,26 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Xml
+Imports System.Threading
+Imports System.Text
 
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
     ' Run Server
     Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
+    'Public p As New Process
 End Module
 
 
 Public Class MainMenu
     Dim WithEvents WC As New WebClient
 
+    Private Declare Function GetInputState Lib "user32" () As Int32
+
     Private Sub Form1_Load() Handles MyBase.Load
         Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
+        ThrSteamCMD = New Thread(AddressOf ThreadTaskSteamCMD)
         GamesList.SelectedIndex = 1
         ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
@@ -60,7 +66,6 @@ Public Class MainMenu
 
         Dim LogFileName As String = Program & " Log-" & DateTime.Now.ToString("dd.MM.yyyy") & " @ " & DateTime.Now.ToString("HH;mm")
         File.WriteAllText("Logs\" & LogFileName & ".txt", ConsoleContent)
-        Status.Text = "File " & LogFileName & " has been saved in Logs folder."
     End Sub
 
     ' Resize tabs
@@ -106,7 +111,7 @@ Public Class MainMenu
         Process.Start("explorer.exe", ".")
     End Sub
 
-    Private Sub WC_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
+    Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
         DonwloadBar.Value = e.ProgressPercentage
         If DonwloadBar.Value = 100 Then
             Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
@@ -169,7 +174,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub CustomIDTextBox_KeyPress(sender As Object, e As Windows.Forms.KeyPressEventArgs) Handles CustomIDTextBox.KeyPress
+    Private Sub CustomIDTextBox_KeyPress(ByVal sender As Object, ByVal e As Windows.Forms.KeyPressEventArgs) Handles CustomIDTextBox.KeyPress
         If InStr(1, "0123456789" & Chr(8), e.KeyChar) = 0 Then
             e.KeyChar = ""
         End If
@@ -313,44 +318,12 @@ Public Class MainMenu
                             Status.Text = "Installing/Updating..."
                             Status.BackColor = Color.FromArgb(240, 240, 240)
 
-                            Dim p As New Process
-
-                            With (p.StartInfo)
-                                .FileName = SteamCMDExePath & "\steamcmd.exe"
-                                .UseShellExecute = False
-                                .CreateNoWindow = False
-                                .RedirectStandardOutput = True
-                                .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
-                            End With
-
                             ConsoleTab_Click()
                             TabMenu.SelectedTab = ConsoleTab
 
-                            ' Clear console, Run process and stream
+                            ' Clear console, Run subprocess and stream
                             ConsoleOutput.Clear()
-                            p.Start()
-                            Dim sr As StreamReader = p.StandardOutput
-                            Dim line As String
-                            Do
-                                line = sr.ReadLine()
-                                If Not (line Is Nothing) Then
-                                    ConsoleOutput.SelectionStart = ConsoleOutput.TextLength
-                                    ConsoleOutput.ScrollToCaret()
-                                    ConsoleOutput.Text = ConsoleOutput.Text + line + Environment.NewLine
-                                End If
-                            Loop Until p.HasExited
-
-                            If p.HasExited = True Then
-                                ' Autosave log
-                                If CustomIDCheckbox.Checked Then
-                                    Game = "Steam App ID: " & SteamAppID
-                                Else
-                                    Game = "Game: " & GamesList.Text
-                                End If
-                                Program = "SteamCmd.exe"
-                                PathForLog = "Server path: " & ServerPathInstallation
-                                SaveLog()
-                            End If
+                            ThrSteamCMD.Start()
                         End If
                     End If
                 End If
@@ -360,6 +333,52 @@ Public Class MainMenu
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
+        End If
+    End Sub
+
+    Private ThrSteamCMD As Thread
+    Private WithEvents p As Process
+
+    Private Sub ThreadTaskSteamCMD()
+        Control.CheckForIllegalCrossThreadCalls = False
+        p = New Process
+        With (p.StartInfo)
+            .FileName = SteamCMDExePath & "\steamcmd.exe"
+            .UseShellExecute = False
+            .CreateNoWindow = True
+            .RedirectStandardOutput = True
+            .RedirectStandardInput = True
+            .RedirectStandardError = True
+            .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
+        End With
+
+        p.Start()
+
+        Dim pStreamWriter As StreamWriter = p.StandardInput
+        p.BeginOutputReadLine()
+        p.BeginErrorReadLine()
+        ConsoleInput.Enabled = True
+        ConsoleButton.Enabled = True
+        p.WaitForExit()
+    End Sub
+
+    Private Sub p_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles p.OutputDataReceived
+        AppendOutputText(vbCrLf & e.Data)
+    End Sub
+
+    Private Sub ExecuteButton_Click() Handles ConsoleButton.Click
+        p.StandardInput.WriteLine(ConsoleInput.Text)
+        p.StandardInput.Flush()
+        ConsoleInput.Text = ""
+    End Sub
+
+    Private Delegate Sub AppendOutputTextDelegate(ByVal text As String)
+    Private Sub AppendOutputText(ByVal text As String)
+        If ConsoleOutput.InvokeRequired Then
+            Dim myDelegate As New AppendOutputTextDelegate(AddressOf AppendOutputText)
+            Me.Invoke(myDelegate, text)
+        Else
+            ConsoleOutput.AppendText(text)
         End If
     End Sub
 
@@ -594,43 +613,16 @@ Public Class MainMenu
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
-                        Dim p As New Process
 
+                        Dim p As New Process
                         With (p.StartInfo)
                             .FileName = SrcdsExePath & "\srcds.exe"
                             .UseShellExecute = False
                             .CreateNoWindow = False
-                            .RedirectStandardOutput = True
                             .Arguments = Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex & " " & AdditionalCommands
                         End With
 
-                        ConsoleTab_Click()
-                        TabMenu.SelectedTab = ConsoleTab
-
-                        ' Clear console, Run process and stream
-                        ConsoleOutput.Clear()
                         p.Start()
-                        Dim sr As StreamReader = p.StandardOutput
-                        Dim line As String
-                        Do
-                            line = sr.ReadLine()
-                            If Not (line Is Nothing) Then
-                                ConsoleOutput.SelectionStart = ConsoleOutput.TextLength
-                                ConsoleOutput.ScrollToCaret()
-                                ConsoleOutput.Text = ConsoleOutput.Text + line + Environment.NewLine
-                            End If
-                        Loop Until line Is Nothing
-                        If p.HasExited = True Then
-                            ' Autosave log
-                            If CustomModCheckBox.Checked = True Then
-                                Game = "Server from mod: " & GameMod
-                            Else
-                                Game = "Server from: " & ModList.Text
-                            End If
-                            Program = "Srcds.exe"
-                            PathForLog = "Server path: " & SrcdsExePath
-                            SaveLog()
-                        End If
                     End If
                 End If
             End If
@@ -845,7 +837,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub CfgMenuItems_Click(sender As Object, e As EventArgs)
+    Private Sub CfgMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
@@ -862,7 +854,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub MenuTxt_Click(sender As System.Object, e As EventArgs) Handles MotdTxtButton.Click, MapcycleTxtButton.Click, MaplistTxtButton.Click
+    Private Sub MenuTxt_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles MotdTxtButton.Click, MapcycleTxtButton.Click, MaplistTxtButton.Click
         Dim TxtFile As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
         Dim MotdPath As String = SrcdsExePath & "\" & GameMod & "\" & TxtFile.Text & ".txt"
         If File.Exists(MotdPath) Then
@@ -890,11 +882,14 @@ Public Class MainMenu
                 Next
             Else
                 Status.Text = "Seems that SourceMod isn't installed."
+                Status.BackColor = Color.FromArgb(240, 200, 200)
+                My.Computer.Audio.PlaySystemSound( _
+                    Media.SystemSounds.Hand)
             End If
         End If
     End Sub
 
-    Private Sub SMFileMenuItems_Click(sender As Object, e As EventArgs)
+    Private Sub SMFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
@@ -918,13 +913,39 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub LogFileMenuItems_Click(sender As Object, e As EventArgs)
+    Private Sub LogFileMenuItems_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim item = CType(sender, ToolStripItem)
         Dim path = CStr(item.Tag)
         Process.Start(path)
     End Sub
 
     ' Console Tab
+    Private Sub ConsoleConnect_Click() Handles ConsoleConnect.Click
+        'Stop steamcmd.exe
+        For Each proc As Process In Process.GetProcessesByName("steamcmd")
+            Dim result As Integer = MessageBox.Show("Really want to stop and close SteamCMD?", "Stop SteamCMD", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                If Not proc.HasExited Then
+                    If CustomIDCheckbox.Checked Then
+                        Game = "Steam App ID: " & SteamAppID
+                    Else
+                        Game = "Game: " & GamesList.Text
+                    End If
+                    Program = "SteamCmd.exe"
+                    PathForLog = "Server path: " & ServerPathInstallation
+                    SaveLog()
+                    proc.Kill()
+                    ConsoleInput.Enabled = False
+                    ConsoleButton.Enabled = False
+                End If
+                Status.Text = "SteamCMD closed."
+                Status.BackColor = Color.FromArgb(240, 200, 200)
+                My.Computer.Audio.PlaySystemSound( _
+                    Media.SystemSounds.Hand)
+            End If
+        Next proc
+    End Sub
+
     Private Sub ConsoleOpenLog_Click() Handles ConsoleOpenLog.Click
         Process.Start("explorer.exe", ".\Logs")
     End Sub

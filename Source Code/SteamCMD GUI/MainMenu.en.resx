@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesList.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SteamCMDDownloadButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonwloadBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CustomIDCheckbox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CustomIDTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OpenFolderButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CheckUpdatesButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="VDCButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AboutButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExitButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ValidateCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdHelpButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BrowserButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateServerButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ServerPath.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnonymousCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UsernameTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswdTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldSrcModLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldSrcModInput.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Status.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MAPButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ESButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MMButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SMButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExeBrowserButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExePath.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdateTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AddButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SaveButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InsecureCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DevModeCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RunServerButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BotsCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SourceTVCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DebugModeCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CheckBoxMask.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UDPPortTexBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RconTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetworkComboBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ServerNameTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaxPlayersTexBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ModHelpButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CustomModTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ModList.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CustomModCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MapList.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SrcdsExePathOpen.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SrcdsExeBrowserButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SrcdsExePathTextBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroupBox5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RunTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleConnect.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleClearLog.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleOpenLog.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleSaveLog.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleCommandList.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleInput.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleOutput.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConsoleTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabMenu.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ContextMenuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="EnglishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 22</value>
+  </data>
+  <data name="SpanishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 22</value>
+  </data>
+  <data name="MenuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

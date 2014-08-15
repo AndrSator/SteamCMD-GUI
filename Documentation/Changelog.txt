@@ -1,4 +1,7 @@
-﻿	Version 3.0.0.2
+﻿	Version 3.0.1.0 (Not Released)
+- Added Spanish translation
+
+	Version 3.0.0.2
 - SteamCMD uses the new console
 
 	Version 3.0.0.1 (Not Released/Unstable)

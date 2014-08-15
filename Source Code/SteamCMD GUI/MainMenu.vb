@@ -1,14 +1,17 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.Threading
+Imports System.IO
 Imports System.Net
 Imports System.Xml
-Imports System.Threading
 Imports System.Text
 
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
     ' Run Server
     Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
-    'Public p As New Process
+    ' Strings
+    Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, CustomIDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
+    Public ServerPathInstallString, HLmodErrorString, InstallingString As String
 End Module
 
 
@@ -51,13 +54,55 @@ Public Class MainMenu
     End Sub
 
     Private Sub Tips()
-        ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
-        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
-        ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
-        ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
-        ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
-        ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
-        ToolTip1.SetToolTip(ConsoleClearLog, "Clear Log")
+        If Thread.CurrentThread.CurrentUICulture.Name = "es-ES" Then ' Spanish
+            ToolTip1.SetToolTip(OpenFolderButton, "Abrir carpeta actual")
+            ToolTip1.SetToolTip(CheckBoxMask, "Ocultar/Mostrar RCON")
+            ToolTip1.SetToolTip(AddButton, "Añade más párametros")
+            ToolTip1.SetToolTip(ConsoleConnect, "Conectar a un servidor")
+            ToolTip1.SetToolTip(ConsoleOpenLog, "Abrir el directorio de registros")
+            ToolTip1.SetToolTip(ConsoleSaveLog, "Guardar el registro actual")
+            ToolTip1.SetToolTip(ConsoleClearLog, "Limpiar el registro")
+            DownloadingString = "Descargando..."
+            DownloadDoneString = "El archivo 'steamcmd.zip' ya se ha descargado. Por favor, descomprímelo."
+            DownloadDone2String = "¡El archivo ya se ha descargado!"
+            PathSteamCMDString = "La ruta actual de 'steamcmd.exe' es "
+            CantFindSteamCMDString = "No se pudo encontrar 'steamcmd.exe'!"
+            CustomIDString = "App ID personalizada de Steam: "
+            PathEmptyString = "Por favor, selecione una carpeta para actualizar/instalar el servidor."
+            PathForInstallString = "El servidor será instalado/actualizado en '"
+            GameInstallString = "Juego a instalar: "
+            ValidateString = "Los archivos serán comprobados y validados."
+            SteamAppIDEmptyString = "App ID de Steam sin definir"
+            SteamNameString = "Por favor, introduce tu nombre de Steam."
+            SteamPasswdString = "Por favor, escribe tu contraseña de Steam. Puedes instalar muchos juegos como 'anonymous'."
+            ServerPathInstallString = "Por favor, selecciona en que ruta vas a instalar el servidor."
+            HLmodErrorString = "Mod de Half-Life sin definir. Instalando uno predeterminado."
+            InstallingString = "Instalando/Actualizando..."
+        Else
+            ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
+            ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
+            ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
+            ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
+            ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
+            ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
+            ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
+            DownloadingString = "Downloading..."
+            DownloadDoneString = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
+            DownloadDone2String = "The file has already been downloaded!"
+            PathSteamCMDString = "Current path of 'steamcmd.exe' is "
+            CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
+            CustomIDString = "Custom Steam App ID: "
+            PathEmptyString = "Please, select a folder for install/update the server."
+            PathForInstallString = "The server will be installed/updated in '"
+            GameInstallString = "Game to install: "
+            ValidateString = "The files will be checked and validated."
+            SteamAppIDEmptyString = "Steam App ID not defined"
+            SteamNameString = "Please, type your Steam name."
+            SteamPasswdString = "Please, type your Steam password. You can install many games as 'anonymous'."
+            ServerPathInstallString = "Please, select the path where you want to install the server."
+            HLmodErrorString = "Half-Life mod not defined. Installing a default one."
+            InstallingString = "Installing/Updating..."
+        End If
     End Sub
 
     ' Autosave log
@@ -95,14 +140,14 @@ Public Class MainMenu
     Private Sub SteamCMDDownload_Click() Handles SteamCMDDownloadButton.Click
         SteamCMDDownloadButton.Enabled = False
         If My.Computer.FileSystem.FileExists("steamcmd.zip") Then
-            Status.Text = "The file has already been downloaded!"
+            Status.Text = DownloadDone2String
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
             SteamCMDDownloadButton.Enabled = True
         Else
             WC.DownloadFileAsync(New Uri("http://media.steampowered.com/installer/steamcmd.zip"), "steamcmd.zip")
-            Status.Text = "Downloading..."
+            Status.Text = DownloadingString
             Status.BackColor = Color.FromArgb(240, 240, 240)
         End If
     End Sub
@@ -114,7 +159,7 @@ Public Class MainMenu
     Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
         DonwloadBar.Value = e.ProgressPercentage
         If DonwloadBar.Value = 100 Then
-            Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
+            Status.Text = DownloadDoneString
             Status.BackColor = Color.FromArgb(240, 240, 240)
             DonwloadBar.Value = 0
             My.Computer.Audio.PlaySystemSound( _
@@ -149,11 +194,11 @@ Public Class MainMenu
                 XmlWrt.Close()
 
                 LogMenu.Enabled = True
-                Status.Text = "Current path of 'steamcmd.exe' is " & FolderBrowserDialog2.SelectedPath
+                Status.Text = PathSteamCMDString & FolderBrowserDialog2.SelectedPath
                 Status.BackColor = Color.FromArgb(240, 240, 240)
             Else
                 LogMenu.Enabled = False
-                Status.Text = "Can't find the file 'steamcmd.exe'!"
+                Status.Text = CantFindSteamCMDString
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
@@ -166,7 +211,7 @@ Public Class MainMenu
             GamesList.Enabled = False
             CustomIDTextBox.Enabled = True
             SteamAppID = CustomIDTextBox.Text
-            Status.Text = "Custom Steam App ID: " & SteamAppID
+            Status.Text = CustomIDString & SteamAppID
             Status.BackColor = Color.FromArgb(240, 240, 240)
         Else
             GamesList.Enabled = True
@@ -201,12 +246,12 @@ Public Class MainMenu
             ServerInstallPath = FolderBrowserDialog1.SelectedPath
         End If
         If ServerPath.Text = Nothing Then
-            Status.Text = "Please, select a folder for install/update the server"
+            Status.Text = PathEmptyString
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
         Else
-            Status.Text = "The server will be installed/updated in '" & ServerPath.Text & "'"
+            Status.Text = PathForInstallString & ServerPath.Text & "'"
             Status.BackColor = Color.FromArgb(240, 240, 240)
             UpdateServerButton.Enabled = True
         End If
@@ -257,14 +302,14 @@ Public Class MainMenu
             GoldSrcModInput.Show()
             GoldSrcModLabel.Show()
         End If
-        Status.Text = "Game to install: " & GamesList.Text & " - Steam App ID:" & SteamAppID
+        Status.Text = GameInstallString & GamesList.Text & " - Steam App ID:" & SteamAppID
         Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
 
     Private Sub ValidateCheckBox_CheckedChanged() Handles ValidateCheckBox.CheckedChanged
         If ValidateCheckBox.Checked = True Then
             ValidateApp = " validate"
-            Status.Text = "The files will be checked and validated."
+            Status.Text = ValidateString
         Else
             ValidateApp = ""
         End If
@@ -273,7 +318,7 @@ Public Class MainMenu
     Private Sub UpdateServerButton_Click() Handles UpdateServerButton.Click
         If My.Computer.FileSystem.FileExists(FolderBrowserDialog2.SelectedPath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
-                Status.Text = "Steam App ID not defined"
+                Status.Text = SteamAppIDEmptyString
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
@@ -288,19 +333,19 @@ Public Class MainMenu
                     Login = UserName & " " & Passwd
                 End If
                 If UsernameTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
-                    Status.Text = "Please, type your Steam name."
+                    Status.Text = SteamNameString
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
                         Media.SystemSounds.Hand)
                 Else
                     If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
-                        Status.Text = "Please, type your Steam password. You can install many games as 'anonymous'."
+                        Status.Text = SteamPasswdString
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)
                     Else
                         If ServerPath.Text = Nothing Then
-                            Status.Text = "Please, select the path where you want to install the server!"
+                            Status.Text = ServerPathInstallString
                             Status.BackColor = Color.FromArgb(240, 200, 200)
                             My.Computer.Audio.PlaySystemSound( _
                                 Media.SystemSounds.Hand)
@@ -309,13 +354,13 @@ Public Class MainMenu
                                 AndAlso Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
                                 GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text
                             Else
-                                Status.Text = "Half-Life mod not defined. Installing a default one."
+                                Status.Text = HLmodErrorString
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
                                 My.Computer.Audio.PlaySystemSound( _
                                     Media.SystemSounds.Hand)
                             End If
                             ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
-                            Status.Text = "Installing/Updating..."
+                            Status.Text = InstallingString
                             Status.BackColor = Color.FromArgb(240, 240, 240)
 
                             ConsoleTab_Click()

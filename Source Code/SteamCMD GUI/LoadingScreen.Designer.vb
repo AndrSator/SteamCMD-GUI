@@ -22,6 +22,7 @@ Partial Class LoadingScreen
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoadingScreen))
         Me.AuthorLabelSplash = New System.Windows.Forms.Label()
         Me.VersionLabelSplash = New System.Windows.Forms.Label()
         Me.BannerSplash = New System.Windows.Forms.PictureBox()
@@ -32,70 +33,45 @@ Partial Class LoadingScreen
         '
         'AuthorLabelSplash
         '
-        Me.AuthorLabelSplash.AutoSize = True
+        resources.ApplyResources(Me.AuthorLabelSplash, "AuthorLabelSplash")
         Me.AuthorLabelSplash.BackColor = System.Drawing.Color.Transparent
         Me.AuthorLabelSplash.ForeColor = System.Drawing.SystemColors.Menu
-        Me.AuthorLabelSplash.Location = New System.Drawing.Point(540, 99)
         Me.AuthorLabelSplash.Name = "AuthorLabelSplash"
-        Me.AuthorLabelSplash.Size = New System.Drawing.Size(60, 13)
-        Me.AuthorLabelSplash.TabIndex = 3
-        Me.AuthorLabelSplash.Text = "Dio Joestar"
-        Me.AuthorLabelSplash.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'VersionLabelSplash
         '
-        Me.VersionLabelSplash.AutoSize = True
+        resources.ApplyResources(Me.VersionLabelSplash, "VersionLabelSplash")
         Me.VersionLabelSplash.BackColor = System.Drawing.Color.Transparent
         Me.VersionLabelSplash.ForeColor = System.Drawing.SystemColors.Menu
-        Me.VersionLabelSplash.Location = New System.Drawing.Point(518, 115)
         Me.VersionLabelSplash.Name = "VersionLabelSplash"
-        Me.VersionLabelSplash.Size = New System.Drawing.Size(113, 13)
-        Me.VersionLabelSplash.TabIndex = 3
-        Me.VersionLabelSplash.Text = "Version: {0}.{1}.{2}.{3}"
-        Me.VersionLabelSplash.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'BannerSplash
         '
+        resources.ApplyResources(Me.BannerSplash, "BannerSplash")
         Me.BannerSplash.BackColor = System.Drawing.Color.Transparent
         Me.BannerSplash.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.BannerSplash
-        Me.BannerSplash.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.BannerSplash.InitialImage = Nothing
-        Me.BannerSplash.Location = New System.Drawing.Point(6, 12)
         Me.BannerSplash.Name = "BannerSplash"
-        Me.BannerSplash.Size = New System.Drawing.Size(611, 246)
-        Me.BannerSplash.TabIndex = 4
         Me.BannerSplash.TabStop = False
         '
         'LoadingLabelSplash
         '
-        Me.LoadingLabelSplash.AutoSize = True
+        resources.ApplyResources(Me.LoadingLabelSplash, "LoadingLabelSplash")
         Me.LoadingLabelSplash.BackColor = System.Drawing.Color.Transparent
-        Me.LoadingLabelSplash.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LoadingLabelSplash.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.LoadingLabelSplash.Location = New System.Drawing.Point(534, 161)
         Me.LoadingLabelSplash.Name = "LoadingLabelSplash"
-        Me.LoadingLabelSplash.Size = New System.Drawing.Size(66, 16)
-        Me.LoadingLabelSplash.TabIndex = 5
-        Me.LoadingLabelSplash.Text = "Loading..."
         '
         'Copyright
         '
-        Me.Copyright.AutoSize = True
+        resources.ApplyResources(Me.Copyright, "Copyright")
         Me.Copyright.BackColor = System.Drawing.Color.Transparent
         Me.Copyright.ForeColor = System.Drawing.SystemColors.Menu
-        Me.Copyright.Location = New System.Drawing.Point(509, 131)
         Me.Copyright.Name = "Copyright"
-        Me.Copyright.Size = New System.Drawing.Size(91, 13)
-        Me.Copyright.TabIndex = 3
-        Me.Copyright.Text = "CC BY-NC-SA 4.0"
-        Me.Copyright.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'SplashScreen1
+        'LoadingScreen
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
-        Me.ClientSize = New System.Drawing.Size(629, 270)
         Me.ControlBox = False
         Me.Controls.Add(Me.LoadingLabelSplash)
         Me.Controls.Add(Me.Copyright)
@@ -105,9 +81,8 @@ Partial Class LoadingScreen
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "SplashScreen1"
+        Me.Name = "LoadingScreen"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TransparencyKey = System.Drawing.Color.Gray
         CType(Me.BannerSplash, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

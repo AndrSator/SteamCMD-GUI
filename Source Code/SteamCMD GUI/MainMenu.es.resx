@@ -142,6 +142,15 @@
   <data name="GroupBox2.Text" xml:space="preserve">
     <value>Configuración del Servidor</value>
   </data>
+  <data name="CheckBoxConsole.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 178</value>
+  </data>
+  <data name="CheckBoxConsole.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
+  </data>
+  <data name="CheckBoxConsole.Text" xml:space="preserve">
+    <value>Usar la Consola</value>
+  </data>
   <data name="ValidateCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 17</value>
   </data>
@@ -198,9 +207,6 @@
   </data>
   <data name="UpdateTab.Text" xml:space="preserve">
     <value>Actualizar/Instalar</value>
-  </data>
-  <data name="RunTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>580, 277</value>
   </data>
   <data name="RunTab.Text" xml:space="preserve">
     <value>Arrancar Servidor</value>
@@ -318,9 +324,6 @@
   </data>
   <data name="Label3.Text" xml:space="preserve">
     <value>Ruta de Srcds</value>
-  </data>
-  <data name="ConsoleTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>580, 277</value>
   </data>
   <data name="ConsoleTab.Text" xml:space="preserve">
     <value>Consola</value>

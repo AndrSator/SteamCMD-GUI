@@ -47,9 +47,9 @@ Partial Class LoadingScreen
         '
         'BannerSplash
         '
-        resources.ApplyResources(Me.BannerSplash, "BannerSplash")
         Me.BannerSplash.BackColor = System.Drawing.Color.Transparent
         Me.BannerSplash.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.BannerSplash
+        resources.ApplyResources(Me.BannerSplash, "BannerSplash")
         Me.BannerSplash.Name = "BannerSplash"
         Me.BannerSplash.TabStop = False
         '

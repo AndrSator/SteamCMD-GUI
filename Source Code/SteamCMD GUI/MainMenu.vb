@@ -51,6 +51,8 @@ Public Class MainMenu
             End While
             XmlConfig.Close()
         End If
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     End Sub
 
     Private Sub Tips()
@@ -122,6 +124,8 @@ Public Class MainMenu
             ExitButton.Show()
             DonwloadBar.Show()
             TabMenu.Size = New Size(417, 303)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         End If
     End Sub
 
@@ -134,6 +138,8 @@ Public Class MainMenu
         TabMenu.Size = New Size(588, 303)
         ConsoleTab.Size = New Size(580, 277)
         ConsoleOutput.Size = New Size(539, 238)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     End Sub
 
     ' Update/install server inputs
@@ -363,12 +369,22 @@ Public Class MainMenu
                             Status.Text = InstallingString
                             Status.BackColor = Color.FromArgb(240, 240, 240)
 
-                            ConsoleTab_Click()
-                            TabMenu.SelectedTab = ConsoleTab
+                            If CheckBoxConsole.Checked = False Then
+                                p = New Process
+                                With (p.StartInfo)
+                                    .FileName = SteamCMDExePath & "\steamcmd.exe"
+                                    .UseShellExecute = False
+                                    .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
+                                End With
+                                p.Start()
+                            Else
+                                ConsoleTab_Click()
+                                TabMenu.SelectedTab = ConsoleTab
 
-                            ' Clear console, Run subprocess and stream
-                            ConsoleOutput.Clear()
-                            ThrSteamCMD.Start()
+                                ' Clear console, Run subprocess and stream
+                                ConsoleOutput.Clear()
+                                ThrSteamCMD.Start()
+                            End If
                         End If
                     End If
                 End If
@@ -399,12 +415,14 @@ Public Class MainMenu
 
         p.Start()
 
-        Dim pStreamWriter As StreamWriter = p.StandardInput
-        p.BeginOutputReadLine()
-        p.BeginErrorReadLine()
-        ConsoleInput.Enabled = True
-        ConsoleButton.Enabled = True
-        p.WaitForExit()
+        If CheckBoxConsole.Checked = True Then
+            Dim pStreamWriter As StreamWriter = p.StandardInput
+            p.BeginOutputReadLine()
+            p.BeginErrorReadLine()
+            ConsoleInput.Enabled = True
+            ConsoleButton.Enabled = True
+            p.WaitForExit()
+        End If
     End Sub
 
     Private Sub p_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles p.OutputDataReceived

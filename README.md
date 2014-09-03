@@ -13,8 +13,9 @@ SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-No
 
 Last Changes
 ============
-######Version 3.0.0.2
-* SteamCMD uses the new console
+######Version 3.0.1.1
+* Fixed the GUI not working properly with a DPI 125% or 150% on Windows
+* Added an option for enable/disable the using the console
 
 Download
 ============

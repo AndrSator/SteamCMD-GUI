@@ -133,9 +133,6 @@
     <EmbeddedResource Include="LoadingScreen.es.resx">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu.en.resx">
-      <DependentUpon>MainMenu.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.es.resx">
       <DependentUpon>MainMenu.vb</DependentUpon>
     </EmbeddedResource>

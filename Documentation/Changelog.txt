@@ -1,4 +1,8 @@
-﻿	Version 3.0.1.0 (Not Released)
+﻿	Version 3.0.1.1
+- Fixed the GUI not working properly with a DPI 125% or 150% on Windows
+- Added an option for enable/disable the using the console
+
+	Version 3.0.1.0 (Not Released)
 - Added Spanish translation
 
 	Version 3.0.0.2

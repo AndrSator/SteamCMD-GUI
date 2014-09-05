@@ -1,6 +1,6 @@
 SteamCMD GUI
 ============
-<img align="left" src="https://dl.dropboxusercontent.com/u/12664902/SteamCMDGUI.png" />
+<img align="left" src="/Media/Logo_SteamCMDGUI.png" />
 SteamCMD GUI allows the user to use [SteamCMD] (https://developer.valvesoftware.com/wiki/SteamCMD) on Windows without command lines and/or batch files using a very simple and intuitive graphical interface.
 
 Also, can be used to run servers with parameters (srcds.exe), open and edit files like MOTD and maplist with a few clicks without browser on all the directories.
@@ -16,6 +16,12 @@ Last Changes
 ######Version 3.0.1.1
 * Fixed the GUI not working properly with a DPI 125% or 150% on Windows
 * Added an option for enable/disable the using the console
+
+Screenshots
+============
+<img align="left" width="160" src="/Media/Screenshots/install_tab.png" />
+<img align="left" width="160" src="/Media/Screenshots/run_tab.png" />
+<img align="left" width="160" src="/Media/Screenshots/console_tab.png" />
 
 Download
 ============

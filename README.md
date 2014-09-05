@@ -19,9 +19,9 @@ Last Changes
 
 Screenshots
 ============
-<img align="left" width="160" src="/Media/Screenshots/install_tab.png" />
-<img align="left" width="160" src="/Media/Screenshots/run_tab.png" />
-<img align="left" width="160" src="/Media/Screenshots/console_tab.png" />
+<img width="160" src="/Media/Screenshots/install_tab.png" />
+<img width="160" src="/Media/Screenshots/run_tab.png" />
+<img width="160" src="/Media/Screenshots/console_tab.png" />
 
 Download
 ============

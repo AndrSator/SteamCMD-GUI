@@ -43,7 +43,7 @@ Public Class MainMenu
                 If (type = XmlNodeType.Element) Then
                     If (XmlConfig.Name = "CMDPath") Then
                         ExePath.Text = XmlConfig.ReadInnerXml.ToString()
-                        FolderBrowserDialog2.SelectedPath = ExePath.Text
+                        FolderBrowserDialog1.SelectedPath = ExePath.Text
                         SteamCMDExePath = ExePath.Text
                         LogMenu.Enabled = True
                     End If
@@ -175,10 +175,10 @@ Public Class MainMenu
     End Sub
 
     Private Sub ExePath_Browser() Handles ExePath.Click, ExeBrowserButton.Click
-        If FolderBrowserDialog2.ShowDialog() = DialogResult.OK Then
-            If My.Computer.FileSystem.FileExists(FolderBrowserDialog2.SelectedPath & "\steamcmd.exe") Then
-                ExePath.Text = FolderBrowserDialog2.SelectedPath
-                SteamCMDExePath = FolderBrowserDialog2.SelectedPath
+        If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+            If My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\steamcmd.exe") Then
+                ExePath.Text = FolderBrowserDialog1.SelectedPath
+                SteamCMDExePath = FolderBrowserDialog1.SelectedPath
 
                 Dim CMDConfig As New XmlWriterSettings()
                 CMDConfig.Indent = True
@@ -200,7 +200,7 @@ Public Class MainMenu
                 XmlWrt.Close()
 
                 LogMenu.Enabled = True
-                Status.Text = PathSteamCMDString & FolderBrowserDialog2.SelectedPath
+                Status.Text = PathSteamCMDString & FolderBrowserDialog1.SelectedPath
                 Status.BackColor = Color.FromArgb(240, 240, 240)
             Else
                 LogMenu.Enabled = False
@@ -322,7 +322,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub UpdateServerButton_Click() Handles UpdateServerButton.Click
-        If My.Computer.FileSystem.FileExists(FolderBrowserDialog2.SelectedPath & "\steamcmd.exe") Then
+        If My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
                 Status.Text = SteamAppIDEmptyString
                 Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -447,12 +447,12 @@ Public Class MainMenu
 
     'Run server inputs
     Private Sub SrcdsExePath_Browser() Handles SrcdsExePathTextBox.Click, SrcdsExeBrowserButton.Click
-        If FolderBrowserDialog3.ShowDialog() = DialogResult.OK Then
-            If My.Computer.FileSystem.FileExists(FolderBrowserDialog3.SelectedPath & "\srcds.exe") Then
-                SrcdsExePathTextBox.Text = FolderBrowserDialog3.SelectedPath
-                SrcdsExePath = FolderBrowserDialog3.SelectedPath
+        If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+            If My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\srcds.exe") Then
+                SrcdsExePathTextBox.Text = FolderBrowserDialog1.SelectedPath
+                SrcdsExePath = FolderBrowserDialog1.SelectedPath
                 MapList.Enabled = True
-                Status.Text = "Current path of 'srcds.exe' is " & FolderBrowserDialog3.SelectedPath
+                Status.Text = "Current path of 'srcds.exe' is " & FolderBrowserDialog1.SelectedPath
                 Status.BackColor = Color.FromArgb(240, 240, 240)
                 SrcdsExePathOpen.Enabled = True
                 CFGMenu.Enabled = True

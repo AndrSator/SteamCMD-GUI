@@ -129,8 +129,6 @@ Partial Class MainMenu
         Me.LogMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FolderBrowserDialog2 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.FolderBrowserDialog3 = New System.Windows.Forms.FolderBrowserDialog()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
@@ -924,7 +922,6 @@ Partial Class MainMenu
     Friend WithEvents ExeBrowserButton As System.Windows.Forms.Button
     Friend WithEvents ExePath As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents FolderBrowserDialog2 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents TabMenu As System.Windows.Forms.TabControl
     Friend WithEvents UpdateTab As System.Windows.Forms.TabPage
     Friend WithEvents RunTab As System.Windows.Forms.TabPage
@@ -952,7 +949,6 @@ Partial Class MainMenu
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents UDPPortTexBox As System.Windows.Forms.NumericUpDown
     Friend WithEvents CheckBoxMask As System.Windows.Forms.CheckBox
-    Friend WithEvents FolderBrowserDialog3 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents InsecureCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents DebugModeCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents DevModeCheckBox As System.Windows.Forms.CheckBox

@@ -1,11 +1,9 @@
 ﻿Public NotInheritable Class LoadingScreen
     Private Sub SplashScreen1_Load() Handles Me.Load
-        VersionLabelSplash.Text = System.String.Format(VersionLabelSplash.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
+        InfoLabelSplash.Text = "RedPill" & Chr(13) & "Version: " & System.String.Format(InfoLabelSplash.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision) & Chr(13) & "CC BY-NC-SA 4.0"
         'Transparent things
         TransparencyKey = BackColor
-        LoadingLabelSplash.Parent = BannerSplash
-        AuthorLabelSplash.Parent = BannerSplash
-        VersionLabelSplash.Parent = BannerSplash
-        Copyright.Parent = BannerSplash
+        InfoLabelSplash.Parent = BannerSplash
+        InfoLabelSplash.Location.Offset(-BannerSplash.Left, -BannerSplash.Top)
     End Sub
 End Class

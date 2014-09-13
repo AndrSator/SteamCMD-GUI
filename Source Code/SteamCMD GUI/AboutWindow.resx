@@ -117,277 +117,277 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>325, 175</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Close2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 115</value>
-  </data>
-  <data name="AutorLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>MS Reference Sans Serif, 8.25pt</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LicenseURL.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="VersionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="LicenseURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 31</value>
-  </data>
-  <data name="AutorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 15</value>
-  </data>
-  <data name="&gt;&gt;AutorLabel.Name" xml:space="preserve">
-    <value>AutorLabel</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>AboutWindow</value>
-  </data>
-  <data name="&gt;&gt;AutorLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 9</value>
-  </data>
-  <data name="VersionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 15</value>
-  </data>
-  <data name="&gt;&gt;AutorLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="AuthorLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="ChangelogButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PictureBox2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="AutorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 57</value>
-  </data>
-  <data name="&gt;&gt;ChangelogButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="AuthorLabel2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
-    <value>Label1</value>
-  </data>
-  <data name="&gt;&gt;ChangelogButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;AutorLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="VersionLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>178, 38</value>
-  </data>
-  <data name="PictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 145</value>
-  </data>
-  <data name="ChangelogButton.Text" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel.Name" xml:space="preserve">
-    <value>VersionLabel</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;AuthorLabel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;AuthorLabel2.Name" xml:space="preserve">
-    <value>AuthorLabel2</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ChangelogButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="VersionLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS Reference Sans Serif, 8.25pt</value>
-  </data>
-  <data name="&gt;&gt;AuthorLabel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="AuthorLabel2.Text" xml:space="preserve">
-    <value>Author:</value>
-  </data>
-  <data name="&gt;&gt;LicenseURL.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>SteamCMD GUI</value>
-  </data>
-  <data name="VersionLabel2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="VersionLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 37</value>
   </data>
-  <data name="&gt;&gt;LicenseURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="VersionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 15</value>
   </data>
-  <data name="AuthorLabel2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel2.Name" xml:space="preserve">
-    <value>VersionLabel2</value>
-  </data>
-  <data name="VersionLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="LicenseURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 78</value>
-  </data>
-  <data name="AutorLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="AuthorLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 58</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.Name" xml:space="preserve">
-    <value>PictureBox2</value>
-  </data>
-  <data name="&gt;&gt;Close2.Name" xml:space="preserve">
-    <value>Close2</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>325, 175</value>
-  </data>
-  <data name="ChangelogButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 115</value>
-  </data>
-  <data name="&gt;&gt;Close2.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="LicenseURL.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;LicenseURL.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="VersionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>{0}.{1}.{2}.{3}</value>
   </data>
-  <data name="Label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>MS Reference Sans Serif, 12pt, style=Bold</value>
+  <data name="&gt;&gt;VersionLabel.Name" xml:space="preserve">
+    <value>VersionLabel</value>
   </data>
-  <data name="VersionLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="&gt;&gt;VersionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="AutorLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="AutorLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS Reference Sans Serif, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="AutorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 57</value>
+  </data>
+  <data name="AutorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 15</value>
+  </data>
+  <data name="AutorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="AutorLabel.Text" xml:space="preserve">
+    <value>RedPill</value>
+  </data>
+  <data name="&gt;&gt;AutorLabel.Name" xml:space="preserve">
+    <value>AutorLabel</value>
+  </data>
+  <data name="&gt;&gt;AutorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AutorLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AutorLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Close2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 115</value>
   </data>
   <data name="Close2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;LicenseURL.Name" xml:space="preserve">
-    <value>LicenseURL</value>
+  <data name="Close2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;ChangelogButton.Parent" xml:space="preserve">
+  <data name="Close2.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="&gt;&gt;Close2.Name" xml:space="preserve">
+    <value>Close2</value>
+  </data>
+  <data name="&gt;&gt;Close2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Close2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Close2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS Reference Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 9</value>
+  </data>
+  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 20</value>
+  </data>
+  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="Label1.Text" xml:space="preserve">
+    <value>SteamCMD GUI</value>
+  </data>
+  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
+    <value>Label1</value>
+  </data>
+  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="VersionLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VersionLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="VersionLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 38</value>
+  </data>
+  <data name="VersionLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="VersionLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="VersionLabel2.Text" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel2.Name" xml:space="preserve">
+    <value>VersionLabel2</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="AuthorLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AuthorLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="AuthorLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 58</value>
+  </data>
+  <data name="AuthorLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="AuthorLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="AuthorLabel2.Text" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="&gt;&gt;AuthorLabel2.Name" xml:space="preserve">
+    <value>AuthorLabel2</value>
+  </data>
+  <data name="&gt;&gt;AuthorLabel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AuthorLabel2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;AuthorLabel2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="VersionLabel2.Text" xml:space="preserve">
-    <value>Version:</value>
+  <data name="ChangelogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 115</value>
   </data>
-  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 20</value>
+  <data name="ChangelogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="Close2.Text" xml:space="preserve">
-    <value>Close</value>
+  <data name="ChangelogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
-  <data name="AuthorLabel2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>SteamCMD GUI</value>
-  </data>
-  <data name="Close2.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="VersionLabel2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
+  <data name="ChangelogButton.Text" xml:space="preserve">
+    <value>Changelog</value>
   </data>
   <data name="&gt;&gt;ChangelogButton.Name" xml:space="preserve">
     <value>ChangelogButton</value>
   </data>
-  <data name="VersionLabel2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>319, 151</value>
-  </data>
-  <data name="&gt;&gt;VersionLabel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Close2.Type" xml:space="preserve">
+  <data name="&gt;&gt;ChangelogButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="AutorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;ChangelogButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="VersionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;ChangelogButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="PictureBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LicenseURL.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
   </data>
-  <data name="AutorLabel.Text" xml:space="preserve">
-    <value>Dio Joestar</value>
+  <data name="LicenseURL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 78</value>
+  </data>
+  <data name="LicenseURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 31</value>
+  </data>
+  <data name="LicenseURL.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;LicenseURL.Name" xml:space="preserve">
+    <value>LicenseURL</value>
+  </data>
+  <data name="&gt;&gt;LicenseURL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LicenseURL.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LicenseURL.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PictureBox2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
   </data>
   <data name="PictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 2</value>
   </data>
-  <data name="&gt;&gt;Close2.Parent" xml:space="preserve">
+  <data name="PictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 145</value>
+  </data>
+  <data name="PictureBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;PictureBox2.Name" xml:space="preserve">
+    <value>PictureBox2</value>
+  </data>
+  <data name="&gt;&gt;PictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PictureBox2.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PictureBox2.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>319, 151</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>325, 175</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>325, 175</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>SteamCMD GUI</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AboutWindow</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

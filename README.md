@@ -9,7 +9,7 @@ Also, can be used to run servers with parameters (srcds.exe), open and edit file
 
 License
 ============
-SteamCMD GUI by Dio Joestar is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+SteamCMD GUI by RedPill is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
 
 Last Changes
 ============

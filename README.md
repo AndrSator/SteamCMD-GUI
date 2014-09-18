@@ -13,10 +13,8 @@ SteamCMD GUI by RedPill is licensed under a [Creative Commons Attribution-NonCom
 
 Last Changes
 ============
-######Version 3.0.1.1
-* Fixed the GUI not working properly with a DPI 125% or 150% on Windows
-* Added an option for enable/disable the using the console
-* Updated author name
+######Version 3.0.1.2
+* Fixed URL of Changelog and License buttons
 
 Screenshots
 ============

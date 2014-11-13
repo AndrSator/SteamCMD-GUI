@@ -516,7 +516,6 @@ Partial Class MainMenu
         '
         resources.ApplyResources(Me.UDPPortTexBox, "UDPPortTexBox")
         Me.UDPPortTexBox.Maximum = New Decimal(New Integer() {49151, 0, 0, 0})
-        Me.UDPPortTexBox.Minimum = New Decimal(New Integer() {1025, 0, 0, 0})
         Me.UDPPortTexBox.Name = "UDPPortTexBox"
         Me.UDPPortTexBox.Value = New Decimal(New Integer() {27015, 0, 0, 0})
         '
@@ -556,7 +555,7 @@ Partial Class MainMenu
         'MaxPlayersTexBox
         '
         resources.ApplyResources(Me.MaxPlayersTexBox, "MaxPlayersTexBox")
-        Me.MaxPlayersTexBox.Maximum = New Decimal(New Integer() {32, 0, 0, 0})
+        Me.MaxPlayersTexBox.Maximum = New Decimal(New Integer() {64, 0, 0, 0})
         Me.MaxPlayersTexBox.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.MaxPlayersTexBox.Name = "MaxPlayersTexBox"
         Me.MaxPlayersTexBox.Value = New Decimal(New Integer() {24, 0, 0, 0})

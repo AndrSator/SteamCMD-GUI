@@ -13,8 +13,9 @@ SteamCMD GUI by RedPill is licensed under a [Creative Commons Attribution-NonCom
 
 Last Changes
 ============
-######Version 3.0.1.2
-* Fixed URL of Changelog and License buttons
+######Version 3.0.1.3
+* Set a maximum value of 64 for Max Players
+* Set a minimum value of 0 for the UDP Port
 
 Screenshots
 ============

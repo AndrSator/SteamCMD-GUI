@@ -56,55 +56,29 @@ Public Class MainMenu
     End Sub
 
     Private Sub Tips()
-        If Thread.CurrentThread.CurrentUICulture.Name = "es-ES" Then ' Spanish
-            ToolTip1.SetToolTip(OpenFolderButton, "Abrir carpeta actual")
-            ToolTip1.SetToolTip(CheckBoxMask, "Ocultar/Mostrar RCON")
-            ToolTip1.SetToolTip(AddButton, "Añade más párametros")
-            ToolTip1.SetToolTip(ConsoleConnect, "Conectar a un servidor")
-            ToolTip1.SetToolTip(ConsoleOpenLog, "Abrir el directorio de registros")
-            ToolTip1.SetToolTip(ConsoleSaveLog, "Guardar el registro actual")
-            ToolTip1.SetToolTip(ConsoleClearLog, "Limpiar el registro")
-            DownloadingString = "Descargando..."
-            DownloadDoneString = "El archivo 'steamcmd.zip' ya se ha descargado. Por favor, descomprímelo."
-            DownloadDone2String = "¡El archivo ya se ha descargado!"
-            PathSteamCMDString = "La ruta actual de 'steamcmd.exe' es "
-            CantFindSteamCMDString = "No se pudo encontrar 'steamcmd.exe'!"
-            CustomIDString = "App ID personalizada de Steam: "
-            PathEmptyString = "Por favor, selecione una carpeta para actualizar/instalar el servidor."
-            PathForInstallString = "El servidor será instalado/actualizado en '"
-            GameInstallString = "Juego a instalar: "
-            ValidateString = "Los archivos serán comprobados y validados."
-            SteamAppIDEmptyString = "App ID de Steam sin definir"
-            SteamNameString = "Por favor, introduce tu nombre de Steam."
-            SteamPasswdString = "Por favor, escribe tu contraseña de Steam. Puedes instalar muchos juegos como 'anonymous'."
-            ServerPathInstallString = "Por favor, selecciona en que ruta vas a instalar el servidor."
-            HLmodErrorString = "Mod de Half-Life sin definir. Instalando uno predeterminado."
-            InstallingString = "Instalando/Actualizando..."
-        Else
-            ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
-            ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
-            ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
-            ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
-            ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
-            ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
-            ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
-            DownloadingString = "Downloading..."
-            DownloadDoneString = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
-            DownloadDone2String = "The file has already been downloaded!"
-            PathSteamCMDString = "Current path of 'steamcmd.exe' is "
-            CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
-            CustomIDString = "Custom Steam App ID: "
-            PathEmptyString = "Please, select a folder for install/update the server."
-            PathForInstallString = "The server will be installed/updated in '"
-            GameInstallString = "Game to install: "
-            ValidateString = "The files will be checked and validated."
-            SteamAppIDEmptyString = "Steam App ID not defined"
-            SteamNameString = "Please, type your Steam name."
-            SteamPasswdString = "Please, type your Steam password. You can install many games as 'anonymous'."
-            ServerPathInstallString = "Please, select the path where you want to install the server."
-            HLmodErrorString = "Half-Life mod not defined. Installing a default one."
-            InstallingString = "Installing/Updating..."
-        End If
+        ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
+        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
+        ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
+        ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
+        ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
+        ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
+        ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
+        DownloadingString = "Downloading..."
+        DownloadDoneString = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
+        DownloadDone2String = "The file has already been downloaded!"
+        PathSteamCMDString = "Current path of 'steamcmd.exe' is "
+        CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
+        CustomIDString = "Custom Steam App ID: "
+        PathEmptyString = "Please, select a folder for install/update the server."
+        PathForInstallString = "The server will be installed/updated in '"
+        GameInstallString = "Game to install: "
+        ValidateString = "The files will be checked and validated."
+        SteamAppIDEmptyString = "Steam App ID not defined"
+        SteamNameString = "Please, type your Steam name."
+        SteamPasswdString = "Please, type your Steam password. You can install many games as 'anonymous'."
+        ServerPathInstallString = "Please, select the path where you want to install the server."
+        HLmodErrorString = "Half-Life mod not defined. Installing a default one."
+        InstallingString = "Installing/Updating..."
     End Sub
 
     ' Autosave log

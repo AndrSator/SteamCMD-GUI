@@ -159,13 +159,13 @@
     <value>225, 57</value>
   </data>
   <data name="AutorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 15</value>
+    <value>71, 15</value>
   </data>
   <data name="AutorLabel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
   <data name="AutorLabel.Text" xml:space="preserve">
-    <value>RedPill</value>
+    <value>Dio Joestar</value>
   </data>
   <data name="&gt;&gt;AutorLabel.Name" xml:space="preserve">
     <value>AutorLabel</value>

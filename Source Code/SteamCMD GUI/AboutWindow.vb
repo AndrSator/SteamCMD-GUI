@@ -6,6 +6,10 @@ Public Class AboutWindow
         Icon = My.Resources.SteamCMDGUI_Icon
     End Sub
 
+    Private Sub AutorLabel_Click() Handles AutorLabel.Click
+        Process.Start("http://steamcommunity.com/profiles/76561198000420180")
+    End Sub
+
     Private Sub LicenseURL_Click() Handles LicenseURL.Click
         If File.Exists("License.txt") Then
             Process.Start("License.txt")

@@ -46,6 +46,7 @@ Partial Class AboutWindow
         '
         resources.ApplyResources(Me.AutorLabel, "AutorLabel")
         Me.AutorLabel.BackColor = System.Drawing.SystemColors.Control
+        Me.AutorLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.AutorLabel.Name = "AutorLabel"
         '
         'Close2

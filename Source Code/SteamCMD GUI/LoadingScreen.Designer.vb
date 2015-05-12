@@ -32,9 +32,9 @@ Partial Class LoadingScreen
         '
         'InfoLabelSplash
         '
-        resources.ApplyResources(Me.InfoLabelSplash, "InfoLabelSplash")
         Me.InfoLabelSplash.BackColor = System.Drawing.Color.Transparent
         Me.InfoLabelSplash.ForeColor = System.Drawing.SystemColors.Menu
+        resources.ApplyResources(Me.InfoLabelSplash, "InfoLabelSplash")
         Me.InfoLabelSplash.Name = "InfoLabelSplash"
         '
         'VersionLabelSplash
@@ -46,9 +46,9 @@ Partial Class LoadingScreen
         '
         'BannerSplash
         '
-        resources.ApplyResources(Me.BannerSplash, "BannerSplash")
         Me.BannerSplash.BackColor = System.Drawing.Color.Transparent
         Me.BannerSplash.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.BannerSplash
+        resources.ApplyResources(Me.BannerSplash, "BannerSplash")
         Me.BannerSplash.Name = "BannerSplash"
         Me.BannerSplash.TabStop = False
         '

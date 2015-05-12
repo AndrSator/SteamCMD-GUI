@@ -7,13 +7,12 @@ Also, can be used to run servers with parameters (srcds.exe), open and edit file
 
 License
 ============
-SteamCMD GUI by RedPill is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
 
 Last Changes
 ============
-######Version 3.0.1.3
-* Set a maximum value of 64 for Max Players
-* Set a minimum value of 0 for the UDP Port
+######Version 3.0.1.4
+* Minor fixes
 
 Screenshots
 ============

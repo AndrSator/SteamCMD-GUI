@@ -1,4 +1,7 @@
-﻿	Version 3.0.1.3
+﻿	Version 3.0.1.4
+- Minor fixes
+
+	Version 3.0.1.3
 - Set a maximum value of 64 for Max Players
 - Set a minimum value of 0 for the UDP Port
 	

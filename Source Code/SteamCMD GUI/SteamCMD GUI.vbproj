@@ -121,17 +121,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutWindow.es.resx">
-      <DependentUpon>AboutWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CommandsWindow.es.resx">
-      <DependentUpon>CommandsWindow.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CommandsWindow.resx">
       <DependentUpon>CommandsWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu.es.resx">
-      <DependentUpon>MainMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.vb</DependentUpon>

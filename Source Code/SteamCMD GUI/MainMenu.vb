@@ -296,6 +296,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub UpdateServerButton_Click() Handles UpdateServerButton.Click
+        FolderBrowserDialog1.SelectedPath = SteamCMDExePath
         If My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
                 Status.Text = SteamAppIDEmptyString
@@ -364,7 +365,7 @@ Public Class MainMenu
                 End If
             End If
         Else
-            Status.Text = "Can't find the file 'steamcmd.exe'!"
+            Status.Text = CantFindSteamCMDString
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)

@@ -11,8 +11,8 @@ SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons
 
 Last Changes
 ============
-######Version 3.0.1.4
-* Minor fixes
+######Version 3.0.1.5
+* Fixed that couldn't find steamcmd.exe at launch the program
 
 Screenshots
 ============

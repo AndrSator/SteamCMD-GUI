@@ -26,7 +26,6 @@ Public Class MainMenu
         Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
         ThrSteamCMD = New Thread(AddressOf ThreadTaskSteamCMD)
-        GamesList.SelectedIndex = 1
         ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
         ConsoleCommandList.SelectedIndex = 0
@@ -58,6 +57,12 @@ Public Class MainMenu
         Else
             InitializeDefaultGamesList()
         End If
+        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
+        GamesList.DisplayMember = "Value"
+        GamesList.ValueMember = "Key"
+
+        GamesList.SelectedIndex = 1
+
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     End Sub
@@ -245,40 +250,14 @@ Public Class MainMenu
     End Sub
 
     Private Sub GamesList_SelectedIndexChanged() Handles GamesList.SelectedIndexChanged, GamesList.EnabledChanged
-        If GamesList.Text = "Alien Swarm" Then
-            SteamAppID = "635"
+        If TypeOf (GamesList.SelectedValue) Is KeyValuePair(Of String, String) Then
+            SteamAppID = GamesList.SelectedValue.Key
+        ElseIf TypeOf (GamesList.SelectedValue) Is Integer Then
+            SteamAppID = GamesList.SelectedValue
         End If
-        If GamesList.Text = "Counter-Strike: Global Offensive" Then
-            SteamAppID = "740"
-        End If
-        If GamesList.Text = "Counter-Strike: Source" Then
-            SteamAppID = "232330"
-        End If
-        If GamesList.Text = "Day of Defeat: Source" Then
-            SteamAppID = "232290"
-        End If
-        If GamesList.Text = "Dota 2" Then
-            SteamAppID = "570"
-        End If
-        If GamesList.Text = "Garry's Mod" Then
-            SteamAppID = "4020"
-        End If
-        If GamesList.Text = "Half-Life Dedicated Server" Then
-            SteamAppID = "90"
-        End If
-        If GamesList.Text = "Half-Life 2: Deathmatch" Then
-            SteamAppID = "232370"
-        End If
-        If GamesList.Text = "Left 4 Dead" Then
-            SteamAppID = "510"
-        End If
-        If GamesList.Text = "Left 4 Dead 2" Then
-            SteamAppID = "222860"
-        End If
-        If GamesList.Text = "Team Fortress 2" Then
-            SteamAppID = "232250"
-        End If
-        If Not GamesList.Text = "Half-Life Dedicated Server" Then
+
+
+        If Not SteamAppID = 90 Then
             CustomIDTextBox.Show()
             CustomIDCheckbox.Show()
             GoldSrcModInput.Hide()

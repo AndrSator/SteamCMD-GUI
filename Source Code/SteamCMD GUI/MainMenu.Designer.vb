@@ -131,6 +131,7 @@ Partial Class MainMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.AddCustomGameButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -222,6 +223,7 @@ Partial Class MainMenu
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.AddCustomGameButton)
         Me.GroupBox2.Controls.Add(Me.CheckBoxConsole)
         Me.GroupBox2.Controls.Add(Me.ValidateCheckBox)
         Me.GroupBox2.Controls.Add(Me.IdHelpButton)
@@ -849,6 +851,12 @@ Partial Class MainMenu
         '
         Me.XmlConfigOpenFileDialog.RestoreDirectory = True
         '
+        'AddCustomGameButton
+        '
+        resources.ApplyResources(Me.AddCustomGameButton, "AddCustomGameButton")
+        Me.AddCustomGameButton.Name = "AddCustomGameButton"
+        Me.AddCustomGameButton.UseVisualStyleBackColor = True
+        '
         'MainMenu
         '
         resources.ApplyResources(Me, "$this")
@@ -996,5 +1004,6 @@ Partial Class MainMenu
     Friend WithEvents GoldSrcModInput As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CheckBoxConsole As System.Windows.Forms.CheckBox
+    Friend WithEvents AddCustomGameButton As System.Windows.Forms.Button
 
 End Class

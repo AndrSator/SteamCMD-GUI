@@ -12,6 +12,8 @@ Module Module1
     ' Strings
     Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, CustomIDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
     Public ServerPathInstallString, HLmodErrorString, InstallingString As String
+    Public GameDictionary As Dictionary(Of String, String) = New Dictionary(Of String, String)
+
 End Module
 
 
@@ -50,6 +52,11 @@ Public Class MainMenu
                 End If
             End While
             XmlConfig.Close()
+        End If
+        If File.Exists("SteamCMDGames.xml") Then
+            LoadGamesList()
+        Else
+            InitializeDefaultGamesList()
         End If
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1008,5 +1015,92 @@ Public Class MainMenu
             ConsoleOutput.Clear()
             Status.Text = "The console has been cleaned."
         End If
+    End Sub
+
+    Private Sub AddCustomGameButton_Click(sender As Object, e As EventArgs) Handles AddCustomGameButton.Click
+        Dim Name As String = ""
+        Dim ID As String = ""
+
+        Name = InputBox("Custom Game Name")
+        ID = InputBox("Custom Game App ID")
+
+        If ("" = Name) Then
+            MessageBox.Show("Custom Game Name was not entered.", "Add Custom Game Error")
+            Return
+        End If
+
+        If ("" = ID) Then
+            MessageBox.Show("Custom Game ID was not entered.", "Add Custom Game Error")
+            Return
+        End If
+
+        Dim TestInt As Integer = 0
+        Integer.TryParse(ID, TestInt)
+        If (TestInt = 0) Then
+            MessageBox.Show("Custom Game ID was not a number (e.x 444880).", "Add Custom Game Error")
+            Return
+        End If
+
+        GameDictionary.Add(ID, Name)
+        WriteOutDictionaryAsXml(GameDictionary)
+
+    End Sub
+
+    Private Sub LoadGamesList()
+        Dim XmlDoc As XmlReader = New XmlTextReader("SteamCMDGames.xml")
+        'XmlDoc.ReadToFollowing("Games")
+        While (XmlDoc.Read())
+            Dim type = XmlDoc.NodeType
+            If (type = XmlNodeType.Element) Then
+                If (XmlDoc.Name = "Game") Then
+                    XmlDoc.MoveToAttribute("id")
+                    Dim ID As String = XmlDoc.Value
+                    XmlDoc.Read() 'move pointer to next node part
+                    If (XmlDoc.NodeType = XmlNodeType.Text) Then
+                        Dim Name As String = XmlDoc.Value
+                        GameDictionary.Add(ID, Name)
+                    End If
+                End If
+            End If
+
+        End While
+        XmlDoc.Close()
+    End Sub
+
+    Private Sub InitializeDefaultGamesList()
+        GameDictionary.Add("635", "Alien Swarm")
+        GameDictionary.Add("740", "Counter-Strike: Global Offensive")
+        GameDictionary.Add("232330", "Counter-Strike: Source")
+        GameDictionary.Add("232290", "Day of Defeat: Source")
+        GameDictionary.Add("570", "Dota 2")
+        GameDictionary.Add("4020", "Garry's Mod")
+        GameDictionary.Add("90", "Half-Life Dedicated Server")
+        GameDictionary.Add("232370", "Half-Life 2: Deathmatch")
+        GameDictionary.Add("510", "Left 4 Dead")
+        GameDictionary.Add("222860", "Left 4 Dead 2")
+        GameDictionary.Add("232250", "Team Fortress 2")
+        WriteOutDictionaryAsXml(GameDictionary)
+    End Sub
+
+    Private Sub WriteOutDictionaryAsXml(dict As Dictionary(Of String, String))
+        Dim XmlSettings As XmlWriterSettings = New XmlWriterSettings()
+        XmlSettings.Indent = True
+        Dim XmlWrt As XmlWriter = XmlWriter.Create("SteamCMDGames.xml", XmlSettings)
+
+        XmlWrt.WriteStartDocument()
+        XmlWrt.WriteComment("Custom Games Config used by SteamCMD GUI")
+        XmlWrt.WriteComment("This config is loaded automatically.")
+        XmlWrt.WriteStartElement("SteamCMD-Games")
+
+        For Each kvp As KeyValuePair(Of String, String) In dict
+            XmlWrt.WriteStartElement("Game")
+            XmlWrt.WriteAttributeString("id", kvp.Key)
+            XmlWrt.WriteString(kvp.Value)
+            XmlWrt.WriteEndElement()
+        Next
+        XmlWrt.WriteEndElement()
+        XmlWrt.WriteEndDocument()
+        XmlWrt.Close()
+
     End Sub
 End Class

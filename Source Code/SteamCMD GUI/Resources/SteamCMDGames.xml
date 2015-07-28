@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Games>
+<SteamCMD-Games>
   <Game id="635">Alient Swarm</Game>
   <Game id="740">Counter-Strike: Global Offensive</Game>
   <Game id="232330">Counter-Strike: Source</Game>
@@ -11,4 +11,4 @@
   <Game id="510">Left 4 Dead</Game>
   <Game id="222860">Left 4 Dead 2</Game>
   <Game id="232250">Team Fortress 2</Game>
-</Games>
+</SteamCMD-Games>

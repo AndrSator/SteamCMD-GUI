@@ -174,7 +174,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;GamesList.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="SteamCMDDownloadButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 15</value>
@@ -246,7 +246,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;CustomIDCheckbox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="CustomIDTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -273,7 +273,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;CustomIDTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="OpenFolderButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
@@ -429,6 +429,30 @@
   <data name="&gt;&gt;ExitButton.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="AddCustomGameButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>284, 51</value>
+  </data>
+  <data name="AddCustomGameButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="AddCustomGameButton.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="AddCustomGameButton.Text" xml:space="preserve">
+    <value>Add Custom</value>
+  </data>
+  <data name="&gt;&gt;AddCustomGameButton.Name" xml:space="preserve">
+    <value>AddCustomGameButton</value>
+  </data>
+  <data name="&gt;&gt;AddCustomGameButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddCustomGameButton.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;AddCustomGameButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="CheckBoxConsole.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -454,7 +478,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;CheckBoxConsole.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="ValidateCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -481,7 +505,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;ValidateCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="IdHelpButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -508,7 +532,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;IdHelpButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="BrowserButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>323, 144</value>
@@ -532,7 +556,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;BrowserButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="UpdateServerButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -559,7 +583,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;UpdateServerButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -586,7 +610,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="ServerPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 146</value>
@@ -607,7 +631,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;ServerPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="AnonymousCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -634,7 +658,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;AnonymousCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -661,7 +685,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="UsernameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 66</value>
@@ -682,7 +706,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;UsernameTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="PasswdTextBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
@@ -706,7 +730,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;PasswdTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="GoldSrcModLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -736,7 +760,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;GoldSrcModLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="GoldSrcModInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 20</value>
@@ -760,7 +784,7 @@
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;GoldSrcModInput.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 60</value>
@@ -2359,7 +2383,7 @@
     <value>0, 0</value>
   </data>
   <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 24</value>
+    <value>599, 24</value>
   </data>
   <data name="MenuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2398,7 +2422,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>609, 369</value>
+    <value>599, 359</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>615, 397</value>

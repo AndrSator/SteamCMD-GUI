@@ -12,6 +12,8 @@ Module Module1
     ' Strings
     Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, CustomIDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
     Public ServerPathInstallString, HLmodErrorString, InstallingString As String
+    Public GameDictionary As Dictionary(Of String, String) = New Dictionary(Of String, String)
+
 End Module
 
 
@@ -24,7 +26,6 @@ Public Class MainMenu
         Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
         ThrSteamCMD = New Thread(AddressOf ThreadTaskSteamCMD)
-        GamesList.SelectedIndex = 1
         ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
         ConsoleCommandList.SelectedIndex = 0
@@ -51,6 +52,21 @@ Public Class MainMenu
             End While
             XmlConfig.Close()
         End If
+        If File.Exists("SteamCMDGames.xml") Then
+            LoadGamesList()
+        Else
+            InitializeDefaultGamesList()
+        End If
+        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
+        GamesList.DisplayMember = "Value"
+        GamesList.ValueMember = "Key"
+        GamesList.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+        GamesList.SelectedIndex = 1
+
+        'Hide the customID textbox and checkbox as they aren't needed
+        CustomIDTextBox.Hide()
+        CustomIDCheckbox.Hide()
+
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     End Sub
@@ -238,47 +254,23 @@ Public Class MainMenu
     End Sub
 
     Private Sub GamesList_SelectedIndexChanged() Handles GamesList.SelectedIndexChanged, GamesList.EnabledChanged
-        If GamesList.Text = "Alien Swarm" Then
-            SteamAppID = "635"
+        If TypeOf (GamesList.SelectedValue) Is KeyValuePair(Of String, String) Then
+            SteamAppID = GamesList.SelectedValue.Key
+        ElseIf TypeOf (GamesList.SelectedValue) Is Integer Then
+            SteamAppID = GamesList.SelectedValue.ToString()
+        ElseIf TypeOf (GamesList.SelectedValue) Is String Then
+            SteamAppID = GamesList.SelectedValue
         End If
-        If GamesList.Text = "Counter-Strike: Global Offensive" Then
-            SteamAppID = "740"
-        End If
-        If GamesList.Text = "Counter-Strike: Source" Then
-            SteamAppID = "232330"
-        End If
-        If GamesList.Text = "Day of Defeat: Source" Then
-            SteamAppID = "232290"
-        End If
-        If GamesList.Text = "Dota 2" Then
-            SteamAppID = "570"
-        End If
-        If GamesList.Text = "Garry's Mod" Then
-            SteamAppID = "4020"
-        End If
-        If GamesList.Text = "Half-Life Dedicated Server" Then
-            SteamAppID = "90"
-        End If
-        If GamesList.Text = "Half-Life 2: Deathmatch" Then
-            SteamAppID = "232370"
-        End If
-        If GamesList.Text = "Left 4 Dead" Then
-            SteamAppID = "510"
-        End If
-        If GamesList.Text = "Left 4 Dead 2" Then
-            SteamAppID = "222860"
-        End If
-        If GamesList.Text = "Team Fortress 2" Then
-            SteamAppID = "232250"
-        End If
-        If Not GamesList.Text = "Half-Life Dedicated Server" Then
-            CustomIDTextBox.Show()
-            CustomIDCheckbox.Show()
+
+
+        If Not SteamAppID = 90 Then
+            'CustomIDTextBox.Show()
+            'CustomIDCheckbox.Show()
             GoldSrcModInput.Hide()
             GoldSrcModLabel.Hide()
         Else
-            CustomIDTextBox.Hide()
-            CustomIDCheckbox.Hide()
+            'CustomIDTextBox.Hide()
+            'CustomIDCheckbox.Hide()
             GoldSrcModInput.Show()
             GoldSrcModLabel.Show()
         End If
@@ -1008,5 +1000,96 @@ Public Class MainMenu
             ConsoleOutput.Clear()
             Status.Text = "The console has been cleaned."
         End If
+    End Sub
+
+    Private Sub AddCustomGameButton_Click(sender As Object, e As EventArgs) Handles AddCustomGameButton.Click
+        Dim Name As String = ""
+        Dim ID As String = ""
+
+        Name = InputBox("Custom Game Name")
+        ID = InputBox("Custom Game App ID")
+
+        If ("" = Name) Then
+            MessageBox.Show("Custom Game Name was not entered.", "Add Custom Game Error")
+            Return
+        End If
+
+        If ("" = ID) Then
+            MessageBox.Show("Custom Game ID was not entered.", "Add Custom Game Error")
+            Return
+        End If
+
+        Dim TestInt As Integer = 0
+        Integer.TryParse(ID, TestInt)
+        If (TestInt = 0) Then
+            MessageBox.Show("Custom Game ID was not a number (e.x 444880).", "Add Custom Game Error")
+            Return
+        End If
+
+        GameDictionary.Add(ID, Name)
+        'GamesList.DataSource.ResetBindings(False)
+        WriteOutDictionaryAsXml(GameDictionary)
+        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
+
+        GamesList.SelectedIndex = GamesList.FindStringExact(Name)
+
+    End Sub
+
+    Private Sub LoadGamesList()
+        Dim XmlDoc As XmlReader = New XmlTextReader("SteamCMDGames.xml")
+        'XmlDoc.ReadToFollowing("Games")
+        While (XmlDoc.Read())
+            Dim type = XmlDoc.NodeType
+            If (type = XmlNodeType.Element) Then
+                If (XmlDoc.Name = "Game") Then
+                    XmlDoc.MoveToAttribute("id")
+                    Dim ID As String = XmlDoc.Value
+                    XmlDoc.Read() 'move pointer to next node part
+                    If (XmlDoc.NodeType = XmlNodeType.Text) Then
+                        Dim Name As String = XmlDoc.Value
+                        GameDictionary.Add(ID, Name)
+                    End If
+                End If
+            End If
+
+        End While
+        XmlDoc.Close()
+    End Sub
+
+    Private Sub InitializeDefaultGamesList()
+        GameDictionary.Add("635", "Alien Swarm")
+        GameDictionary.Add("740", "Counter-Strike: Global Offensive")
+        GameDictionary.Add("232330", "Counter-Strike: Source")
+        GameDictionary.Add("232290", "Day of Defeat: Source")
+        GameDictionary.Add("570", "Dota 2")
+        GameDictionary.Add("4020", "Garry's Mod")
+        GameDictionary.Add("90", "Half-Life Dedicated Server")
+        GameDictionary.Add("232370", "Half-Life 2: Deathmatch")
+        GameDictionary.Add("510", "Left 4 Dead")
+        GameDictionary.Add("222860", "Left 4 Dead 2")
+        GameDictionary.Add("232250", "Team Fortress 2")
+        WriteOutDictionaryAsXml(GameDictionary)
+    End Sub
+
+    Private Sub WriteOutDictionaryAsXml(dict As Dictionary(Of String, String))
+        Dim XmlSettings As XmlWriterSettings = New XmlWriterSettings()
+        XmlSettings.Indent = True
+        Dim XmlWrt As XmlWriter = XmlWriter.Create("SteamCMDGames.xml", XmlSettings)
+
+        XmlWrt.WriteStartDocument()
+        XmlWrt.WriteComment("Custom Games Config used by SteamCMD GUI")
+        XmlWrt.WriteComment("This config is loaded automatically.")
+        XmlWrt.WriteStartElement("SteamCMD-Games")
+
+        For Each kvp As KeyValuePair(Of String, String) In dict
+            XmlWrt.WriteStartElement("Game")
+            XmlWrt.WriteAttributeString("id", kvp.Key)
+            XmlWrt.WriteString(kvp.Value)
+            XmlWrt.WriteEndElement()
+        Next
+        XmlWrt.WriteEndElement()
+        XmlWrt.WriteEndDocument()
+        XmlWrt.Close()
+
     End Sub
 End Class

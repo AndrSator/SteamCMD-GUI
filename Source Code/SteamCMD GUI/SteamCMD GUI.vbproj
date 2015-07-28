@@ -165,6 +165,9 @@
   <ItemGroup>
     <Content Include="Resources\Icons\Clear.png" />
     <Content Include="Resources\Icons\Connect.png" />
+    <Content Include="Resources\SteamCMDGames.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

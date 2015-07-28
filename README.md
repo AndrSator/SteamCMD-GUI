@@ -11,8 +11,10 @@ SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons
 
 Last Changes
 ============
-######Version 3.0.1.5
-* Fixed that couldn't find steamcmd.exe at launch the program
+######Version 3.1.0.0
+* Added maintainable custom Game ID List via an XML file ~ By Captnwalker1 @ GitHub
+  * (Keep using Half-Life Dedicated Server for GoldSrc games)
+* Moved all XML files to the Settings folder	
 
 Screenshots
 ============

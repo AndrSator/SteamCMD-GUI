@@ -27,8 +27,6 @@ Partial Class MainMenu
         Me.GamesList = New System.Windows.Forms.ComboBox()
         Me.SteamCMDDownloadButton = New System.Windows.Forms.Button()
         Me.DonwloadBar = New System.Windows.Forms.ProgressBar()
-        Me.CustomIDCheckbox = New System.Windows.Forms.CheckBox()
-        Me.CustomIDTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.OpenFolderButton = New System.Windows.Forms.Button()
         Me.CheckUpdatesButton = New System.Windows.Forms.Button()
@@ -36,6 +34,7 @@ Partial Class MainMenu
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.AddCustomGameButton = New System.Windows.Forms.Button()
         Me.CheckBoxConsole = New System.Windows.Forms.CheckBox()
         Me.ValidateCheckBox = New System.Windows.Forms.CheckBox()
         Me.IdHelpButton = New System.Windows.Forms.Button()
@@ -131,7 +130,6 @@ Partial Class MainMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.AddCustomGameButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -167,17 +165,6 @@ Partial Class MainMenu
         resources.ApplyResources(Me.DonwloadBar, "DonwloadBar")
         Me.DonwloadBar.Name = "DonwloadBar"
         Me.DonwloadBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        '
-        'CustomIDCheckbox
-        '
-        resources.ApplyResources(Me.CustomIDCheckbox, "CustomIDCheckbox")
-        Me.CustomIDCheckbox.Name = "CustomIDCheckbox"
-        Me.CustomIDCheckbox.UseVisualStyleBackColor = True
-        '
-        'CustomIDTextBox
-        '
-        resources.ApplyResources(Me.CustomIDTextBox, "CustomIDTextBox")
-        Me.CustomIDTextBox.Name = "CustomIDTextBox"
         '
         'GroupBox1
         '
@@ -235,14 +222,18 @@ Partial Class MainMenu
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.UsernameTextBox)
         Me.GroupBox2.Controls.Add(Me.PasswdTextBox)
-        Me.GroupBox2.Controls.Add(Me.CustomIDTextBox)
         Me.GroupBox2.Controls.Add(Me.GamesList)
-        Me.GroupBox2.Controls.Add(Me.CustomIDCheckbox)
         Me.GroupBox2.Controls.Add(Me.GoldSrcModLabel)
         Me.GroupBox2.Controls.Add(Me.GoldSrcModInput)
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
+        '
+        'AddCustomGameButton
+        '
+        resources.ApplyResources(Me.AddCustomGameButton, "AddCustomGameButton")
+        Me.AddCustomGameButton.Name = "AddCustomGameButton"
+        Me.AddCustomGameButton.UseVisualStyleBackColor = True
         '
         'CheckBoxConsole
         '
@@ -851,12 +842,6 @@ Partial Class MainMenu
         '
         Me.XmlConfigOpenFileDialog.RestoreDirectory = True
         '
-        'AddCustomGameButton
-        '
-        resources.ApplyResources(Me.AddCustomGameButton, "AddCustomGameButton")
-        Me.AddCustomGameButton.Name = "AddCustomGameButton"
-        Me.AddCustomGameButton.UseVisualStyleBackColor = True
-        '
         'MainMenu
         '
         resources.ApplyResources(Me, "$this")
@@ -900,8 +885,6 @@ Partial Class MainMenu
     Friend WithEvents GamesList As System.Windows.Forms.ComboBox
     Friend WithEvents SteamCMDDownloadButton As System.Windows.Forms.Button
     Friend WithEvents DonwloadBar As System.Windows.Forms.ProgressBar
-    Friend WithEvents CustomIDCheckbox As System.Windows.Forms.CheckBox
-    Friend WithEvents CustomIDTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Status As System.Windows.Forms.TextBox

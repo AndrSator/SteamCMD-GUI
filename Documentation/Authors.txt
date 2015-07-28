@@ -3,6 +3,7 @@
 |
 =================  Contributors   =====================================
 |	Christoph 'Giswald'
+|	'Captnwalker1'
 |
 ================= Special Thanks  =====================================
 |	Hans Passant    	~ Help with the code at Stack Overflow    	(http://stackoverflow.com/questions/20874108/creating-a-handles-for-each-new-item-in-a-dropdownitems)

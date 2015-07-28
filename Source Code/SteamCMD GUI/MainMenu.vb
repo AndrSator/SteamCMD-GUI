@@ -10,7 +10,7 @@ Module Module1
     ' Run Server
     Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
     ' Strings
-    Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, CustomIDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
+    Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
     Public ServerPathInstallString, HLmodErrorString, InstallingString As String
     Public GameDictionary As Dictionary(Of String, String) = New Dictionary(Of String, String)
 
@@ -37,8 +37,8 @@ Public Class MainMenu
         If Not Directory.Exists("Logs") Then
             Directory.CreateDirectory("Logs")
         End If
-        If File.Exists("SteamCMDPath.xml") Then
-            Dim XmlConfig As XmlReader = New XmlTextReader("SteamCMDPath.xml")
+        If File.Exists("Settings/SteamCMDPath.xml") Then
+            Dim XmlConfig As XmlReader = New XmlTextReader("Settings/SteamCMDPath.xml")
             While (XmlConfig.Read())
                 Dim type = XmlConfig.NodeType
                 If (type = XmlNodeType.Element) Then
@@ -52,7 +52,7 @@ Public Class MainMenu
             End While
             XmlConfig.Close()
         End If
-        If File.Exists("SteamCMDGames.xml") Then
+        If File.Exists("Settings/SteamCMDGames.xml") Then
             LoadGamesList()
         Else
             InitializeDefaultGamesList()
@@ -62,10 +62,6 @@ Public Class MainMenu
         GamesList.ValueMember = "Key"
         GamesList.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
         GamesList.SelectedIndex = 1
-
-        'Hide the customID textbox and checkbox as they aren't needed
-        CustomIDTextBox.Hide()
-        CustomIDCheckbox.Hide()
 
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -84,7 +80,6 @@ Public Class MainMenu
         DownloadDone2String = "The file has already been downloaded!"
         PathSteamCMDString = "Current path of 'steamcmd.exe' is "
         CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
-        CustomIDString = "Custom Steam App ID: "
         PathEmptyString = "Please, select a folder for install/update the server."
         PathForInstallString = "The server will be installed/updated in '"
         GameInstallString = "Game to install: "
@@ -173,7 +168,7 @@ Public Class MainMenu
                 Dim CMDConfig As New XmlWriterSettings()
                 CMDConfig.Indent = True
 
-                Dim XmlWrt As XmlWriter = XmlWriter.Create("SteamCMDPath.xml", CMDConfig)
+                Dim XmlWrt As XmlWriter = XmlWriter.Create("Settings/SteamCMDPath.xml", CMDConfig)
                 With XmlWrt
                     .WriteStartDocument()
                     .WriteComment("Config used by SteamCMD GUI")
@@ -199,25 +194,6 @@ Public Class MainMenu
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
             End If
-        End If
-    End Sub
-
-    Private Sub CustomIDCheckbox_Click() Handles CustomIDCheckbox.CheckedChanged, CustomIDTextBox.TextChanged
-        If CustomIDCheckbox.Checked = True Then
-            GamesList.Enabled = False
-            CustomIDTextBox.Enabled = True
-            SteamAppID = CustomIDTextBox.Text
-            Status.Text = CustomIDString & SteamAppID
-            Status.BackColor = Color.FromArgb(240, 240, 240)
-        Else
-            GamesList.Enabled = True
-            CustomIDTextBox.Enabled = False
-        End If
-    End Sub
-
-    Private Sub CustomIDTextBox_KeyPress(ByVal sender As Object, ByVal e As Windows.Forms.KeyPressEventArgs) Handles CustomIDTextBox.KeyPress
-        If InStr(1, "0123456789" & Chr(8), e.KeyChar) = 0 Then
-            e.KeyChar = ""
         End If
     End Sub
 
@@ -264,15 +240,13 @@ Public Class MainMenu
 
 
         If Not SteamAppID = 90 Then
-            'CustomIDTextBox.Show()
-            'CustomIDCheckbox.Show()
             GoldSrcModInput.Hide()
             GoldSrcModLabel.Hide()
+            AddCustomGameButton.Show()
         Else
-            'CustomIDTextBox.Hide()
-            'CustomIDCheckbox.Hide()
             GoldSrcModInput.Show()
             GoldSrcModLabel.Show()
+            AddCustomGameButton.Hide()
         End If
         Status.Text = GameInstallString & GamesList.Text & " - Steam App ID:" & SteamAppID
         Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -956,11 +930,7 @@ Public Class MainMenu
             Dim result As Integer = MessageBox.Show("Really want to stop and close SteamCMD?", "Stop SteamCMD", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
                 If Not proc.HasExited Then
-                    If CustomIDCheckbox.Checked Then
-                        Game = "Steam App ID: " & SteamAppID
-                    Else
-                        Game = "Game: " & GamesList.Text
-                    End If
+                    Game = "Game: " & GamesList.Text
                     Program = "SteamCmd.exe"
                     PathForLog = "Server path: " & ServerPathInstallation
                     SaveLog()
@@ -1010,11 +980,15 @@ Public Class MainMenu
         ID = InputBox("Custom Game App ID")
 
         If ("" = Name) Then
+            My.Computer.Audio.PlaySystemSound( _
+            Media.SystemSounds.Hand)
             MessageBox.Show("Custom Game Name was not entered.", "Add Custom Game Error")
             Return
         End If
 
         If ("" = ID) Then
+            My.Computer.Audio.PlaySystemSound( _
+            Media.SystemSounds.Hand)
             MessageBox.Show("Custom Game ID was not entered.", "Add Custom Game Error")
             Return
         End If
@@ -1022,6 +996,8 @@ Public Class MainMenu
         Dim TestInt As Integer = 0
         Integer.TryParse(ID, TestInt)
         If (TestInt = 0) Then
+            My.Computer.Audio.PlaySystemSound( _
+            Media.SystemSounds.Hand)
             MessageBox.Show("Custom Game ID was not a number (e.x 444880).", "Add Custom Game Error")
             Return
         End If
@@ -1036,7 +1012,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub LoadGamesList()
-        Dim XmlDoc As XmlReader = New XmlTextReader("SteamCMDGames.xml")
+        Dim XmlDoc As XmlReader = New XmlTextReader("Settings/SteamCMDGames.xml")
         'XmlDoc.ReadToFollowing("Games")
         While (XmlDoc.Read())
             Dim type = XmlDoc.NodeType
@@ -1074,7 +1050,7 @@ Public Class MainMenu
     Private Sub WriteOutDictionaryAsXml(dict As Dictionary(Of String, String))
         Dim XmlSettings As XmlWriterSettings = New XmlWriterSettings()
         XmlSettings.Indent = True
-        Dim XmlWrt As XmlWriter = XmlWriter.Create("SteamCMDGames.xml", XmlSettings)
+        Dim XmlWrt As XmlWriter = XmlWriter.Create("Settings/SteamCMDGames.xml", XmlSettings)
 
         XmlWrt.WriteStartDocument()
         XmlWrt.WriteComment("Custom Games Config used by SteamCMD GUI")

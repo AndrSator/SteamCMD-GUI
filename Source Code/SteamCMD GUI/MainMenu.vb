@@ -60,8 +60,12 @@ Public Class MainMenu
         GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
         GamesList.DisplayMember = "Value"
         GamesList.ValueMember = "Key"
-
+        GamesList.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
         GamesList.SelectedIndex = 1
+
+        'Hide the customID textbox and checkbox as they aren't needed
+        CustomIDTextBox.Hide()
+        CustomIDCheckbox.Hide()
 
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -253,18 +257,20 @@ Public Class MainMenu
         If TypeOf (GamesList.SelectedValue) Is KeyValuePair(Of String, String) Then
             SteamAppID = GamesList.SelectedValue.Key
         ElseIf TypeOf (GamesList.SelectedValue) Is Integer Then
+            SteamAppID = GamesList.SelectedValue.ToString()
+        ElseIf TypeOf (GamesList.SelectedValue) Is String Then
             SteamAppID = GamesList.SelectedValue
         End If
 
 
         If Not SteamAppID = 90 Then
-            CustomIDTextBox.Show()
-            CustomIDCheckbox.Show()
+            'CustomIDTextBox.Show()
+            'CustomIDCheckbox.Show()
             GoldSrcModInput.Hide()
             GoldSrcModLabel.Hide()
         Else
-            CustomIDTextBox.Hide()
-            CustomIDCheckbox.Hide()
+            'CustomIDTextBox.Hide()
+            'CustomIDCheckbox.Hide()
             GoldSrcModInput.Show()
             GoldSrcModLabel.Show()
         End If
@@ -1021,7 +1027,11 @@ Public Class MainMenu
         End If
 
         GameDictionary.Add(ID, Name)
+        'GamesList.DataSource.ResetBindings(False)
         WriteOutDictionaryAsXml(GameDictionary)
+        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
+
+        GamesList.SelectedIndex = GamesList.FindStringExact(Name)
 
     End Sub
 

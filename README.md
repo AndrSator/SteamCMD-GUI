@@ -7,7 +7,7 @@ Also, can be used to run servers with parameters (srcds.exe), open and edit file
 
 License
 ============
-SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+SteamCMD GUI by RaÃºl 'Dio Joestar' JimÃ©nez is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
 
 Last Changes
 ============
@@ -28,7 +28,6 @@ Get the last version from GitHub right [here] (https://github.com/DioJoestar/Ste
 
 ######Mirrors
 * [Gamebanana] (http://steam.gamebanana.com/tools/5560)
-* [Spanish Development Kit (OnlineSDK)] (http://onlinesdk.webege.com/recursos/SteamCMD%20GUI.zip)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
 
 Tutorials

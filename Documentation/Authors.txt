@@ -1,5 +1,5 @@
 ================= Original Author =====================================
-|	Raúl 'RedPill AKA Dio Joestar' Jiménez
+|	Raúl 'RedPill AKA Dio Joestar' Jiménez Carrillo
 |
 =================  Contributors   =====================================
 |	Christoph 'Giswald'
@@ -16,6 +16,7 @@
 |	FStudiosHD 		~ German video guide at YouTube			(https://www.youtube.com/watch?v=2xCB5pAgcao)
 |	SMCast			~ Hungarian video guide at YouTube		(https://www.youtube.com/watch?v=Agkddo3kq54)
 |	NOX			~ Recomendation at Game Server Setu		(http://gameserversetup.com)
+|	Amy Johnson		~ Recomendation at PC Gamer (http://www.pcgamer.com//how-to-turn-an-old-pc-into-a-dedicated-gaming-server/)
 |
 | And many others who recommended and use it. Thanks!
 |

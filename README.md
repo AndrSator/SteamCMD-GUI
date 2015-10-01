@@ -11,10 +11,12 @@ SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commo
 
 Last Changes
 ============
-######Version 3.1.0.0
-* Added maintainable custom Game ID List via an XML file ~ By Captnwalker1 @ GitHub
-  * (Keep using Half-Life Dedicated Server for GoldSrc games)
-* Moved all XML files to the Settings folder	
+######Version 3.1.0.1
+* Added a texbox on the bottom right corner with the public IP
+* Removed useless variables
+* Removed Mani Admin Plugin button from the Addons list
+  * (Still available at the Internet Machine: Wayback Machine)
+* Added a PayPal donate button
 
 Screenshots
 ============
@@ -28,6 +30,7 @@ Get the last version from GitHub right [here] (https://github.com/DioJoestar/Ste
 
 ######Mirrors
 * [Gamebanana] (http://steam.gamebanana.com/tools/5560)
+* [Spanish Development Kit (OnlineSDK)] (http://onlinesdk.webege.com/recursos/SteamCMD%20GUI.zip)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
 
 Tutorials

@@ -180,7 +180,7 @@
     <value>5</value>
   </data>
   <data name="Close2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 115</value>
+    <value>245, 116</value>
   </data>
   <data name="Close2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -210,7 +210,7 @@
     <value>MS Reference Sans Serif, 12pt, style=Bold</value>
   </data>
   <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 9</value>
+    <value>153, 9</value>
   </data>
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 20</value>
@@ -294,7 +294,7 @@
     <value>2</value>
   </data>
   <data name="ChangelogButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 115</value>
+    <value>164, 116</value>
   </data>
   <data name="ChangelogButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -322,7 +322,7 @@
     <value>Stretch</value>
   </data>
   <data name="LicenseURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 78</value>
+    <value>188, 79</value>
   </data>
   <data name="LicenseURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 31</value>
@@ -373,13 +373,13 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>319, 151</value>
+    <value>332, 147</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>325, 175</value>
+    <value>338, 171</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>325, 175</value>
+    <value>338, 171</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SteamCMD GUI</value>

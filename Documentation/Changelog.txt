@@ -1,4 +1,11 @@
-﻿	Version 3.1.0.0
+﻿	Version 3.1.0.1
+- Added a texbox on the bottom right corner with the public IP
+- Removed useless variables
+- Removed Mani Admin Plugin button from the Addons list
+	(Still available at the Internet Machine: Wayback Machine)
+- Added a PayPal donate button
+
+	Version 3.1.0.0
 - Added maintainable custom Game ID List via an XML file ~ By Captnwalker1 @ GitHub
 	(Keep using Half-Life Dedicated Server for GoldSrc games)
 - Moved all XML files to the Settings folder	

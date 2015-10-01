@@ -10,19 +10,27 @@ Module Module1
     ' Run Server
     Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
     ' Strings
-    Public DownloadingString, DownloadDoneString, DownloadDone2String, PathSteamCMDString, CantFindSteamCMDString, PathEmptyString, PathForInstallString, GameInstallString, ValidateString, SteamAppIDEmptyString, SteamNameString, SteamPasswdString As String
-    Public ServerPathInstallString, HLmodErrorString, InstallingString As String
+    Public CantFindSteamCMDString As String
     Public GameDictionary As Dictionary(Of String, String) = New Dictionary(Of String, String)
-
 End Module
 
 
 Public Class MainMenu
     Dim WithEvents WC As New WebClient
 
+    Dim LocalHost As String = Dns.GetHostName
+    Dim IPs As IPHostEntry = Dns.GetHostEntry(LocalHost)
+    Dim PublicIP As String
+
     Private Declare Function GetInputState Lib "user32" () As Int32
 
     Private Sub Form1_Load() Handles MyBase.Load
+        If My.Computer.Network.IsAvailable Then
+            PublicIP = WC.DownloadString("http://ipv4.icanhazip.com/")
+        Else
+            PublicIP = "Network down"
+        End If
+
         Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
         ThrSteamCMD = New Thread(AddressOf ThreadTaskSteamCMD)
@@ -31,6 +39,7 @@ Public Class MainMenu
         ConsoleCommandList.SelectedIndex = 0
         Status.Text = ""
         Tips()
+        IPPrint()
         If Not Directory.Exists("Settings") Then
             Directory.CreateDirectory("Settings")
         End If
@@ -75,21 +84,15 @@ Public Class MainMenu
         ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
         ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
         ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
-        DownloadingString = "Downloading..."
-        DownloadDoneString = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
-        DownloadDone2String = "The file has already been downloaded!"
-        PathSteamCMDString = "Current path of 'steamcmd.exe' is "
+        ToolTip1.SetToolTip(DonateButton, "Donate via PayPal")
         CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
-        PathEmptyString = "Please, select a folder for install/update the server."
-        PathForInstallString = "The server will be installed/updated in '"
-        GameInstallString = "Game to install: "
-        ValidateString = "The files will be checked and validated."
-        SteamAppIDEmptyString = "Steam App ID not defined"
-        SteamNameString = "Please, type your Steam name."
-        SteamPasswdString = "Please, type your Steam password. You can install many games as 'anonymous'."
-        ServerPathInstallString = "Please, select the path where you want to install the server."
-        HLmodErrorString = "Half-Life mod not defined. Installing a default one."
-        InstallingString = "Installing/Updating..."
+    End Sub
+
+    Private Sub IPPrint() Handles ConsoleIPPrint.Click
+        For Each LocalIP As System.Net.IPAddress In IPs.AddressList
+            ConsoleOutput.Text = "Local IP address:" & vbCr & vbTab & LocalIP.ToString & vbCr & vbCr & "Public IP address:" & vbCr & vbTab & PublicIP
+        Next
+        IPTextbox.Text = PublicIP
     End Sub
 
     ' Autosave log
@@ -107,6 +110,7 @@ Public Class MainMenu
             GroupBox3.Show()
             AboutButton.Show()
             ExitButton.Show()
+            DonateButton.Show()
             DonwloadBar.Show()
             TabMenu.Size = New Size(417, 303)
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
@@ -119,6 +123,7 @@ Public Class MainMenu
         GroupBox3.Hide()
         AboutButton.Hide()
         ExitButton.Hide()
+        DonateButton.Hide()
         DonwloadBar.Hide()
         TabMenu.Size = New Size(588, 303)
         ConsoleTab.Size = New Size(580, 277)
@@ -131,14 +136,14 @@ Public Class MainMenu
     Private Sub SteamCMDDownload_Click() Handles SteamCMDDownloadButton.Click
         SteamCMDDownloadButton.Enabled = False
         If My.Computer.FileSystem.FileExists("steamcmd.zip") Then
-            Status.Text = DownloadDone2String
+            Status.Text = "The file has already been downloaded!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
             SteamCMDDownloadButton.Enabled = True
         Else
             WC.DownloadFileAsync(New Uri("http://media.steampowered.com/installer/steamcmd.zip"), "steamcmd.zip")
-            Status.Text = DownloadingString
+            Status.Text = "Downloading..."
             Status.BackColor = Color.FromArgb(240, 240, 240)
         End If
     End Sub
@@ -150,7 +155,7 @@ Public Class MainMenu
     Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
         DonwloadBar.Value = e.ProgressPercentage
         If DonwloadBar.Value = 100 Then
-            Status.Text = DownloadDoneString
+            Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
             Status.BackColor = Color.FromArgb(240, 240, 240)
             DonwloadBar.Value = 0
             My.Computer.Audio.PlaySystemSound( _
@@ -185,7 +190,7 @@ Public Class MainMenu
                 XmlWrt.Close()
 
                 LogMenu.Enabled = True
-                Status.Text = PathSteamCMDString & FolderBrowserDialog1.SelectedPath
+                Status.Text = "Current path of 'steamcmd.exe' is " & FolderBrowserDialog1.SelectedPath
                 Status.BackColor = Color.FromArgb(240, 240, 240)
             Else
                 LogMenu.Enabled = False
@@ -218,12 +223,12 @@ Public Class MainMenu
             ServerInstallPath = FolderBrowserDialog1.SelectedPath
         End If
         If ServerPath.Text = Nothing Then
-            Status.Text = PathEmptyString
+            Status.Text = "Please, select a folder for install/update the server."
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
         Else
-            Status.Text = PathForInstallString & ServerPath.Text & "'"
+            Status.Text = "The server will be installed/updated in '" & ServerPath.Text & "'"
             Status.BackColor = Color.FromArgb(240, 240, 240)
             UpdateServerButton.Enabled = True
         End If
@@ -248,14 +253,14 @@ Public Class MainMenu
             GoldSrcModLabel.Show()
             AddCustomGameButton.Hide()
         End If
-        Status.Text = GameInstallString & GamesList.Text & " - Steam App ID:" & SteamAppID
+        Status.Text = "Game to install: " & GamesList.Text & " - Steam App ID:" & SteamAppID
         Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
 
     Private Sub ValidateCheckBox_CheckedChanged() Handles ValidateCheckBox.CheckedChanged
         If ValidateCheckBox.Checked = True Then
             ValidateApp = " validate"
-            Status.Text = ValidateString
+            Status.Text = "The files will be checked and validated."
         Else
             ValidateApp = ""
         End If
@@ -265,7 +270,7 @@ Public Class MainMenu
         FolderBrowserDialog1.SelectedPath = SteamCMDExePath
         If My.Computer.FileSystem.FileExists(FolderBrowserDialog1.SelectedPath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
-                Status.Text = SteamAppIDEmptyString
+                Status.Text = "Steam App ID not defined"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
@@ -280,19 +285,19 @@ Public Class MainMenu
                     Login = UserName & " " & Passwd
                 End If
                 If UsernameTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
-                    Status.Text = SteamNameString
+                    Status.Text = "Please, type your Steam name."
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
                         Media.SystemSounds.Hand)
                 Else
                     If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
-                        Status.Text = SteamPasswdString
+                        Status.Text = "Please, type your Steam password. You can install many games as 'anonymous'."
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)
                     Else
                         If ServerPath.Text = Nothing Then
-                            Status.Text = ServerPathInstallString
+                            Status.Text = "Please, select the path where you want to install the server."
                             Status.BackColor = Color.FromArgb(240, 200, 200)
                             My.Computer.Audio.PlaySystemSound( _
                                 Media.SystemSounds.Hand)
@@ -301,13 +306,13 @@ Public Class MainMenu
                                 AndAlso Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
                                 GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text
                             Else
-                                Status.Text = HLmodErrorString
+                                Status.Text = "Half-Life mod not defined. Installing a default one."
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
                                 My.Computer.Audio.PlaySystemSound( _
                                     Media.SystemSounds.Hand)
                             End If
                             ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
-                            Status.Text = InstallingString
+                            Status.Text = "Installing/Updating..."
                             Status.BackColor = Color.FromArgb(240, 240, 240)
 
                             If CheckBoxConsole.Checked = False Then
@@ -644,7 +649,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub CheckUpdatesButton_Click() Handles CheckUpdatesButton.Click
-        Process.Start("https://github.com/DioJoestar/SteamCMD-GUI")
+        Process.Start("https://github.com/DioJoestar/SteamCMD-GUI#last-changes")
     End Sub
 
     Private Sub SMButton_Click() Handles SMButton.Click
@@ -659,9 +664,9 @@ Public Class MainMenu
         Process.Start("http://addons.eventscripts.com")
     End Sub
 
-    Private Sub MAPButton_Click() Handles MAPButton.Click
-        Process.Start("http://mani-admin-plugin.com")
-    End Sub
+    'Private Sub MAPButton_Click() Handles MAPButton.Click
+    '    Process.Start("http://mani-admin-plugin.com")
+    'End Sub
 
     Private Sub AboutButton_Click() Handles AboutButton.Click, AboutToolStripMenuItem.Click
         AboutWindow.Show()
@@ -669,6 +674,10 @@ Public Class MainMenu
 
     Private Sub ExitButton_Click() Handles ExitButton.Click, ExitMenu.Click
         Close()
+    End Sub
+
+    Private Sub DonateButton_Click() Handles DonateButton.Click
+        Process.Start("https://www.paypal.me/DioJoestar")
     End Sub
 
     'Menu buttons
@@ -972,7 +981,7 @@ Public Class MainMenu
         End If
     End Sub
 
-    Private Sub AddCustomGameButton_Click(sender As Object, e As EventArgs) Handles AddCustomGameButton.Click
+    Private Sub AddCustomGameButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AddCustomGameButton.Click
         Dim Name As String = ""
         Dim ID As String = ""
 
@@ -1047,7 +1056,7 @@ Public Class MainMenu
         WriteOutDictionaryAsXml(GameDictionary)
     End Sub
 
-    Private Sub WriteOutDictionaryAsXml(dict As Dictionary(Of String, String))
+    Private Sub WriteOutDictionaryAsXml(ByVal dict As Dictionary(Of String, String))
         Dim XmlSettings As XmlWriterSettings = New XmlWriterSettings()
         XmlSettings.Indent = True
         Dim XmlWrt As XmlWriter = XmlWriter.Create("Settings/SteamCMDGames.xml", XmlSettings)
@@ -1066,6 +1075,11 @@ Public Class MainMenu
         XmlWrt.WriteEndElement()
         XmlWrt.WriteEndDocument()
         XmlWrt.Close()
+    End Sub
 
+    Private Sub IPButton_Click() Handles IPButton.Click
+        Clipboard.SetText(PublicIP, TextDataFormat.UnicodeText)
+        Status.Text = "Public IP copied"
+        Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
 End Class

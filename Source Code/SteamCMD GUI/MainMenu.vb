@@ -711,8 +711,13 @@ Public Class MainMenu
 
                     .WriteStartElement("Server-Config")
 
-                    .WriteStartElement("Mod")
-                    .WriteString(ModList.Text)
+                    If ModList.Enabled = False Then
+                        .WriteStartElement("CustomMod")
+                        .WriteString(CustomModTextBox.Text)
+                    Else
+                        .WriteStartElement("Mod")
+                        .WriteString(ModList.Text)
+                    End If
                     .WriteEndElement()
 
                     .WriteStartElement("HostName")
@@ -785,6 +790,10 @@ Public Class MainMenu
                         ModList.Text = XmlConfig.ReadInnerXml.ToString()
                         'Define the game with ModList.Text
                         ModList_SelectedIndex()
+                    End If
+                    If (XmlConfig.Name = "CustomMod") Then
+                        CustomModTextBox.Text = XmlConfig.ReadInnerXml.ToString
+                        CustomModCheckBox.Checked = True
                     End If
                     If (XmlConfig.Name = "Map") Then
                         MapList.Enabled = True

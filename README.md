@@ -11,12 +11,8 @@ SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commo
 
 Last Changes
 ============
-######Version 3.1.0.1
-* Added a texbox on the bottom right corner with the public IP
-* Removed useless variables
-* Removed Mani Admin Plugin button from the Addons list
-  * (Still available at the Internet Machine: Wayback Machine)
-* Added a PayPal donate button
+######Version 3.1.0.2
+* Custom Mod now is saved by XML config ~ By Melo88 @ GitHub
 
 Screenshots
 ============

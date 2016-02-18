@@ -711,17 +711,19 @@ Public Class MainMenu
 
                     .WriteStartElement("Server-Config")
 
+                    .WriteStartElement("HostName")
+                    .WriteString(ServerName)
+                    .WriteEndElement()
+
                     If ModList.Enabled = False Then
                         .WriteStartElement("CustomMod")
                         .WriteString(CustomModTextBox.Text)
+
                     Else
                         .WriteStartElement("Mod")
                         .WriteString(ModList.Text)
-                    End If
-                    .WriteEndElement()
 
-                    .WriteStartElement("HostName")
-                    .WriteString(ServerName)
+                    End If
                     .WriteEndElement()
 
                     .WriteStartElement("Map")

@@ -4,6 +4,7 @@
 =================  Contributors   =====================================
 |	Christoph 'Giswald'
 |	Chris Walker 'Captnwalker1'
+|	'Melo88'
 |
 ================= Special Thanks  =====================================
 |	Hans Passant    	~ Help with the code at Stack Overflow    	(http://stackoverflow.com/questions/20874108/creating-a-handles-for-each-new-item-in-a-dropdownitems)

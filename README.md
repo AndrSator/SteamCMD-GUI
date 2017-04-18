@@ -11,7 +11,7 @@ SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commo
 
 Last Changes
 ============
-######Version 3.1.0.2
+###### Version 3.1.0.2
 * Custom Mod now is saved by XML config ~ By Melo88 @ GitHub
 
 Screenshots
@@ -24,7 +24,7 @@ Download
 ============
 Get the last version from GitHub right [here] (https://github.com/DioJoestar/SteamCMD-GUI/releases/latest) or use one of the mirrors from below.
 
-######Mirrors
+###### Mirrors
 * [Gamebanana] (http://steam.gamebanana.com/tools/5560)
 * [Spanish Development Kit (OnlineSDK)] (http://onlinesdk.webege.com/recursos/SteamCMD%20GUI.zip)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)

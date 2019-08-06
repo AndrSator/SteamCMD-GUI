@@ -26,7 +26,6 @@ Get the last version from GitHub right [here] (https://github.com/DioJoestar/Ste
 
 ###### Mirrors
 * [Gamebanana] (http://steam.gamebanana.com/tools/5560)
-* [Spanish Development Kit (OnlineSDK)] (http://onlinesdk.webege.com/recursos/SteamCMD%20GUI.zip)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
 
 Tutorials

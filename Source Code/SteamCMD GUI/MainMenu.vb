@@ -746,6 +746,30 @@ Public Class MainMenu
                     .WriteString(UDPPort)
                     .WriteEndElement()
 
+                    .WriteStartElement("Debug")
+                    .WriteValue(DebugModeCheckBox.CheckState)
+                    .WriteEndElement()
+
+                    .WriteStartElement("SourceTV")
+                    .WriteValue(SourceTVCheckBox.CheckState)
+                    .WriteEndElement()
+
+                    .WriteStartElement("ConsoleMode")
+                    .WriteValue(ConsoleCheckBox.CheckState)
+                    .WriteEndElement()
+
+                    .WriteStartElement("Insecure")
+                    .WriteValue(InsecureCheckBox.CheckState)
+                    .WriteEndElement()
+
+                    .WriteStartElement("NoBots")
+                    .WriteValue(BotsCheckBox.CheckState)
+                    .WriteEndElement()
+
+                    .WriteStartElement("DevMode")
+                    .WriteValue(DevModeCheckBox.CheckState)
+                    .WriteEndElement()
+
                     If Not AdditionalCommands = Nothing Then
                         .WriteStartElement("AdditionalCommands")
                         .WriteString(AdditionalCommands)
@@ -817,6 +841,48 @@ Public Class MainMenu
                     If (XmlConfig.Name = "Port") Then
                         UDPPort = XmlConfig.ReadInnerXml.ToString
                         UDPPortTexBox.Value = UDPPort
+                    End If
+                    If (XmlConfig.Name = "Debug") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            DebugModeCheckBox.Checked = False
+                        Else
+                            DebugModeCheckBox.Checked = True
+                        End If
+                    End If
+                    If (XmlConfig.Name = "SourceTV") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            SourceTVCheckBox.Checked = False
+                        Else
+                            SourceTVCheckBox.Checked = True
+                        End If
+                    End If
+                    If (XmlConfig.Name = "ConsoleMode") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            ConsoleCheckBox.Checked = False
+                        Else
+                            ConsoleCheckBox.Checked = True
+                        End If
+                    End If
+                    If (XmlConfig.Name = "Insecure") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            InsecureCheckBox.Checked = False
+                        Else
+                            InsecureCheckBox.Checked = True
+                        End If
+                    End If
+                    If (XmlConfig.Name = "NoBots") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            BotsCheckBox.Checked = False
+                        Else
+                            BotsCheckBox.Checked = True
+                        End If
+                    End If
+                    If (XmlConfig.Name = "DevMode") Then
+                        If (XmlConfig.ReadInnerXml.Chars(0) = "0") Then
+                            DevModeCheckBox.Checked = False
+                        Else
+                            DevModeCheckBox.Checked = True
+                        End If
                     End If
                     If (XmlConfig.Name = "AdditionalCommands") Then
                         AdditionalCommands = XmlConfig.ReadInnerXml.ToString

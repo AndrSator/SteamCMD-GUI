@@ -25,7 +25,7 @@ Download
 Get the last version from GitHub right [here] (https://github.com/DioJoestar/SteamCMD-GUI/releases/latest) or use one of the mirrors from below.
 
 ###### Mirrors
-* [Gamebanana] (http://steam.gamebanana.com/tools/5560)
+* [Gamebanana] (http://gamebanana.com/tools/5560)
 * [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
 
 Tutorials

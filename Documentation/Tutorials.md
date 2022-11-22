@@ -44,12 +44,10 @@
 
 [Written Mandarin A]: http://forum.gamer.com.tw/C.php?bsn=19869&snA=678
 [Written Mandarin B]: http://bbs-mychat.com/reads.php?tid=1015330
-[Written Mandarin C]: http://tieba.baidu.com/p/3141984256
 [Written French]: http://steamcommunity.com/sharedfiles/filedetails/?id=230908126
 
 
 <!---------------------------------[ Videos ]---------------------------------->
 
 [Video Hungarian]: https://www.youtube.com/watch?v=Agkddo3kq54
-[Video English]: https://www.youtube.com/watch?v=ZLY76YVFKqk
 [Video German]: https://www.youtube.com/watch?v=2xCB5pAgcao

@@ -1,15 +1,16 @@
 
+<img align = right height = 120 src = 'Media/Logo.png'>
+
 <br>
 
-<div align = center>
+<div align = left>
 
 [![Badge License]][License]   
 [![Badge Authors]][Authors]
 
-<br>
-<br>
+</div>
 
-<img height = 120 src = 'Media/Logo.png'>
+<div align = center>
 
 <br>
 <br>
@@ -21,9 +22,7 @@
 <br>
 <br>
 
-[![Button Download]][Download]   
-[![Button Tutorials]][Tutorials]
-
+[![Button Tutorials]][Tutorials]   
 [![Button Authors]][Authors]   
 [![Button Changelog]][Changelog]
 
@@ -57,6 +56,20 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
     src = Media/Screenshots/Server.png
 />
 
+<br>
+<br>
+
+## Downloads
+
+*The following downloads are **Windows** only.*
+
+<br>
+<br>
+
+[![Button GitHub]][GitHub]   
+[![Button GameBanana]][GameBanana]   
+[![Button DropBox]][DropBox]
+
 </div>
 
 <br>
@@ -66,7 +79,6 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 [Changelog]: Documentation/Changelog.md
 [Tutorials]: Documentation/Tutorials.md
-[Download]: Documentation/Download.md
 [Authors]: Documentation/Authors.md
 [License]: LICENSE
 [Logo]: Media/Logo.png
@@ -74,9 +86,9 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 [#]: #
 
 [GameBanana]: http://gamebanana.com/tools/5560
-[Download]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
 [SteamCMD]: https://developer.valvesoftware.com/wiki/SteamCMD
 [DropBox]: https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip
+[GitHub]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
 
 
 <!---------------------------------[ Badges ]---------------------------------->
@@ -87,7 +99,9 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 <!---------------------------------[ Buttons ]--------------------------------->
 
-[Button Changelog]: https://img.shields.io/badge/Changelog-A5915F?style=for-the-badge&logoColor=white&logo=Git
+[Button GameBanana]: https://img.shields.io/badge/GameBanana-f6e664?style=for-the-badge&logoColor=black&logo=GitLFS
+[Button Changelog]: https://img.shields.io/badge/Changelog-4285F4?style=for-the-badge&logoColor=white&logo=Git
 [Button Tutorials]: https://img.shields.io/badge/Tutorials-E23237?style=for-the-badge&logoColor=white&logo=YouTube
-[Button Download]: https://img.shields.io/badge/Download-4285F4?style=for-the-badge&logoColor=white&logo=DocuSign
 [Button Authors]: https://img.shields.io/badge/Authors-00968F?style=for-the-badge&logoColor=white&logo=BookStack
+[Button DropBox]: https://img.shields.io/badge/DropBox-0061FF?style=for-the-badge&logoColor=white&logo=DropBox
+[Button GitHub]: https://img.shields.io/badge/GitHub-222222?style=for-the-badge&logoColor=white&logo=GitHub

@@ -1,33 +1,87 @@
-SteamCMD GUI
-============
-<img align="left" src="/Media/Logo_SteamCMDGUI.png" />
-SteamCMD GUI allows the user to use [SteamCMD] (https://developer.valvesoftware.com/wiki/SteamCMD) on Windows without command lines and/or batch files using a very simple and intuitive graphical interface.
 
-Also, can be used to run servers with parameters (srcds.exe), open and edit files like MOTD and maplist with a few clicks without browser on all the directories.
+<div align = center>
 
-License
-============
-SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+[![Badge License]][License]   
+[![Badge Authors]][Authors]
 
-Last Changes
-============
-###### Version 3.1.0.2
-* Custom Mod now is saved by XML config ~ By Melo88 @ GitHub
+<br>
 
-Screenshots
-============
-<img width="160" src="/Media/Screenshots/install_tab.png" />
-<img width="160" src="/Media/Screenshots/run_tab.png" />
-<img width="160" src="/Media/Screenshots/console_tab.png" />
+# SteamCMD GUI
 
-Download
-============
-Get the last version from GitHub right [here] (https://github.com/DioJoestar/SteamCMD-GUI/releases/latest) or use one of the mirrors from below.
+*Graphical interface for **[SteamCMD]**.*
 
-###### Mirrors
-* [Gamebanana] (http://gamebanana.com/tools/5560)
-* [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
+<br>
+<br>
 
-Tutorials
-============
-* [Here] (/Documentation/Authors.txt) you can find a few tutorials, in different languages, made by the community. Personally, I recommend this [video guide by iLuZiioNz] (https://www.youtube.com/watch?v=ZLY76YVFKqk)
+[![Button Download]][Download]   
+[![Button Tutorials]][Tutorials]   
+[![Button Authors]][Authors]
+
+</div>
+
+<br>
+<br>
+
+<img align = left src = 'Media/Logo.png'>
+
+SteamCMD GUI offers a simple & intuitive graphical  
+interface for **[SteamCMD]** as an alternative to batch  
+files and using the command-line.
+
+It can also be used to run servers as well as open and  
+edit files such as `MOTD` or `maplist` in only a few clicks.
+
+<br>
+<br>
+
+<div align = center>
+
+## Preview
+
+<br>
+
+<img 
+    width = 240 
+    src = Media/Screenshots/Installation.png
+/>   
+<img 
+    width = 240 
+    src = Media/Screenshots/Console.png
+/>   
+<img 
+    width = 240 
+    src = Media/Screenshots/Server.png
+/>
+
+</div>
+
+<br>
+
+
+<!----------------------------------------------------------------------------->
+
+[Tutorials]: Documentation/Tutorials.md
+[Download]: Documentation/Download.md
+[Authors]: Documentation/Authors.md
+[License]: LICENSE
+[Logo]: Media/Logo.png
+
+[#]: #
+
+[GameBanana]: http://gamebanana.com/tools/5560
+[Download]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
+[SteamCMD]: https://developer.valvesoftware.com/wiki/SteamCMD
+[DropBox]: https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip
+
+
+<!---------------------------------[ Badges ]---------------------------------->
+
+[Badge Authors]: https://img.shields.io/badge/Creator-Raúl_Jiménez-008a99.svg?style=for-the-badge&labelColor=00ACC1&logoColor=white
+[Badge License]: https://img.shields.io/badge/-BY_SA-ae6c18.svg?style=for-the-badge&labelColor=EF9421&logoColor=white&logo=CreativeCommons
+
+
+<!---------------------------------[ Buttons ]--------------------------------->
+
+[Button Tutorials]: https://img.shields.io/badge/Tutorials-E23237?style=for-the-badge&logoColor=white&logo=YouTube
+[Button Download]: https://img.shields.io/badge/Download-4285F4?style=for-the-badge&logoColor=white&logo=DocuSign
+[Button Authors]: https://img.shields.io/badge/Authors-00968F?style=for-the-badge&logoColor=white&logo=BookStack

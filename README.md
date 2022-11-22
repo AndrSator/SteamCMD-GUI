@@ -22,8 +22,10 @@
 <br>
 
 [![Button Download]][Download]   
-[![Button Tutorials]][Tutorials]   
-[![Button Authors]][Authors]
+[![Button Tutorials]][Tutorials]
+
+[![Button Authors]][Authors]   
+[![Button Changelog]][Changelog]
 
 <br>
 <br>
@@ -62,6 +64,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 <!----------------------------------------------------------------------------->
 
+[Changelog]: Documentation/Changelog.md
 [Tutorials]: Documentation/Tutorials.md
 [Download]: Documentation/Download.md
 [Authors]: Documentation/Authors.md
@@ -84,6 +87,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 <!---------------------------------[ Buttons ]--------------------------------->
 
+[Button Changelog]: https://img.shields.io/badge/Changelog-A5915F?style=for-the-badge&logoColor=white&logo=Git
 [Button Tutorials]: https://img.shields.io/badge/Tutorials-E23237?style=for-the-badge&logoColor=white&logo=YouTube
 [Button Download]: https://img.shields.io/badge/Download-4285F4?style=for-the-badge&logoColor=white&logo=DocuSign
 [Button Authors]: https://img.shields.io/badge/Authors-00968F?style=for-the-badge&logoColor=white&logo=BookStack

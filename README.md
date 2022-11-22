@@ -6,7 +6,7 @@
 <div align = right>
 
 [![Badge License]][License]   
-[![Badge Authors]][Authors]           
+[![Badge Authors]][Authors]         
 
 </div>
 

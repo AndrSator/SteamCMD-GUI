@@ -1,9 +1,17 @@
 
+<br>
+
 <div align = center>
 
 [![Badge License]][License]   
 [![Badge Authors]][Authors]
 
+<br>
+<br>
+
+<img height = 120 src = 'Media/Logo.png'>
+
+<br>
 <br>
 
 # SteamCMD GUI
@@ -17,12 +25,8 @@
 [![Button Tutorials]][Tutorials]   
 [![Button Authors]][Authors]
 
-</div>
-
 <br>
 <br>
-
-<img align = left src = 'Media/Logo.png'>
 
 SteamCMD GUI offers a simple & intuitive graphical  
 interface for **[SteamCMD]** as an alternative to batch  
@@ -33,8 +37,6 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 <br>
 <br>
-
-<div align = center>
 
 ## Preview
 

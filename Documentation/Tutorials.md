@@ -14,10 +14,6 @@
 
 <br>
 
--   [🇺🇸 **iLuZiioNz** <br> *How to Create a Garry's Mod Server*][Video English]
-
-    <br>
-
 -   [🇭🇺  **SMCast** <br> *Windows Tutorial: CSGO Szerver készítés*][Video Hungarian]
 
     <br>
@@ -40,10 +36,6 @@
     <br>
 
 -   [🇨🇳  **po890805** <br> *SteamCMDGUI - 簡化SteamCMD使用*][Written Mandarin B]
-
-    <br>
-
--   [🇨🇳  **木头的木偶**][Written Mandarin C]
 
 <br>
 

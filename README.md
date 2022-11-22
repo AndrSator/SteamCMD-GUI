@@ -3,17 +3,18 @@
 
 <img align = right height = 120 src = 'Media/Logo.png'>
 
-<div align = left>
+<div align = right>
 
 [![Badge License]][License]   
-[![Badge Authors]][Authors]
+[![Badge Authors]][Authors]              
 
 </div>
 
-<div align = center>
+<br>
+<br>
+<br>
 
-<br>
-<br>
+<div align = center>
 
 # SteamCMD GUI
 

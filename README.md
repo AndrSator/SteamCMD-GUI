@@ -1,33 +1,108 @@
-SteamCMD GUI
-============
-<img align="left" src="/Media/Logo_SteamCMDGUI.png" />
-SteamCMD GUI allows the user to use [SteamCMD] (https://developer.valvesoftware.com/wiki/SteamCMD) on Windows without command lines and/or batch files using a very simple and intuitive graphical interface.
 
-Also, can be used to run servers with parameters (srcds.exe), open and edit files like MOTD and maplist with a few clicks without browser on all the directories.
+<br>
 
-License
-============
-SteamCMD GUI by Raúl 'Dio Joestar' Jiménez is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License] (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en).
+<img align = right height = 120 src = 'Media/Logo.png'>
 
-Last Changes
-============
-###### Version 3.1.0.2
-* Custom Mod now is saved by XML config ~ By Melo88 @ GitHub
+<div align = right>
 
-Screenshots
-============
-<img width="160" src="/Media/Screenshots/install_tab.png" />
-<img width="160" src="/Media/Screenshots/run_tab.png" />
-<img width="160" src="/Media/Screenshots/console_tab.png" />
+[![Badge License]][License]   
+[![Badge Authors]][Authors]          
 
-Download
-============
-Get the last version from GitHub right [here] (https://github.com/DioJoestar/SteamCMD-GUI/releases/latest) or use one of the mirrors from below.
+</div>
 
-###### Mirrors
-* [Gamebanana] (http://gamebanana.com/tools/5560)
-* [Dropbox] (https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip)
+<br>
+<br>
+<br>
 
-Tutorials
-============
-* [Here] (/Documentation/Authors.txt) you can find a few tutorials, in different languages, made by the community. Personally, I recommend this [video guide by iLuZiioNz] (https://www.youtube.com/watch?v=ZLY76YVFKqk)
+<div align = center>
+
+# SteamCMD GUI
+
+*Graphical interface for **[SteamCMD]**.*
+
+<br>
+<br>
+
+[![Button Tutorials]][Tutorials]   
+[![Button Authors]][Authors]   
+[![Button Changelog]][Changelog]
+
+<br>
+<br>
+
+SteamCMD GUI offers a simple & intuitive graphical  
+interface for **[SteamCMD]** as an alternative to batch  
+files and using the command-line.
+
+It can also be used to run servers as well as open and  
+edit files such as `MOTD` or `maplist` in only a few clicks.
+
+<br>
+<br>
+
+## Preview
+
+<br>
+
+<img 
+    width = 240 
+    src = Media/Screenshots/Installation.png
+/>   
+<img 
+    width = 240 
+    src = Media/Screenshots/Console.png
+/>   
+<img 
+    width = 240 
+    src = Media/Screenshots/Server.png
+/>
+
+<br>
+<br>
+
+## Downloads
+
+*The following downloads are **Windows** only.*
+
+<br>
+<br>
+
+[![Button GitHub]][GitHub]   
+[![Button GameBanana]][GameBanana]   
+[![Button DropBox]][DropBox]
+
+</div>
+
+<br>
+
+
+<!----------------------------------------------------------------------------->
+
+[Changelog]: Documentation/Changelog.md
+[Tutorials]: Documentation/Tutorials.md
+[Authors]: Documentation/Authors.md
+[License]: LICENSE 'This project is licensed under CreativeCommons BY SA 4.0'
+[Logo]: Media/Logo.png
+
+[#]: #
+
+[GameBanana]: http://gamebanana.com/tools/5560
+[SteamCMD]: https://developer.valvesoftware.com/wiki/SteamCMD
+[DropBox]: https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip
+[GitHub]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
+
+
+<!---------------------------------[ Badges ]---------------------------------->
+
+[Badge Authors]: https://img.shields.io/badge/Creator-Raúl_Jiménez-008a99.svg?style=for-the-badge&labelColor=00ACC1&logoColor=white
+[Badge License]: https://img.shields.io/badge/-BY--SA--4.0-ae6c18.svg?style=for-the-badge&labelColor=EF9421&logoColor=white&logo=CreativeCommons
+
+
+<!---------------------------------[ Buttons ]--------------------------------->
+
+[Button GameBanana]: https://img.shields.io/badge/GameBanana-f6e664?style=for-the-badge&logoColor=black&logo=GitLFS
+[Button Changelog]: https://img.shields.io/badge/Changelog-4285F4?style=for-the-badge&logoColor=white&logo=Git
+[Button Tutorials]: https://img.shields.io/badge/Tutorials-E23237?style=for-the-badge&logoColor=white&logo=YouTube
+[Button Authors]: https://img.shields.io/badge/Authors-00968F?style=for-the-badge&logoColor=white&logo=BookStack
+[Button DropBox]: https://img.shields.io/badge/DropBox-0061FF?style=for-the-badge&logoColor=white&logo=DropBox
+[Button GitHub]: https://img.shields.io/badge/GitHub-222222?style=for-the-badge&logoColor=white&logo=GitHub

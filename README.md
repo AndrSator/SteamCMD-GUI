@@ -88,7 +88,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 [GameBanana]: http://gamebanana.com/tools/5560
 [SteamCMD]: https://developer.valvesoftware.com/wiki/SteamCMD
-[DropBox]: https://dl.dropboxusercontent.com/u/12664902/SteamCMD%20GUI.zip
+[DropBox]: https://www.dropbox.com/s/ie9iv5d0mvp2x22/SteamCMD%20GUI.zip?dl=0
 [GitHub]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
 
 

@@ -1,7 +1,7 @@
 
-<img align = right height = 120 src = 'Media/Logo.png'>
-
 <br>
+
+<img align = right height = 120 src = 'Media/Logo.png'>
 
 <div align = left>
 

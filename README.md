@@ -6,7 +6,7 @@
 <div align = right>
 
 [![Badge License]][License]   
-[![Badge Authors]][Authors]              
+[![Badge Authors]][Authors]           
 
 </div>
 
@@ -81,7 +81,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 [Changelog]: Documentation/Changelog.md
 [Tutorials]: Documentation/Tutorials.md
 [Authors]: Documentation/Authors.md
-[License]: LICENSE
+[License]: LICENSE 'This project is licensed under CreativeCommons BY SA 4.0'
 [Logo]: Media/Logo.png
 
 [#]: #
@@ -95,7 +95,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 <!---------------------------------[ Badges ]---------------------------------->
 
 [Badge Authors]: https://img.shields.io/badge/Creator-Raúl_Jiménez-008a99.svg?style=for-the-badge&labelColor=00ACC1&logoColor=white
-[Badge License]: https://img.shields.io/badge/-BY_SA-ae6c18.svg?style=for-the-badge&labelColor=EF9421&logoColor=white&logo=CreativeCommons
+[Badge License]: https://img.shields.io/badge/-BY--SA--4.0-ae6c18.svg?style=for-the-badge&labelColor=EF9421&logoColor=white&logo=CreativeCommons
 
 
 <!---------------------------------[ Buttons ]--------------------------------->

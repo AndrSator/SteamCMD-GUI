@@ -28,6 +28,10 @@
 
 ## Special Thanks
 
+*❌ indicates broken / unavailable links.*
+
+<br>
+
 -   **Hans Passant**
 
     [*Help with the code at Stack Overflow*][1]
@@ -48,11 +52,11 @@
 
     [*Chinese guide at MyChat 數位男女*][5]
     
--   **木头的木偶**
+-   **木头的木偶**   ❌
 
     [*Chinese guide at 百度贴吧*][6]
     
--   **iLuZiioNz**
+-   **iLuZiioNz**   ❌
 
     [*English video guide at YouTube*][7]
 

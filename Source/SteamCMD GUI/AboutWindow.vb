@@ -14,7 +14,7 @@ Public Class AboutWindow
         If File.Exists("License.txt") Then
             Process.Start("License.txt")
         Else
-            Process.Start("https://raw.githubusercontent.com/DioJoestar/SteamCMD-GUI/master/Documentation/License.txt")
+            Process.Start("https://raw.githubusercontent.com/DioJoestar/SteamCMD-GUI/master/LICENSE")
         End If
     End Sub
 
@@ -22,7 +22,7 @@ Public Class AboutWindow
         If File.Exists("Changelog.txt") Then
             Process.Start("Changelog.txt")
         Else
-            Process.Start("https://raw.githubusercontent.com/DioJoestar/SteamCMD-GUI/master/Documentation/Changelog.txt")
+            Process.Start("https://raw.githubusercontent.com/DioJoestar/SteamCMD-GUI/master/Documentation/Changelog.md")
         End If
     End Sub
 

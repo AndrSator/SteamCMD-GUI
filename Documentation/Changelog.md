@@ -23,6 +23,8 @@
 
 -	Added Insurgency to the game lists
 
+-	Added Icarus to the list of games to install ~ By jnorgan @ GitHub
+
 <br>
 
 ## 3.1.0.2

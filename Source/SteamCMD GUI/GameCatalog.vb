@@ -56,6 +56,7 @@ Friend Module GameCatalog
         add(1, "4020", "Garry's Mod")
         add(1, "90", "Half-Life Dedicated Server")
         add(1, "232370", "Half-Life 2: Deathmatch")
+        add(2, "2089300", "Icarus Dedicated Server")
         add(2, "237410", "Insurgency")
         add(1, "510", "Left 4 Dead")
         add(1, "222860", "Left 4 Dead 2")

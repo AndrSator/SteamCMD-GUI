@@ -35,6 +35,7 @@ Partial Class MainMenu
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.AddCustomGameButton = New System.Windows.Forms.Button()
+        Me.RemoveGameButton = New System.Windows.Forms.Button()
         Me.CheckBoxConsole = New System.Windows.Forms.CheckBox()
         Me.ValidateCheckBox = New System.Windows.Forms.CheckBox()
         Me.IdHelpButton = New System.Windows.Forms.Button()
@@ -227,6 +228,7 @@ Partial Class MainMenu
         Me.GroupBox2.Controls.Add(Me.GamesList)
         Me.GroupBox2.Controls.Add(Me.GoldSrcModLabel)
         Me.GroupBox2.Controls.Add(Me.GoldSrcModInput)
+        Me.GroupBox2.Controls.Add(Me.RemoveGameButton)
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
@@ -236,6 +238,12 @@ Partial Class MainMenu
         resources.ApplyResources(Me.AddCustomGameButton, "AddCustomGameButton")
         Me.AddCustomGameButton.Name = "AddCustomGameButton"
         Me.AddCustomGameButton.UseVisualStyleBackColor = True
+        '
+        'RemoveGameButton
+        '
+        resources.ApplyResources(Me.RemoveGameButton, "RemoveGameButton")
+        Me.RemoveGameButton.Name = "RemoveGameButton"
+        Me.RemoveGameButton.UseVisualStyleBackColor = True
         '
         'CheckBoxConsole
         '
@@ -1009,6 +1017,7 @@ Partial Class MainMenu
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CheckBoxConsole As System.Windows.Forms.CheckBox
     Friend WithEvents AddCustomGameButton As System.Windows.Forms.Button
+    Friend WithEvents RemoveGameButton As System.Windows.Forms.Button
     Friend WithEvents ConsoleIPPrint As System.Windows.Forms.Button
     Friend WithEvents IPTextbox As System.Windows.Forms.TextBox
     Friend WithEvents IPButton As System.Windows.Forms.Button

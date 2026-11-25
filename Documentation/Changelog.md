@@ -31,6 +31,12 @@
 
 -	Fixed that a config with an unknown game was loaded with the game selected previously
 
+-	Added a button to remove games from the list
+
+-	Adding a custom game with a used ID replaces it, instead of crashing the program
+
+-	Fixed a crash at startup when the list of games had a repeated ID
+
 <br>
 
 ## 3.1.0.2

@@ -23,7 +23,7 @@ Friend Module GameCatalog
                         xml.MoveToAttribute("id")
                         Dim id As String = xml.Value
                         xml.Read()
-                        If xml.NodeType = XmlNodeType.Text Then games.Add(id, xml.Value)
+                        If xml.NodeType = XmlNodeType.Text Then games(id) = xml.Value
                     End If
                 End While
             End Using

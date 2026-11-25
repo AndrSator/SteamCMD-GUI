@@ -68,7 +68,7 @@ Public Class MainMenu
         GamesList.DisplayMember = "Value"
         GamesList.ValueMember = "Key"
         GamesList.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
-        GamesList.SelectedIndex = 1
+        If GamesList.Items.Count > 1 Then GamesList.SelectedIndex = 1
 
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -77,6 +77,7 @@ Public Class MainMenu
     Private Sub Tips()
         ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
         ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
+        ToolTip1.SetToolTip(RemoveGameButton, "Remove the selected game from the list")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
         ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
         ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
@@ -243,10 +244,12 @@ Public Class MainMenu
             GoldSrcModInput.Hide()
             GoldSrcModLabel.Hide()
             AddCustomGameButton.Show()
+            RemoveGameButton.Show()
         Else
             GoldSrcModInput.Show()
             GoldSrcModLabel.Show()
             AddCustomGameButton.Hide()
+            RemoveGameButton.Hide()
         End If
         Status.Text = "Game to install: " & GamesList.Text & " - Steam App ID:" & SteamAppID
         Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -984,13 +987,36 @@ Public Class MainMenu
             Return
         End If
 
-        GameDictionary.Add(ID, Name)
-        'GamesList.DataSource.ResetBindings(False)
-        GameCatalog.Save(GamesListFile, GameDictionary)
-        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
+        If GameDictionary.ContainsKey(ID) AndAlso MessageBox.Show("The ID " & ID & " is already used by '" & GameDictionary(ID) & "'. Do you want to replace it?", "Add Custom Game", MessageBoxButtons.YesNo) = DialogResult.No Then
+            Return
+        End If
 
+        GameDictionary(ID) = Name
+        SaveGamesList()
         GamesList.SelectedIndex = GamesList.FindStringExact(Name)
+    End Sub
 
+    Private Sub RemoveGameButton_Click() Handles RemoveGameButton.Click
+        If GameDictionary.Count = 1 Then
+            Status.Text = "The last game of the list can't be removed."
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+            My.Computer.Audio.PlaySystemSound( _
+                Media.SystemSounds.Hand)
+        ElseIf MessageBox.Show("Really want to remove '" & GamesList.Text & "' from the list?", "Remove Game", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            GameDictionary.Remove(SteamAppID)
+            SaveGamesList()
+        End If
+    End Sub
+
+    Private Sub SaveGamesList()
+        Try
+            GameCatalog.Save(GamesListFile, GameDictionary)
+        Catch ex As UnauthorizedAccessException
+            MessageBox.Show("The list of games can't be saved: " & ex.Message, "Games List Error")
+        Catch ex As IOException
+            MessageBox.Show("The list of games can't be saved: " & ex.Message, "Games List Error")
+        End Try
+        GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
     End Sub
 
     Private Sub IPButton_Click() Handles IPButton.Click

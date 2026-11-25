@@ -8,7 +8,8 @@ Imports System.Text
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
     ' Run Server
-    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
+    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters, TfPath As String
+    Public GameServer As ServerType
     ' Strings
     Public CantFindSteamCMDString As String
     Public GameDictionary As Dictionary(Of String, String) = New Dictionary(Of String, String)
@@ -386,13 +387,13 @@ Public Class MainMenu
 
     'Run server inputs
     Private Sub SrcdsExePath_Browser() Handles SrcdsExePathTextBox.Click, SrcdsExeBrowserButton.Click
-        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of 'srcds.exe'", FolderPicker.FirstExisting(SrcdsExePathTextBox.Text, ServerPath.Text, ExePath.Text))
+        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of the server", FolderPicker.FirstExisting(SrcdsExePathTextBox.Text, ServerPath.Text, ExePath.Text))
         If folder IsNot Nothing Then
-            If My.Computer.FileSystem.FileExists(folder & "\srcds.exe") Then
+            If SourceGames.HasServer(folder) Then
                 SrcdsExePathTextBox.Text = folder
                 SrcdsExePath = folder
                 MapList.Enabled = True
-                Status.Text = "Current path of 'srcds.exe' is " & folder
+                Status.Text = "Current path of the server is " & folder
                 Status.BackColor = Color.FromArgb(240, 240, 240)
                 SrcdsExePathOpen.Enabled = True
                 CFGMenu.Enabled = True
@@ -406,7 +407,7 @@ Public Class MainMenu
                 CommonFilesMenu.Enabled = False
                 SMMenu.Enabled = False
                 RunServerButton.Enabled = False
-                Status.Text = "Can't find the file 'srcds.exe'!"
+                Status.Text = "Can't find any server in that folder!"
                 Status.BackColor = Color.FromArgb(240, 200, 200)
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
@@ -420,6 +421,7 @@ Public Class MainMenu
 
     Private Sub ModList_SelectedIndex() Handles ModList.SelectedIndexChanged, ModList.EnabledChanged
         GameMod = SourceGames.FolderOf(ModList.Text)
+        GameServer = SourceGames.ServerOf(ModList.Text)
         Status.Text = "Game/Mod to run: " & ModList.Text & " - Game parameter: " & GameMod
         Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
@@ -433,6 +435,7 @@ Public Class MainMenu
             ModList.Enabled = False
             CustomModTextBox.Enabled = True
             GameMod = CustomModTextBox.Text
+            GameServer = ServerType.Srcds
             DebugModeCheckBox.Enabled = False
             SourceTVCheckBox.Enabled = False
             ConsoleCheckBox.Checked = False
@@ -465,10 +468,7 @@ Public Class MainMenu
         Dim mapfolderpath As String
         mapfolderpath = SrcdsExePathTextBox.Text & "\" & GameMod & "\maps"
         If Directory.Exists(mapfolderpath) Then
-            For Each MapFile As String In My.Computer.FileSystem.GetFiles _
-                (mapfolderpath, FileIO.SearchOption.SearchTopLevelOnly, "*.bsp")
-                MapList.Items.Add(Path.GetFileNameWithoutExtension(MapFile))
-            Next
+            MapList.Items.AddRange(SourceGames.Maps(mapfolderpath, GameServer).ToArray())
         Else
             Status.Text = "The 'map' folder is empty or doesn't exist!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -565,7 +565,8 @@ Public Class MainMenu
     End Sub
 
     Private Sub RunServerButton_Click() Handles RunServerButton.Click
-        If My.Computer.FileSystem.FileExists(SrcdsExePathTextBox.Text & "\srcds.exe") Then
+        Dim ServerExe As String = Path.Combine(SrcdsExePathTextBox.Text, SourceGames.Executable(GameServer))
+        If My.Computer.FileSystem.FileExists(ServerExe) Then
             If GameMod = Nothing Then
                 Status.Text = "Please, select a game."
                 Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -583,17 +584,18 @@ Public Class MainMenu
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)
-                    Else
+                    ElseIf GameServer <> ServerType.Classified OrElse SelectTfPath() Then
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
 
                         Dim p As New Process
                         With (p.StartInfo)
-                            .FileName = SrcdsExePath & "\srcds.exe"
+                            .FileName = ServerExe
+                            .WorkingDirectory = Path.GetDirectoryName(ServerExe)
                             .UseShellExecute = False
                             .CreateNoWindow = False
-                            .Arguments = Parameters & "-game " & GameMod & " -port " & UDPPort & " +hostname " & Chr(34) & ServerName & Chr(34) & " +map " & ServerMap & " +maxplayers " & MaxPlayers & " +sv_lan " & NetworkComboBox.SelectedIndex & " " & AdditionalCommands
+                            .Arguments = CommandLine.ForServer(GameServer, Parameters, GameMod, TfPath, UDPPort, ServerName, ServerMap, MaxPlayers, NetworkComboBox.SelectedIndex, AdditionalCommands)
                         End With
 
                         p.Start()
@@ -601,12 +603,28 @@ Public Class MainMenu
                 End If
             End If
         Else
-            Status.Text = "Can't find the file 'srcds.exe'!"
+            Status.Text = "Can't find the file '" & Path.GetFileName(ServerExe) & "'!"
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
                 Media.SystemSounds.Hand)
         End If
     End Sub
+
+    ' Team Fortress 2 Classified uses the files of Team Fortress 2 (the game or its server)
+    Private Function SelectTfPath() As Boolean
+        If TfPath IsNot Nothing AndAlso Directory.Exists(Path.Combine(TfPath, "tf")) Then Return True
+
+        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of Team Fortress 2", FolderPicker.FirstExisting(TfPath, SrcdsExePath))
+        If folder IsNot Nothing AndAlso Directory.Exists(Path.Combine(folder, "tf")) Then
+            TfPath = folder
+            Return True
+        End If
+        Status.Text = "Can't find Team Fortress 2, it's needed to run Team Fortress 2 Classified."
+        Status.BackColor = Color.FromArgb(240, 200, 200)
+        My.Computer.Audio.PlaySystemSound( _
+            Media.SystemSounds.Hand)
+        Return False
+    End Function
 
     ' Tools buttons
     Private Sub VDCButton_Click() Handles VDCButton.Click
@@ -667,6 +685,12 @@ Public Class MainMenu
                     .WriteStartElement("Path")
                     .WriteString(SrcdsExePath)
                     .WriteEndElement()
+
+                    If Not TfPath = Nothing Then
+                        .WriteStartElement("TF2Path")
+                        .WriteString(TfPath)
+                        .WriteEndElement()
+                    End If
 
                     .WriteEndElement()
 
@@ -744,6 +768,9 @@ Public Class MainMenu
                         SMMenu.Enabled = True
                         RunServerButton.Enabled = True
                         SrcdsExePathOpen.Enabled = True
+                    End If
+                    If (XmlConfig.Name = "TF2Path") Then
+                        TfPath = XmlConfig.ReadElementString()
                     End If
                     If (XmlConfig.Name = "HostName") Then
                         ServerNameTextBox.Text = XmlConfig.ReadInnerXml.ToString()

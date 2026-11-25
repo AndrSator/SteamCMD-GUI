@@ -16,4 +16,13 @@ Friend Module CommandLine
     Public Function ForSteamCmd(installPath As String, login As String, modConfig As String, appId As String, validate As String) As String
         Return "+force_install_dir " & installPath & " +login " & login & modConfig & " +app_update " & appId & validate
     End Function
+
+    Public Function ForServer(server As ServerType, options As String, folder As String, tfPath As String, port As String, hostName As String, map As String, maxPlayers As String, lan As Integer, additional As String) As String
+        Dim name As String = " +hostname " & Chr(34) & hostName & Chr(34)
+        If server = ServerType.Source2 Then
+            Return "-dedicated " & options & "-port " & port & " -maxplayers " & maxPlayers & name & " +map " & map & " +sv_lan " & lan & " " & additional
+        End If
+        Dim game As String = If(server = ServerType.Classified, "-tf_path " & QuotePath(tfPath), "-game " & folder)
+        Return options & game & " -port " & port & name & " +map " & map & " +maxplayers " & maxPlayers & " +sv_lan " & lan & " " & additional
+    End Function
 End Module

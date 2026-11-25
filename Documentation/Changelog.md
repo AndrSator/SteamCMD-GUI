@@ -41,6 +41,8 @@
 
 -	The folders are selected with the Windows Explorer dialog, with access to all the drives
 
+-	Added Counter-Strike 2 and Team Fortress 2 Classified, both to install and to run servers
+
 <br>
 
 ## 3.1.0.2

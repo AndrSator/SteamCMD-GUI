@@ -51,6 +51,7 @@ Friend Module GameCatalog
 
         add(1, "635", "Alien Swarm")
         add(1, "740", "Counter-Strike: Global Offensive")
+        add(2, "730", "Counter-Strike 2")
         add(1, "232330", "Counter-Strike: Source")
         add(1, "232290", "Day of Defeat: Source")
         add(1, "570", "Dota 2")
@@ -62,6 +63,7 @@ Friend Module GameCatalog
         add(1, "222840", "Left 4 Dead")
         add(1, "222860", "Left 4 Dead 2")
         add(1, "232250", "Team Fortress 2")
+        add(2, "3557020", "Team Fortress 2 Classified")
     End Sub
 
     ' Entries renamed by the user are left untouched

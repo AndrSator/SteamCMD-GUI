@@ -308,7 +308,7 @@ Public Class MainMenu
                                 My.Computer.Audio.PlaySystemSound( _
                                     Media.SystemSounds.Hand)
                             End If
-                            ServerPathInstallation = Chr(34) & ServerPath.Text & Chr(34)
+                            ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
                             Status.Text = "Installing/Updating..."
                             Status.BackColor = Color.FromArgb(240, 240, 240)
 
@@ -317,7 +317,7 @@ Public Class MainMenu
                                 With (p.StartInfo)
                                     .FileName = SteamCMDExePath & "\steamcmd.exe"
                                     .UseShellExecute = False
-                                    .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
+                                    .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp)
                                 End With
                                 p.Start()
                             Else
@@ -353,7 +353,7 @@ Public Class MainMenu
             .RedirectStandardOutput = True
             .RedirectStandardInput = True
             .RedirectStandardError = True
-            .Arguments = "SteamCmd +login " & Login & " +force_install_dir " & ServerPathInstallation & GoldSrcMod & " +app_update " & SteamAppID & ValidateApp
+            .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp)
         End With
 
         p.Start()

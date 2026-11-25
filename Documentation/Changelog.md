@@ -11,6 +11,10 @@
 
 -	Fixed URL of Check for Updates button
 
+-	Fixed the order of the SteamCMD parameters, now the server path is set before the login ~ By jnorgan @ GitHub
+
+-	Fixed that couldn't install a server in the root of a drive
+
 <br>
 
 ## 3.1.0.2

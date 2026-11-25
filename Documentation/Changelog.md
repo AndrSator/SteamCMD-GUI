@@ -25,6 +25,12 @@
 
 -	Added Icarus to the list of games to install ~ By jnorgan @ GitHub
 
+-	Removed Dota 2 and Half-Life Dedicated Server from the Run Server tab, they don't use SRCDS
+
+-	Fixed the game parameter of Alien Swarm and the Steam App ID of Left 4 Dead
+
+-	Fixed that a config with an unknown game was loaded with the game selected previously
+
 <br>
 
 ## 3.1.0.2

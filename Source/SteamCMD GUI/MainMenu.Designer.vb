@@ -566,7 +566,7 @@ Partial Class MainMenu
         '
         Me.ModList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ModList.FormattingEnabled = True
-        Me.ModList.Items.AddRange(New Object() {resources.GetString("ModList.Items"), resources.GetString("ModList.Items1"), resources.GetString("ModList.Items2"), resources.GetString("ModList.Items3"), resources.GetString("ModList.Items4"), resources.GetString("ModList.Items5"), resources.GetString("ModList.Items6"), resources.GetString("ModList.Items7"), resources.GetString("ModList.Items8"), resources.GetString("ModList.Items9"), resources.GetString("ModList.Items10"), resources.GetString("ModList.Items11")})
+        Me.ModList.Items.AddRange(New Object() {resources.GetString("ModList.Items"), resources.GetString("ModList.Items1"), resources.GetString("ModList.Items2"), resources.GetString("ModList.Items3"), resources.GetString("ModList.Items4"), resources.GetString("ModList.Items5"), resources.GetString("ModList.Items6"), resources.GetString("ModList.Items7"), resources.GetString("ModList.Items8"), resources.GetString("ModList.Items9")})
         resources.ApplyResources(Me.ModList, "ModList")
         Me.ModList.Name = "ModList"
         '

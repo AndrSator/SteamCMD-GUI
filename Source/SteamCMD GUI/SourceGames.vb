@@ -4,11 +4,10 @@
 Friend Module SourceGames
     Public Function FolderOf(gameName As String) As String
         Select Case gameName
-            Case "Alien Swarm" : Return "alienswarm"
+            Case "Alien Swarm" : Return "swarm"
             Case "Counter-Strike: Global Offensive" : Return "csgo"
             Case "Counter-Strike: Source" : Return "cstrike"
             Case "Day of Defeat: Source" : Return "dod"
-            Case "Dota 2" : Return "dota"
             Case "Garry's Mod" : Return "garrysmod"
             Case "Half-Life 2: Deathmatch" : Return "hl2mp"
             Case "Insurgency" : Return "insurgency"

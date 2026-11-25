@@ -750,7 +750,8 @@ Public Class MainMenu
                         ServerNameTextBox.Text = XmlConfig.ReadInnerXml.ToString()
                     End If
                     If (XmlConfig.Name = "Mod") Then
-                        ModList.Text = XmlConfig.ReadInnerXml.ToString()
+                        'A game that is not in the list is left unselected, instead of keeping the previous one
+                        ModList.SelectedIndex = ModList.FindStringExact(XmlConfig.ReadInnerXml.ToString())
                         'Define the game with ModList.Text
                         ModList_SelectedIndex()
                     End If

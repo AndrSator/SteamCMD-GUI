@@ -30,6 +30,7 @@ Friend Module GameCatalog
         End If
 
         If version < CurrentVersion Then
+            ReplaceId(games, "510", "222840", "Left 4 Dead")
             AddDefaults(games, version)
             Try
                 Save(path, games)
@@ -58,9 +59,17 @@ Friend Module GameCatalog
         add(1, "232370", "Half-Life 2: Deathmatch")
         add(2, "2089300", "Icarus Dedicated Server")
         add(2, "237410", "Insurgency")
-        add(1, "510", "Left 4 Dead")
+        add(1, "222840", "Left 4 Dead")
         add(1, "222860", "Left 4 Dead 2")
         add(1, "232250", "Team Fortress 2")
+    End Sub
+
+    ' Entries renamed by the user are left untouched
+    Private Sub ReplaceId(games As Dictionary(Of String, String), oldId As String, newId As String, name As String)
+        Dim current As String = Nothing
+        If Not games.TryGetValue(oldId, current) OrElse current <> name Then Return
+        games.Remove(oldId)
+        If Not games.ContainsKey(newId) Then games.Add(newId, name)
     End Sub
 
     Public Sub Save(path As String, games As Dictionary(Of String, String))

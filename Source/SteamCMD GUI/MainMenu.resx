@@ -1540,27 +1540,21 @@
     <value>Day of Defeat: Source</value>
   </data>
   <data name="ModList.Items4" xml:space="preserve">
-    <value>Dota 2</value>
-  </data>
-  <data name="ModList.Items5" xml:space="preserve">
     <value>Garry's Mod</value>
   </data>
-  <data name="ModList.Items6" xml:space="preserve">
-    <value>Half-Life Dedicated Server</value>
-  </data>
-  <data name="ModList.Items7" xml:space="preserve">
+  <data name="ModList.Items5" xml:space="preserve">
     <value>Half-Life 2: Deathmatch</value>
   </data>
-  <data name="ModList.Items8" xml:space="preserve">
+  <data name="ModList.Items6" xml:space="preserve">
     <value>Insurgency</value>
   </data>
-  <data name="ModList.Items9" xml:space="preserve">
+  <data name="ModList.Items7" xml:space="preserve">
     <value>Left 4 Dead</value>
   </data>
-  <data name="ModList.Items10" xml:space="preserve">
+  <data name="ModList.Items8" xml:space="preserve">
     <value>Left 4 Dead 2</value>
   </data>
-  <data name="ModList.Items11" xml:space="preserve">
+  <data name="ModList.Items9" xml:space="preserve">
     <value>Team Fortress 2</value>
   </data>
   <data name="ModList.Location" type="System.Drawing.Point, System.Drawing">

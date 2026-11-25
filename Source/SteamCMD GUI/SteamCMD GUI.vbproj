@@ -117,6 +117,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SourceGames.vb" />
+    <Compile Include="SteamCmdSettings.vb" />
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>

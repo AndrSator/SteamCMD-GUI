@@ -7,6 +7,7 @@ Imports System.Runtime.InteropServices
 Friend NotInheritable Class FolderPicker
     Private Const PickFolders As UInteger = &H20UI
     Private Const ForceFileSystem As UInteger = &H40UI
+    Private Const NoChangeDirectory As UInteger = &H8UI ' The Settings and Logs folders are relative
     Private Const FileSystemPath As UInteger = &H80058000UI
     Private Const Cancelled As Integer = &H800704C7
 
@@ -19,7 +20,7 @@ Friend NotInheritable Class FolderPicker
         Try
             Dim options As UInteger
             dialog.GetOptions(options)
-            dialog.SetOptions(options Or PickFolders Or ForceFileSystem)
+            dialog.SetOptions(options Or PickFolders Or ForceFileSystem Or NoChangeDirectory)
             dialog.SetTitle(title)
             Dim item As IShellItem = Nothing
             If startFolder IsNot Nothing AndAlso SHCreateItemFromParsingName(startFolder, IntPtr.Zero, GetType(IShellItem).GUID, item) = 0 Then

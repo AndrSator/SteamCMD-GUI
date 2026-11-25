@@ -43,6 +43,10 @@
 
 -	Added Counter-Strike 2 and Team Fortress 2 Classified, both to install and to run servers
 
+-	The server path of the Update/Install tab is saved
+
+-	Fixed that a path with the character & wasn't loaded correctly
+
 <br>
 
 ## 3.1.0.2

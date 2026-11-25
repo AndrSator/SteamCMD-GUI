@@ -24,6 +24,7 @@ Public Class MainMenu
     Dim PublicIP As String
 
     Private Const GamesListFile As String = "Settings/SteamCMDGames.xml"
+    Private Const SteamCmdSettingsFile As String = "Settings/SteamCMDPath.xml"
 
     Private Declare Function GetInputState Lib "user32" () As Int32
 
@@ -49,19 +50,15 @@ Public Class MainMenu
         If Not Directory.Exists("Logs") Then
             Directory.CreateDirectory("Logs")
         End If
-        If File.Exists("Settings/SteamCMDPath.xml") Then
-            Dim XmlConfig As XmlReader = New XmlTextReader("Settings/SteamCMDPath.xml")
-            While (XmlConfig.Read())
-                Dim type = XmlConfig.NodeType
-                If (type = XmlNodeType.Element) Then
-                    If (XmlConfig.Name = "CMDPath") Then
-                        ExePath.Text = XmlConfig.ReadInnerXml.ToString()
-                        SteamCMDExePath = ExePath.Text
-                        LogMenu.Enabled = True
-                    End If
-                End If
-            End While
-            XmlConfig.Close()
+        Dim Saved As SteamCmdSettings = SteamCmdSettings.Load(SteamCmdSettingsFile)
+        If Saved.CmdPath <> "" Then
+            ExePath.Text = Saved.CmdPath
+            SteamCMDExePath = Saved.CmdPath
+            LogMenu.Enabled = True
+        End If
+        If Saved.ServerPath <> "" Then
+            ServerPath.Text = Saved.ServerPath
+            UpdateServerButton.Enabled = True
         End If
         GameDictionary = GameCatalog.LoadOrCreate(GamesListFile)
         GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
@@ -165,29 +162,10 @@ Public Class MainMenu
             If My.Computer.FileSystem.FileExists(folder & "\steamcmd.exe") Then
                 ExePath.Text = folder
                 SteamCMDExePath = folder
-
-                Dim CMDConfig As New XmlWriterSettings()
-                CMDConfig.Indent = True
-
-                Dim XmlWrt As XmlWriter = XmlWriter.Create("Settings/SteamCMDPath.xml", CMDConfig)
-                With XmlWrt
-                    .WriteStartDocument()
-                    .WriteComment("Config used by SteamCMD GUI")
-                    .WriteComment("This config it's loaded automatically.")
-                    .WriteStartElement("SteamCMD-Config")
-
-                    .WriteStartElement("CMDPath")
-                    .WriteString(SteamCMDExePath)
-                    .WriteEndElement()
-
-                    .WriteEndElement()
-                    .WriteEndDocument()
-                End With
-                XmlWrt.Close()
-
                 LogMenu.Enabled = True
                 Status.Text = "Current path of 'steamcmd.exe' is " & folder
                 Status.BackColor = Color.FromArgb(240, 240, 240)
+                SaveSteamCmdSettings()
             Else
                 LogMenu.Enabled = False
                 Status.Text = CantFindSteamCMDString
@@ -196,6 +174,21 @@ Public Class MainMenu
                     Media.SystemSounds.Hand)
             End If
         End If
+    End Sub
+
+    Private Sub SaveSteamCmdSettings()
+        Dim Settings As New SteamCmdSettings()
+        Settings.CmdPath = SteamCMDExePath
+        Settings.ServerPath = ServerPath.Text
+        Try
+            Settings.Save(SteamCmdSettingsFile)
+        Catch ex As UnauthorizedAccessException
+            Status.Text = "The paths can't be saved: " & ex.Message
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+        Catch ex As IOException
+            Status.Text = "The paths can't be saved: " & ex.Message
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+        End Try
     End Sub
 
     Private Sub AnonymousCheckBox_CheckedChanged() Handles AnonymousCheckBox.CheckedChanged
@@ -217,7 +210,7 @@ Public Class MainMenu
         If folder IsNot Nothing Then
             ServerPath.Text = folder
         End If
-        If ServerPath.Text = Nothing Then
+        If ServerPath.Text = "" Then
             Status.Text = "Please, select a folder for install/update the server."
             Status.BackColor = Color.FromArgb(240, 200, 200)
             My.Computer.Audio.PlaySystemSound( _
@@ -226,6 +219,7 @@ Public Class MainMenu
             Status.Text = "The server will be installed/updated in '" & ServerPath.Text & "'"
             Status.BackColor = Color.FromArgb(240, 240, 240)
             UpdateServerButton.Enabled = True
+            If folder IsNot Nothing Then SaveSteamCmdSettings()
         End If
     End Sub
 

@@ -400,31 +400,51 @@ Public Class MainMenu
     'Run server inputs
     Private Sub SrcdsExePath_Browser() Handles SrcdsExePathTextBox.Click, SrcdsExeBrowserButton.Click
         Dim folder As String = FolderPicker.Show(Handle, "Select the folder of the server", FolderPicker.FirstExisting(SrcdsExePathTextBox.Text, ServerPath.Text, ExePath.Text))
-        If folder IsNot Nothing Then
-            If SourceGames.HasServer(folder) Then
-                SrcdsExePathTextBox.Text = folder
-                SrcdsExePath = folder
-                MapList.Enabled = True
-                Status.Text = "Current path of the server is " & folder
-                Status.BackColor = Color.FromArgb(240, 240, 240)
-                SrcdsExePathOpen.Enabled = True
-                CFGMenu.Enabled = True
-                CommonFilesMenu.Enabled = True
-                SMMenu.Enabled = True
-                RunServerButton.Enabled = True
+        If folder IsNot Nothing Then SetServer(folder)
+    End Sub
+
+    ' The game configuration is only enabled with the folder of a server
+    Private Sub SetServer(ByVal Folder As String)
+        Dim Valid As Boolean = SourceGames.HasServer(Folder)
+        SrcdsExePathTextBox.Text = Folder
+        SrcdsExePath = If(Valid, Folder, Nothing)
+        GroupBox6.Enabled = Valid
+        MapList.Enabled = Valid
+        RunServerButton.Enabled = Valid
+        SrcdsExePathOpen.Enabled = Valid
+        CFGMenu.Enabled = Valid
+        CommonFilesMenu.Enabled = Valid
+        SMMenu.Enabled = Valid
+
+        If Valid Then
+            SelectDetectedGame(Folder)
+            If GameMod = Nothing Then
+                Status.Text = "The game of the server wasn't detected. Please, select it or use a custom mod."
             Else
-                SrcdsExePathOpen.Enabled = False
-                MapList.Enabled = False
-                CFGMenu.Enabled = False
-                CommonFilesMenu.Enabled = False
-                SMMenu.Enabled = False
-                RunServerButton.Enabled = False
-                Status.Text = "Can't find any server in that folder!"
-                Status.BackColor = Color.FromArgb(240, 200, 200)
-                My.Computer.Audio.PlaySystemSound( _
-                    Media.SystemSounds.Hand)
+                Status.Text = "Current path of the server is " & Folder
             End If
+            Status.BackColor = Color.FromArgb(240, 240, 240)
+        Else
+            Status.Text = "Can't find any server in '" & Folder & "'!"
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+            My.Computer.Audio.PlaySystemSound( _
+                Media.SystemSounds.Hand)
         End If
+    End Sub
+
+    Private Sub SelectDetectedGame(ByVal Folder As String)
+        Dim Games As List(Of String) = SourceGames.Detect(Folder)
+        If CustomModCheckBox.Checked Then
+            If SourceGames.IsGame(Path.Combine(Folder, CustomModTextBox.Text)) Then Return
+        ElseIf Games.Contains(ModList.Text) Then
+            Return
+        End If
+
+        CustomModCheckBox.Checked = False
+        ModList.SelectedIndex = If(Games.Count = 0, -1, ModList.FindStringExact(Games.FirstOrDefault()))
+        ' The map was of another game
+        ServerMap = Nothing
+        MapList.Text = ""
     End Sub
 
     Private Sub SrcdsExePathOpen_Click() Handles SrcdsExePathOpen.Click
@@ -715,10 +735,10 @@ Public Class MainMenu
                 With Config
                     .Path = SrcdsExePath
                     .HostName = ServerName
-                    If ModList.Enabled Then
-                        .GameName = ModList.Text
-                    Else
+                    If CustomModCheckBox.Checked Then
                         .CustomMod = CustomModTextBox.Text
+                    Else
+                        .GameName = ModList.Text
                     End If
                     .Map = ServerMap
                     .Network = NetworkType
@@ -766,28 +786,19 @@ Public Class MainMenu
         End Try
 
         If Config.SteamCmdPath IsNot Nothing Then SteamCMDExePath = Config.SteamCmdPath
-        If Config.Path IsNot Nothing Then
-            SrcdsExePath = Config.Path
-            SrcdsExePathTextBox.Text = SrcdsExePath
-            MapList.Enabled = True
-            CFGMenu.Enabled = True
-            CommonFilesMenu.Enabled = True
-            SMMenu.Enabled = True
-            RunServerButton.Enabled = True
-            SrcdsExePathOpen.Enabled = True
-        End If
+        If Config.Path IsNot Nothing Then SetServer(Config.Path)
         If Config.HostName IsNot Nothing Then ServerNameTextBox.Text = Config.HostName
         If Config.CustomMod IsNot Nothing Then
             CustomModTextBox.Text = Config.CustomMod
             CustomModCheckBox.Checked = True
         ElseIf Config.GameName IsNot Nothing Then
             CustomModCheckBox.Checked = False
-            'A game that is not in the list is left unselected, instead of keeping the previous one
-            ModList.SelectedIndex = ModList.FindStringExact(Config.GameName)
+            'If the game is not in the list, the detected one is used
+            Dim Game As Integer = ModList.FindStringExact(Config.GameName)
+            If Game >= 0 Then ModList.SelectedIndex = Game
             ModList_SelectedIndex()
         End If
         If Config.Map IsNot Nothing Then
-            MapList.Enabled = True
             ServerMap = Config.Map
             MapList.Text = ServerMap
         End If
@@ -811,8 +822,13 @@ Public Class MainMenu
         TabMenu.SelectedTab = RunTab
         GroupBox1.Show()
         GroupBox3.Show()
-        Status.Text = "The config file has been loaded."
-        Status.BackColor = Color.FromArgb(240, 240, 240)
+        If GroupBox6.Enabled Then
+            Status.Text = "The config file has been loaded."
+            Status.BackColor = Color.FromArgb(240, 240, 240)
+        Else
+            Status.Text = "The config file has been loaded, but there isn't any server in '" & SrcdsExePathTextBox.Text & "'."
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+        End If
     End Sub
 
     Private Sub SetNumber(ByVal Box As NumericUpDown, ByVal Text As String)

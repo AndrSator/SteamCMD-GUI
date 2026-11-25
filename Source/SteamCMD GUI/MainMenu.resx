@@ -1788,6 +1788,9 @@
   <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
     <value>25</value>
   </data>
+  <data name="GroupBox6.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="GroupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 60</value>
   </data>

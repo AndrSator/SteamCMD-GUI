@@ -10,6 +10,19 @@ End Enum
 
 ' Games of the Run Server tab and the folder used in the -game parameter
 Friend Module SourceGames
+    Public ReadOnly Names() As String = {"Alien Swarm", "Counter-Strike: Global Offensive", "Counter-Strike 2", "Counter-Strike: Source", "Day of Defeat: Source",
+                                         "Garry's Mod", "Half-Life 2: Deathmatch", "Insurgency", "Left 4 Dead", "Left 4 Dead 2", "Team Fortress 2", "Team Fortress 2 Classified"}
+
+    ' Games that can be run with the server of that folder
+    Public Function Detect(folder As String) As List(Of String)
+        Return Names.Where(Function(n) File.Exists(Path.Combine(folder, Executable(ServerOf(n)))) AndAlso IsGame(Path.Combine(folder, FolderOf(n)))).ToList()
+    End Function
+
+    ' Source games have gameinfo.txt and Source 2 ones gameinfo.gi
+    Public Function IsGame(folder As String) As Boolean
+        Return File.Exists(Path.Combine(folder, "gameinfo.txt")) OrElse File.Exists(Path.Combine(folder, "gameinfo.gi"))
+    End Function
+
     Public Function FolderOf(gameName As String) As String
         Select Case gameName
             Case "Alien Swarm" : Return "swarm"
@@ -45,6 +58,7 @@ Friend Module SourceGames
     End Function
 
     Public Function HasServer(folder As String) As Boolean
+        If String.IsNullOrEmpty(folder) OrElse folder.IndexOfAny(Path.GetInvalidPathChars()) >= 0 Then Return False
         Dim servers() As ServerType = {ServerType.Srcds, ServerType.Classified, ServerType.Source2}
         Return servers.Any(Function(s) File.Exists(Path.Combine(folder, Executable(s))))
     End Function

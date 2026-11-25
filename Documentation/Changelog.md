@@ -71,6 +71,8 @@
 
 -	Fixed that the Custom Commands window didn't save everything that was typed and could only be closed with Enter
 
+-	The game configuration is enabled when the path of the server is correct, and the game is detected automatically
+
 <br>
 
 ## 3.1.0.2

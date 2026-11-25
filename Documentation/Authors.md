@@ -1,7 +1,7 @@
 
 ## Creator
 
-***Raúl 'Dio Joestar' Jiménez Carrillo***
+***Raúl 'Sator' Jiménez Carrillo***
 
 <br>
 <br>
@@ -85,7 +85,7 @@
 
 <!----------------------------------------------------------------------------->
 
-[Contributors]: https://github.com/DioJoestar/SteamCMD-GUI/graphs/contributors
+[Contributors]: https://github.com/AndrSator/SteamCMD-GUI/graphs/contributors
 
 [1]: http://stackoverflow.com/questions/20874108/creating-a-handles-for-each-new-item-in-a-dropdownitems
 [2]: https://forums.alliedmods.net/showpost.php?p=2114456&postcount=3

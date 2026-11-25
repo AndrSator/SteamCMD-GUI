@@ -7,6 +7,10 @@
 
 -	Removed the PayPal donate button
 
+-	Updated author name and repository links
+
+-	Fixed URL of Check for Updates button
+
 <br>
 
 ## 3.1.0.2

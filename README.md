@@ -67,9 +67,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 <br>
 <br>
 
-[![Button GitHub]][GitHub]   
-[![Button GameBanana]][GameBanana]   
-[![Button DropBox]][DropBox]
+[![Button GitHub]][GitHub]
 
 </div>
 
@@ -86,10 +84,8 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 [#]: #
 
-[GameBanana]: http://gamebanana.com/tools/5560
 [SteamCMD]: https://developer.valvesoftware.com/wiki/SteamCMD
-[DropBox]: https://www.dropbox.com/s/ie9iv5d0mvp2x22/SteamCMD%20GUI.zip?dl=0
-[GitHub]: https://github.com/DioJoestar/SteamCMD-GUI/releases/latest
+[GitHub]: https://github.com/AndrSator/SteamCMD-GUI/releases/latest
 
 
 <!---------------------------------[ Badges ]---------------------------------->
@@ -100,9 +96,7 @@ edit files such as `MOTD` or `maplist` in only a few clicks.
 
 <!---------------------------------[ Buttons ]--------------------------------->
 
-[Button GameBanana]: https://img.shields.io/badge/GameBanana-f6e664?style=for-the-badge&logoColor=black&logo=GitLFS
 [Button Changelog]: https://img.shields.io/badge/Changelog-4285F4?style=for-the-badge&logoColor=white&logo=Git
 [Button Tutorials]: https://img.shields.io/badge/Tutorials-E23237?style=for-the-badge&logoColor=white&logo=YouTube
 [Button Authors]: https://img.shields.io/badge/Authors-00968F?style=for-the-badge&logoColor=white&logo=BookStack
-[Button DropBox]: https://img.shields.io/badge/DropBox-0061FF?style=for-the-badge&logoColor=white&logo=DropBox
 [Button GitHub]: https://img.shields.io/badge/GitHub-222222?style=for-the-badge&logoColor=white&logo=GitHub

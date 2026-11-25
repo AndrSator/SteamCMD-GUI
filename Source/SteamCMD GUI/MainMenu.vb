@@ -646,7 +646,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub CheckUpdatesButton_Click() Handles CheckUpdatesButton.Click
-        Process.Start("https://github.com/DioJoestar/SteamCMD-GUI#last-changes")
+        Process.Start("https://github.com/AndrSator/SteamCMD-GUI/releases/latest")
     End Sub
 
     Private Sub SMButton_Click() Handles SMButton.Click

@@ -22,6 +22,7 @@ Public Class MainMenu
     Dim LocalHost As String = Dns.GetHostName
     Dim IPs As IPHostEntry = Dns.GetHostEntry(LocalHost)
     Dim PublicIP As String
+    Dim Tf2Install, RunTfPath As String
 
     Private Const GamesListFile As String = "Settings/SteamCMDGames.xml"
     Private Const SteamCmdSettingsFile As String = "Settings/SteamCMDPath.xml"
@@ -299,6 +300,7 @@ Public Class MainMenu
                         Else
                             GoldSrcMod = CommandLine.GoldSrcModConfig(SteamAppID, GoldSrcModInput.Text)
                             ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
+                            Tf2Install = InstallTf2()
                             If SteamAppID = "90" AndAlso GoldSrcMod = "" Then
                                 Status.Text = "Half-Life mod not defined. Installing a default one."
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -313,7 +315,7 @@ Public Class MainMenu
                                 With (p.StartInfo)
                                     .FileName = SteamCMDExePath & "\steamcmd.exe"
                                     .UseShellExecute = False
-                                    .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp)
+                                    .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp) & Tf2Install
                                 End With
                                 p.Start()
                             Else
@@ -336,6 +338,17 @@ Public Class MainMenu
         End If
     End Sub
 
+    ' Team Fortress 2 Classified needs the server of Team Fortress 2, it's installed in a folder inside its own
+    Private Function InstallTf2() As String
+        If SteamAppID <> "3557020" Then Return ""
+
+        Dim folder As String = Path.Combine(ServerPath.Text, SteamLibrary.Tf2Subfolder)
+        If SteamLibrary.TeamFortress2In(folder) Is Nothing AndAlso MessageBox.Show("Team Fortress 2 Classified needs the dedicated server of Team Fortress 2 (about 14 GB)." & vbCrLf & vbCrLf & "Do you want to install it too in '" & folder & "'?", "Team Fortress 2 Classified", MessageBoxButtons.YesNo) = DialogResult.No Then
+            Return ""
+        End If
+        Return CommandLine.AlsoInstall(CommandLine.QuotePath(folder), "232250", ValidateApp)
+    End Function
+
     Private ThrSteamCMD As Thread
     Private WithEvents p As Process
 
@@ -349,7 +362,7 @@ Public Class MainMenu
             .RedirectStandardOutput = True
             .RedirectStandardInput = True
             .RedirectStandardError = True
-            .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp)
+            .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp) & Tf2Install
         End With
 
         p.Start()
@@ -616,7 +629,7 @@ Public Class MainMenu
             .Server = GameServer
             .Switches = Parameters
             .Folder = GameMod
-            .TfPath = TfPath
+            .TfPath = RunTfPath
             .Port = UDPPort
             .HostName = ServerName
             .Map = ServerMap
@@ -631,15 +644,20 @@ Public Class MainMenu
 
     ' Team Fortress 2 Classified uses the files of Team Fortress 2 (the game or its server)
     Private Function SelectTfPath() As Boolean
-        If SteamLibrary.TeamFortress2In(TfPath) IsNot Nothing Then Return True
+        ' It can also be another one, set in the additional parameters
+        If CommandLine.HasParameter(AdditionalCommands, "-tf_path") Then Return True
 
-        TfPath = SteamLibrary.FindTeamFortress2(My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", Nothing))
-        If TfPath IsNot Nothing Then Return True
+        RunTfPath = SteamLibrary.TeamFortress2For(SrcdsExePathTextBox.Text, TfPath, My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", Nothing))
+        If RunTfPath IsNot Nothing Then Return True
 
-        MessageBox.Show("Team Fortress 2 Classified needs the files of Team Fortress 2, the game or its dedicated server (Steam App ID 232250)." & vbCrLf & vbCrLf & "Select its folder, the one that has the folder 'tf' inside.", "Team Fortress 2 Classified")
+        MessageBox.Show("Team Fortress 2 Classified needs the files of Team Fortress 2, the game or its dedicated server." & vbCrLf & vbCrLf & "The server can be installed with Team Fortress 2 Classified in the Update/Install tab. If you already have it, select its folder, the one that has the folder 'tf' inside.", "Team Fortress 2 Classified")
         Dim folder As String = FolderPicker.Show(Handle, "Select the folder of Team Fortress 2", Nothing)
-        TfPath = SteamLibrary.TeamFortress2In(folder)
-        If TfPath IsNot Nothing Then Return True
+        RunTfPath = SteamLibrary.TeamFortress2In(folder)
+        If RunTfPath IsNot Nothing Then
+            ' Only the folder selected by the user is saved in the config
+            TfPath = RunTfPath
+            Return True
+        End If
 
         Status.Text = If(folder = "", "Team Fortress 2 Classified needs the folder of Team Fortress 2.", "Team Fortress 2 isn't in '" & folder & "'.")
         Status.BackColor = Color.FromArgb(240, 200, 200)
@@ -758,7 +776,6 @@ Public Class MainMenu
             RunServerButton.Enabled = True
             SrcdsExePathOpen.Enabled = True
         End If
-        If Config.Tf2Path IsNot Nothing Then TfPath = Config.Tf2Path
         If Config.HostName IsNot Nothing Then ServerNameTextBox.Text = Config.HostName
         If Config.CustomMod IsNot Nothing Then
             CustomModTextBox.Text = Config.CustomMod
@@ -790,6 +807,7 @@ Public Class MainMenu
         ' These are not saved when they are empty, so the ones of the previous config have to be removed
         GsltTextBox.Text = Config.Gslt
         AdditionalCommands = Config.AdditionalCommands
+        TfPath = Config.Tf2Path
 
         TabMenu.SelectedTab = RunTab
         GroupBox1.Show()

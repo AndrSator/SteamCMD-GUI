@@ -65,7 +65,9 @@
 
 -	The Settings and Logs folders are always next to the program
 
--	Team Fortress 2 is searched in the Steam libraries to run Team Fortress 2 Classified
+-	The server of Team Fortress 2, needed by Team Fortress 2 Classified, can be installed with it in the folder 'tf2'
+
+-	To run Team Fortress 2 Classified, Team Fortress 2 is searched in that folder and in the Steam libraries. Other folder can be used with `-tf_path` in the additional parameters
 
 <br>
 

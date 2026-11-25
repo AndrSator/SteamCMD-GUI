@@ -1,5 +1,7 @@
 ﻿Option Strict On
 
+Imports System.Text.RegularExpressions
+
 ' Builds the command lines of the programs launched by the GUI
 Friend Module CommandLine
     ' A backslash before the closing quote would escape it ("D:\"), so it has to be doubled
@@ -23,6 +25,15 @@ Friend Module CommandLine
         Return "+force_install_dir " & installPath & " +login " & login & modConfig & " +app_update " & appId & validate
     End Function
 
+    ' Added after ForSteamCmd to install another app in other folder
+    Public Function AlsoInstall(installPath As String, appId As String, validate As String) As String
+        Return " +force_install_dir " & installPath & " +app_update " & appId & validate
+    End Function
+
+    Public Function HasParameter(line As String, parameter As String) As Boolean
+        Return line IsNot Nothing AndAlso Regex.IsMatch(line, "(^|\s)" & Regex.Escape(parameter) & "(\s|$)", RegexOptions.IgnoreCase)
+    End Function
+
     Public Function ForServer(o As ServerOptions) As String
         Dim switches As String = o.Switches
         Dim settings As String = " +hostname " & Chr(34) & o.HostName & Chr(34)
@@ -37,8 +48,11 @@ Friend Module CommandLine
         If o.Server = ServerType.Source2 Then
             Return "-dedicated " & switches & "-port " & o.Port & " -maxplayers " & o.MaxPlayers & settings & " +map " & o.Map & " +sv_lan " & o.Lan & " " & o.Additional
         End If
-        Dim game As String = If(o.Server = ServerType.Classified, "-tf_path " & QuotePath(o.TfPath), "-game " & o.Folder)
-        Return switches & game & " -port " & o.Port & settings & " +map " & o.Map & " +maxplayers " & o.MaxPlayers & " +sv_lan " & o.Lan & " " & o.Additional
+        Dim game As String = "-game " & o.Folder & " "
+        If o.Server = ServerType.Classified Then
+            game = If(HasParameter(o.Additional, "-tf_path"), "", "-tf_path " & QuotePath(o.TfPath) & " ")
+        End If
+        Return switches & game & "-port " & o.Port & settings & " +map " & o.Map & " +maxplayers " & o.MaxPlayers & " +sv_lan " & o.Lan & " " & o.Additional
     End Function
 End Module
 

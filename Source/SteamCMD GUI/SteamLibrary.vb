@@ -5,6 +5,9 @@ Imports System.Text.RegularExpressions
 
 ' Games installed with Steam
 Friend Module SteamLibrary
+    ' Folder inside the server of Team Fortress 2 Classified where the one of Team Fortress 2 is installed
+    Public Const Tf2Subfolder As String = "tf2"
+
     ' The dedicated server of Team Fortress 2 or the game, Nothing if none of them is installed
     Public Function FindTeamFortress2(steamFolder As String) As String
         If String.IsNullOrEmpty(steamFolder) Then Return Nothing
@@ -16,6 +19,11 @@ Friend Module SteamLibrary
             Next
         Next
         Return Nothing
+    End Function
+
+    ' Folder of Team Fortress 2 to run a server of Team Fortress 2 Classified, Nothing if it has to be selected
+    Public Function TeamFortress2For(serverFolder As String, savedFolder As String, steamFolder As String) As String
+        Return If(TeamFortress2In(savedFolder), If(TeamFortress2In(Path.Combine(serverFolder, Tf2Subfolder)), FindTeamFortress2(steamFolder)))
     End Function
 
     ' Folder of Team Fortress 2 if that folder is it, or the 'tf' one inside it

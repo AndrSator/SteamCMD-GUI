@@ -29,8 +29,16 @@ Public Class MainMenu
     Private Declare Function GetInputState Lib "user32" () As Int32
 
     Private Sub Form1_Load() Handles MyBase.Load
+        Dim ConfigFile As String = StartupOptions.ConfigFile(My.Application.CommandLineArgs, Directory.GetCurrentDirectory())
+        ' The Settings and Logs folders are next to the program, also if it's opened from another folder
+        Directory.SetCurrentDirectory(Application.StartupPath)
+
         If My.Computer.Network.IsAvailable Then
-            PublicIP = WC.DownloadString("http://ipv4.icanhazip.com/")
+            Try
+                PublicIP = WC.DownloadString("http://ipv4.icanhazip.com/")
+            Catch ex As WebException
+                PublicIP = "Unknown"
+            End Try
         Else
             PublicIP = "Network down"
         End If
@@ -69,6 +77,8 @@ Public Class MainMenu
 
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+
+        If ConfigFile IsNot Nothing Then LoadServerConfig(ConfigFile)
     End Sub
 
     Private Sub Tips()
@@ -675,88 +685,39 @@ Public Class MainMenu
         SaveFileDialog1.FileName = "Config.xml"
 
         If SrcdsExePath = Nothing Then
-            Status.Text = "Please, select where is located the file 'srcds.exe'."
+            Status.Text = "Please, select where the server is located in the Run Server tab."
             Status.BackColor = Color.FromArgb(240, 200, 200)
         Else
             If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
-                Dim ConfigFile As String = SaveFileDialog1.FileName
-                Dim Config As New XmlWriterSettings()
-                Config.Indent = True
-
-                Dim XmlWrt As XmlWriter = XmlWriter.Create(ConfigFile, Config)
-                With XmlWrt
-                    .WriteStartDocument()
-                    .WriteComment("Config used by SteamCMD GUI")
-                    .WriteStartElement("Config")
-
-                    .WriteStartElement("Srcds-Config")
-
-                    .WriteStartElement("Path")
-                    .WriteString(SrcdsExePath)
-                    .WriteEndElement()
-
-                    If Not TfPath = Nothing Then
-                        .WriteStartElement("TF2Path")
-                        .WriteString(TfPath)
-                        .WriteEndElement()
-                    End If
-
-                    .WriteEndElement()
-
-                    .WriteStartElement("Server-Config")
-
-                    .WriteStartElement("HostName")
-                    .WriteString(ServerName)
-                    .WriteEndElement()
-
-                    If ModList.Enabled = False Then
-                        .WriteStartElement("CustomMod")
-                        .WriteString(CustomModTextBox.Text)
-
+                Dim Config As New ServerConfig()
+                With Config
+                    .Path = SrcdsExePath
+                    .Tf2Path = TfPath
+                    .HostName = ServerName
+                    If ModList.Enabled Then
+                        .GameName = ModList.Text
                     Else
-                        .WriteStartElement("Mod")
-                        .WriteString(ModList.Text)
-
+                        .CustomMod = CustomModTextBox.Text
                     End If
-                    .WriteEndElement()
-
-                    .WriteStartElement("Map")
-                    .WriteString(ServerMap)
-                    .WriteEndElement()
-
-                    .WriteStartElement("Network")
-                    .WriteString(NetworkType)
-                    .WriteEndElement()
-
-                    .WriteStartElement("Players")
-                    .WriteString(MaxPlayers)
-                    .WriteEndElement()
-
-                    .WriteStartElement("RCON")
-                    .WriteString(RCON)
-                    .WriteEndElement()
-
-                    If GsltTextBox.Text <> "" Then
-                        .WriteStartElement("GSLT")
-                        .WriteString(GsltTextBox.Text)
-                        .WriteEndElement()
-                    End If
-
-                    .WriteStartElement("Port")
-                    .WriteString(UDPPort)
-                    .WriteEndElement()
-
-                    If Not AdditionalCommands = Nothing Then
-                        .WriteStartElement("AdditionalCommands")
-                        .WriteString(AdditionalCommands)
-                        .WriteEndElement()
-                    End If
-                    .WriteEndDocument()
+                    .Map = ServerMap
+                    .Network = NetworkType
+                    .Players = MaxPlayers
+                    .Rcon = RCON
+                    .Gslt = GsltTextBox.Text
+                    .Port = UDPPort
+                    .AdditionalCommands = AdditionalCommands
                 End With
-                XmlWrt.Close()
-                Status.Text = Path.GetFileName(ConfigFile) & " file saved."
-                Status.BackColor = Color.FromArgb(240, 240, 240)
-                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
+                Try
+                    Config.Save(SaveFileDialog1.FileName)
+                    Status.Text = Path.GetFileName(SaveFileDialog1.FileName) & " file saved."
+                    Status.BackColor = Color.FromArgb(240, 240, 240)
+                    'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
+                Catch ex As Exception When TypeOf ex Is UnauthorizedAccessException OrElse TypeOf ex Is IOException
+                    Status.Text = "The config file can't be saved: " & ex.Message
+                    Status.BackColor = Color.FromArgb(240, 200, 200)
+                    My.Computer.Audio.PlaySystemSound( _
+                        Media.SystemSounds.Hand)
+                End Try
             End If
         End If
     End Sub
@@ -767,77 +728,76 @@ Public Class MainMenu
         XmlConfigOpenFileDialog.Filter = "Extensible Markup Language (*.xml)|*.xml"
 
         If XmlConfigOpenFileDialog.ShowDialog() = DialogResult.OK Then
-            ' A token can only be used by one server
-            GsltTextBox.Text = ""
-            Dim XmlConfig As XmlReader = New XmlTextReader(XmlConfigOpenFileDialog.FileName)
-            While (XmlConfig.Read())
-                Dim type = XmlConfig.NodeType
-                If (type = XmlNodeType.Element) Then
-                    If (XmlConfig.Name = "SteamCMD") Then
-                        SteamCMDExePath = XmlConfig.ReadInnerXml.ToString()
-                    End If
-                    If (XmlConfig.Name = "Path") Then
-                        SrcdsExePath = XmlConfig.ReadInnerXml.ToString()
-                        SrcdsExePathTextBox.Text = SrcdsExePath
-                        MapList.Enabled = True
-                        CFGMenu.Enabled = True
-                        CommonFilesMenu.Enabled = True
-                        SMMenu.Enabled = True
-                        RunServerButton.Enabled = True
-                        SrcdsExePathOpen.Enabled = True
-                    End If
-                    If (XmlConfig.Name = "TF2Path") Then
-                        TfPath = XmlConfig.ReadElementString()
-                    End If
-                    If (XmlConfig.Name = "HostName") Then
-                        ServerNameTextBox.Text = XmlConfig.ReadInnerXml.ToString()
-                    End If
-                    If (XmlConfig.Name = "Mod") Then
-                        'A game that is not in the list is left unselected, instead of keeping the previous one
-                        ModList.SelectedIndex = ModList.FindStringExact(XmlConfig.ReadInnerXml.ToString())
-                        'Define the game with ModList.Text
-                        ModList_SelectedIndex()
-                    End If
-                    If (XmlConfig.Name = "CustomMod") Then
-                        CustomModTextBox.Text = XmlConfig.ReadInnerXml.ToString
-                        CustomModCheckBox.Checked = True
-                    End If
-                    If (XmlConfig.Name = "Map") Then
-                        MapList.Enabled = True
-                        ServerMap = XmlConfig.ReadInnerXml.ToString()
-                        MapList.Text = ServerMap
-                    End If
-                    If (XmlConfig.Name = "Network") Then
-                        NetworkComboBox.SelectedIndex = XmlConfig.ReadInnerXml.ToString()
-                    End If
-                    If (XmlConfig.Name = "Players") Then
-                        MaxPlayers = XmlConfig.ReadInnerXml.ToString
-                        MaxPlayersTexBox.Value = MaxPlayers
-                    End If
-                    If (XmlConfig.Name = "RCON") Then
-                        RCON = XmlConfig.ReadInnerXml.ToString
-                        RconTextBox.Text = RCON
-                        CheckBoxMask.Checked = True
-                    End If
-                    If (XmlConfig.Name = "GSLT") Then
-                        GsltTextBox.Text = XmlConfig.ReadElementString()
-                    End If
-                    If (XmlConfig.Name = "Port") Then
-                        UDPPort = XmlConfig.ReadInnerXml.ToString
-                        UDPPortTexBox.Value = UDPPort
-                    End If
-                    If (XmlConfig.Name = "AdditionalCommands") Then
-                        AdditionalCommands = XmlConfig.ReadInnerXml.ToString
-                    End If
-                End If
-            End While
-            XmlConfig.Close()
-            TabMenu.SelectedTab = RunTab
-            GroupBox1.Show()
-            GroupBox3.Show()
-            Status.Text = "The config file has been loaded."
-            Status.BackColor = Color.FromArgb(240, 240, 240)
+            LoadServerConfig(XmlConfigOpenFileDialog.FileName)
         End If
+    End Sub
+
+    Private Sub LoadServerConfig(ByVal ConfigFile As String)
+        Dim Config As ServerConfig
+        Try
+            Config = ServerConfig.Load(ConfigFile)
+        Catch ex As Exception When TypeOf ex Is XmlException OrElse TypeOf ex Is IOException OrElse TypeOf ex Is UnauthorizedAccessException OrElse TypeOf ex Is ArgumentException
+            Status.Text = "The config file can't be loaded: " & ex.Message
+            Status.BackColor = Color.FromArgb(240, 200, 200)
+            My.Computer.Audio.PlaySystemSound( _
+                Media.SystemSounds.Hand)
+            Return
+        End Try
+
+        If Config.SteamCmdPath IsNot Nothing Then SteamCMDExePath = Config.SteamCmdPath
+        If Config.Path IsNot Nothing Then
+            SrcdsExePath = Config.Path
+            SrcdsExePathTextBox.Text = SrcdsExePath
+            MapList.Enabled = True
+            CFGMenu.Enabled = True
+            CommonFilesMenu.Enabled = True
+            SMMenu.Enabled = True
+            RunServerButton.Enabled = True
+            SrcdsExePathOpen.Enabled = True
+        End If
+        If Config.Tf2Path IsNot Nothing Then TfPath = Config.Tf2Path
+        If Config.HostName IsNot Nothing Then ServerNameTextBox.Text = Config.HostName
+        If Config.CustomMod IsNot Nothing Then
+            CustomModTextBox.Text = Config.CustomMod
+            CustomModCheckBox.Checked = True
+        ElseIf Config.GameName IsNot Nothing Then
+            CustomModCheckBox.Checked = False
+            'A game that is not in the list is left unselected, instead of keeping the previous one
+            ModList.SelectedIndex = ModList.FindStringExact(Config.GameName)
+            ModList_SelectedIndex()
+        End If
+        If Config.Map IsNot Nothing Then
+            MapList.Enabled = True
+            ServerMap = Config.Map
+            MapList.Text = ServerMap
+        End If
+        Dim Network As Integer
+        If Integer.TryParse(Config.Network, Network) AndAlso Network >= 0 AndAlso Network < NetworkComboBox.Items.Count Then
+            NetworkComboBox.SelectedIndex = Network
+        End If
+        SetNumber(MaxPlayersTexBox, Config.Players)
+        MaxPlayers = MaxPlayersTexBox.Value
+        SetNumber(UDPPortTexBox, Config.Port)
+        UDPPort = UDPPortTexBox.Value
+        If Config.Rcon IsNot Nothing Then
+            RconTextBox.Text = Config.Rcon
+            RCON = Config.Rcon
+            CheckBoxMask.Checked = True
+        End If
+        ' These are not saved when they are empty, so the ones of the previous config have to be removed
+        GsltTextBox.Text = Config.Gslt
+        AdditionalCommands = Config.AdditionalCommands
+
+        TabMenu.SelectedTab = RunTab
+        GroupBox1.Show()
+        GroupBox3.Show()
+        Status.Text = "The config file has been loaded."
+        Status.BackColor = Color.FromArgb(240, 240, 240)
+    End Sub
+
+    Private Sub SetNumber(ByVal Box As NumericUpDown, ByVal Text As String)
+        Dim Number As Decimal
+        If Decimal.TryParse(Text, Number) Then Box.Value = Math.Max(Box.Minimum, Math.Min(Box.Maximum, Number))
     End Sub
 
     Private Sub CFGMenu_DropDownOpening() Handles ToolsMenu.Click

@@ -53,6 +53,18 @@
 
 -	The Steam password can be left empty to use the session saved by SteamCMD, without typing the Steam Guard code again
 
+-	A config file can be loaded when the program is opened, using it as a parameter or dropping it on the program
+
+-	Fixed that a config with special characters wasn't loaded correctly
+
+-	Fixed that some options of the previous config were kept when another one was loaded
+
+-	Fixed some crashes when a config file can't be saved or loaded
+
+-	Fixed that the program wasn't loaded correctly when the public IP couldn't be obtained
+
+-	The Settings and Logs folders are always next to the program
+
 <br>
 
 ## 3.1.0.2

@@ -116,7 +116,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServerConfig.vb" />
     <Compile Include="SourceGames.vb" />
+    <Compile Include="StartupOptions.vb" />
     <Compile Include="SteamCmdSettings.vb" />
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>

@@ -15,6 +15,10 @@
 
 -	Fixed that couldn't install a server in the root of a drive
 
+-	Fixed that the Half-Life mod was also used to install other games
+
+-	Fixed the error sound when installing any game
+
 <br>
 
 ## 3.1.0.2

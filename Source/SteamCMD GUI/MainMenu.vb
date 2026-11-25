@@ -299,18 +299,17 @@ Public Class MainMenu
                             My.Computer.Audio.PlaySystemSound( _
                                 Media.SystemSounds.Hand)
                         Else
-                            If GoldSrcModInput.Visible = True _
-                                AndAlso Not String.IsNullOrEmpty(GoldSrcModInput.Text) Then
-                                GoldSrcMod = " +app_set_config 90 mod " & GoldSrcModInput.Text
-                            Else
+                            GoldSrcMod = CommandLine.GoldSrcModConfig(SteamAppID, GoldSrcModInput.Text)
+                            ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
+                            If SteamAppID = "90" AndAlso GoldSrcMod = "" Then
                                 Status.Text = "Half-Life mod not defined. Installing a default one."
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
                                 My.Computer.Audio.PlaySystemSound( _
                                     Media.SystemSounds.Hand)
+                            Else
+                                Status.Text = "Installing/Updating..."
+                                Status.BackColor = Color.FromArgb(240, 240, 240)
                             End If
-                            ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
-                            Status.Text = "Installing/Updating..."
-                            Status.BackColor = Color.FromArgb(240, 240, 240)
 
                             If CheckBoxConsole.Checked = False Then
                                 p = New Process

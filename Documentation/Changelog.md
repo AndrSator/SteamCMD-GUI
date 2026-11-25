@@ -41,7 +41,7 @@
 
 -	The folders are selected with the Windows Explorer dialog, with access to all the drives
 
--	Added Counter-Strike 2 and Team Fortress 2 Classified, both to install and to run servers
+-	Added Team Fortress 2 Classified (tested) and Counter-Strike 2 (not tested yet), both to install and to run servers
 
 -	The server path of the Update/Install tab is saved
 

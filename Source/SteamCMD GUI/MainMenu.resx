@@ -804,9 +804,6 @@
   <data name="&gt;&gt;Status.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="FolderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>188, 17</value>
   </metadata>
@@ -2462,12 +2459,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SteamCMD GUI</value>
-  </data>
-  <data name="&gt;&gt;FolderBrowserDialog1.Name" xml:space="preserve">
-    <value>FolderBrowserDialog1</value>
-  </data>
-  <data name="&gt;&gt;FolderBrowserDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
     <value>ToolTip1</value>

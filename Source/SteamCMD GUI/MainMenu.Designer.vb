@@ -50,7 +50,6 @@ Partial Class MainMenu
         Me.GoldSrcModLabel = New System.Windows.Forms.Label()
         Me.GoldSrcModInput = New System.Windows.Forms.TextBox()
         Me.Status = New System.Windows.Forms.TextBox()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.ESButton = New System.Windows.Forms.Button()
@@ -925,7 +924,6 @@ Partial Class MainMenu
     Friend WithEvents BrowserButton As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents ServerPath As System.Windows.Forms.TextBox
-    Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents VDCButton As System.Windows.Forms.Button
     Friend WithEvents UpdateServerButton As System.Windows.Forms.Button
     Friend WithEvents CheckUpdatesButton As System.Windows.Forms.Button

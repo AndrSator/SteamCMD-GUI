@@ -86,6 +86,7 @@
     <Compile Include="CommandsWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FolderPicker.vb" />
     <Compile Include="GameCatalog.vb" />
     <Compile Include="MainMenu.vb">
       <SubType>Form</SubType>

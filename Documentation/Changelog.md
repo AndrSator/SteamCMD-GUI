@@ -39,6 +39,8 @@
 
 -	The sounds are only played when there is an error
 
+-	The folders are selected with the Windows Explorer dialog, with access to all the drives
+
 <br>
 
 ## 3.1.0.2

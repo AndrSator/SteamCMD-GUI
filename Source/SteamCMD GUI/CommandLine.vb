@@ -17,12 +17,36 @@ Friend Module CommandLine
         Return "+force_install_dir " & installPath & " +login " & login & modConfig & " +app_update " & appId & validate
     End Function
 
-    Public Function ForServer(server As ServerType, options As String, folder As String, tfPath As String, port As String, hostName As String, map As String, maxPlayers As String, lan As Integer, additional As String) As String
-        Dim name As String = " +hostname " & Chr(34) & hostName & Chr(34)
-        If server = ServerType.Source2 Then
-            Return "-dedicated " & options & "-port " & port & " -maxplayers " & maxPlayers & name & " +map " & map & " +sv_lan " & lan & " " & additional
+    Public Function ForServer(o As ServerOptions) As String
+        Dim switches As String = o.Switches
+        Dim settings As String = " +hostname " & Chr(34) & o.HostName & Chr(34)
+        If Not String.IsNullOrEmpty(o.Rcon) Then
+            ' The quotes can't be escaped, they would end the password
+            settings &= " +rcon_password " & Chr(34) & o.Rcon.Replace(Chr(34), "") & Chr(34)
+            ' Counter-Strike doesn't listen to RCON without it
+            If o.Server = ServerType.Source2 OrElse o.Folder = "csgo" Then switches &= "-usercon "
         End If
-        Dim game As String = If(server = ServerType.Classified, "-tf_path " & QuotePath(tfPath), "-game " & folder)
-        Return options & game & " -port " & port & name & " +map " & map & " +maxplayers " & maxPlayers & " +sv_lan " & lan & " " & additional
+        If o.Gslt IsNot Nothing AndAlso o.Gslt.Trim() <> "" Then settings &= " +sv_setsteamaccount " & o.Gslt.Trim()
+
+        If o.Server = ServerType.Source2 Then
+            Return "-dedicated " & switches & "-port " & o.Port & " -maxplayers " & o.MaxPlayers & settings & " +map " & o.Map & " +sv_lan " & o.Lan & " " & o.Additional
+        End If
+        Dim game As String = If(o.Server = ServerType.Classified, "-tf_path " & QuotePath(o.TfPath), "-game " & o.Folder)
+        Return switches & game & " -port " & o.Port & settings & " +map " & o.Map & " +maxplayers " & o.MaxPlayers & " +sv_lan " & o.Lan & " " & o.Additional
     End Function
 End Module
+
+Friend Class ServerOptions
+    Public Server As ServerType
+    Public Switches As String ' -console -insecure...
+    Public Folder As String
+    Public TfPath As String
+    Public Port As String
+    Public HostName As String
+    Public Map As String
+    Public MaxPlayers As String
+    Public Lan As Integer
+    Public Rcon As String
+    Public Gslt As String
+    Public Additional As String
+End Class

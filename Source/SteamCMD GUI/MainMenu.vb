@@ -73,7 +73,8 @@ Public Class MainMenu
 
     Private Sub Tips()
         ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
-        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON")
+        ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON and login token")
+        ToolTip1.SetToolTip(GsltTextBox, "Game Server Login Token: https://steamcommunity.com/dev/managegameservers")
         ToolTip1.SetToolTip(RemoveGameButton, "Remove the selected game from the list")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
         ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
@@ -484,6 +485,7 @@ Public Class MainMenu
             RconTextBox.PasswordChar = ""
             RconTextBox.Font = New Font("Microsoft Sans Serif", 8.25, FontStyle.Regular)
         End If
+        GsltTextBox.PasswordChar = RconTextBox.PasswordChar
     End Sub
 
     Private Sub MaxPlayersTexBox_ValueChanged() Handles MaxPlayersTexBox.TextChanged
@@ -589,7 +591,7 @@ Public Class MainMenu
                             .WorkingDirectory = Path.GetDirectoryName(ServerExe)
                             .UseShellExecute = False
                             .CreateNoWindow = False
-                            .Arguments = CommandLine.ForServer(GameServer, Parameters, GameMod, TfPath, UDPPort, ServerName, ServerMap, MaxPlayers, NetworkComboBox.SelectedIndex, AdditionalCommands)
+                            .Arguments = CommandLine.ForServer(CurrentServerOptions())
                         End With
 
                         p.Start()
@@ -603,6 +605,25 @@ Public Class MainMenu
                 Media.SystemSounds.Hand)
         End If
     End Sub
+
+    Private Function CurrentServerOptions() As ServerOptions
+        Dim Options As New ServerOptions()
+        With Options
+            .Server = GameServer
+            .Switches = Parameters
+            .Folder = GameMod
+            .TfPath = TfPath
+            .Port = UDPPort
+            .HostName = ServerName
+            .Map = ServerMap
+            .MaxPlayers = MaxPlayers
+            .Lan = NetworkComboBox.SelectedIndex
+            .Rcon = RCON
+            .Gslt = GsltTextBox.Text
+            .Additional = AdditionalCommands
+        End With
+        Return Options
+    End Function
 
     ' Team Fortress 2 Classified uses the files of Team Fortress 2 (the game or its server)
     Private Function SelectTfPath() As Boolean
@@ -721,6 +742,12 @@ Public Class MainMenu
                     .WriteString(RCON)
                     .WriteEndElement()
 
+                    If GsltTextBox.Text <> "" Then
+                        .WriteStartElement("GSLT")
+                        .WriteString(GsltTextBox.Text)
+                        .WriteEndElement()
+                    End If
+
                     .WriteStartElement("Port")
                     .WriteString(UDPPort)
                     .WriteEndElement()
@@ -746,6 +773,8 @@ Public Class MainMenu
         XmlConfigOpenFileDialog.Filter = "Extensible Markup Language (*.xml)|*.xml"
 
         If XmlConfigOpenFileDialog.ShowDialog() = DialogResult.OK Then
+            ' A token can only be used by one server
+            GsltTextBox.Text = ""
             Dim XmlConfig As XmlReader = New XmlTextReader(XmlConfigOpenFileDialog.FileName)
             While (XmlConfig.Read())
                 Dim type = XmlConfig.NodeType
@@ -795,6 +824,9 @@ Public Class MainMenu
                         RCON = XmlConfig.ReadInnerXml.ToString
                         RconTextBox.Text = RCON
                         CheckBoxMask.Checked = True
+                    End If
+                    If (XmlConfig.Name = "GSLT") Then
+                        GsltTextBox.Text = XmlConfig.ReadElementString()
                     End If
                     If (XmlConfig.Name = "Port") Then
                         UDPPort = XmlConfig.ReadInnerXml.ToString

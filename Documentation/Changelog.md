@@ -47,6 +47,10 @@
 
 -	Fixed that a path with the character & wasn't loaded correctly
 
+-	Added a text-box for the login token of the server (GSLT), it can be saved and loaded with the config file
+
+-	Fixed that the RCON password was never sent to the server
+
 <br>
 
 ## 3.1.0.2

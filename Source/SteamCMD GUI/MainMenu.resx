@@ -1548,6 +1548,54 @@
   <data name="&gt;&gt;CustomModTextBox.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
+  <data name="GsltLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GsltLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>284, 50</value>
+  </data>
+  <data name="GsltLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 13</value>
+  </data>
+  <data name="GsltLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="GsltLabel.Text" xml:space="preserve">
+    <value>Login Token (GSLT)</value>
+  </data>
+  <data name="&gt;&gt;GsltLabel.Name" xml:space="preserve">
+    <value>GsltLabel</value>
+  </data>
+  <data name="&gt;&gt;GsltLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GsltLabel.Parent" xml:space="preserve">
+    <value>GroupBox6</value>
+  </data>
+  <data name="&gt;&gt;GsltLabel.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="GsltTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>284, 73</value>
+  </data>
+  <data name="GsltTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="GsltTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;GsltTextBox.Name" xml:space="preserve">
+    <value>GsltTextBox</value>
+  </data>
+  <data name="&gt;&gt;GsltTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GsltTextBox.Parent" xml:space="preserve">
+    <value>GroupBox6</value>
+  </data>
+  <data name="&gt;&gt;GsltTextBox.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
   <data name="ModList.Items" xml:space="preserve">
     <value>Alien Swarm</value>
   </data>

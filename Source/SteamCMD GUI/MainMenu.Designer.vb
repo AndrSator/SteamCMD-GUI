@@ -75,6 +75,8 @@ Partial Class MainMenu
         Me.CheckBoxMask = New System.Windows.Forms.CheckBox()
         Me.UDPPortTexBox = New System.Windows.Forms.NumericUpDown()
         Me.RconTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.GsltLabel = New System.Windows.Forms.Label()
+        Me.GsltTextBox = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.NetworkComboBox = New System.Windows.Forms.ComboBox()
@@ -437,6 +439,8 @@ Partial Class MainMenu
         Me.GroupBox6.Controls.Add(Me.Label6)
         Me.GroupBox6.Controls.Add(Me.Label8)
         Me.GroupBox6.Controls.Add(Me.Label5)
+        Me.GroupBox6.Controls.Add(Me.GsltLabel)
+        Me.GroupBox6.Controls.Add(Me.GsltTextBox)
         resources.ApplyResources(Me.GroupBox6, "GroupBox6")
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.TabStop = False
@@ -519,6 +523,17 @@ Partial Class MainMenu
         resources.ApplyResources(Me.RconTextBox, "RconTextBox")
         Me.RconTextBox.Name = "RconTextBox"
         Me.RconTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        '
+        'GsltLabel
+        '
+        resources.ApplyResources(Me.GsltLabel, "GsltLabel")
+        Me.GsltLabel.Name = "GsltLabel"
+        '
+        'GsltTextBox
+        '
+        resources.ApplyResources(Me.GsltTextBox, "GsltTextBox")
+        Me.GsltTextBox.Name = "GsltTextBox"
+        Me.GsltTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         '
         'Label11
         '
@@ -963,6 +978,8 @@ Partial Class MainMenu
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents RconTextBox As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents GsltLabel As System.Windows.Forms.Label
+    Friend WithEvents GsltTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents UDPPortTexBox As System.Windows.Forms.NumericUpDown
     Friend WithEvents CheckBoxMask As System.Windows.Forms.CheckBox

@@ -490,7 +490,7 @@
     <value>7</value>
   </data>
   <data name="BrowserButton.Text" xml:space="preserve">
-    <value>Browser</value>
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;BrowserButton.Name" xml:space="preserve">
     <value>BrowserButton</value>
@@ -892,7 +892,7 @@
     <value>0</value>
   </data>
   <data name="ExeBrowserButton.Text" xml:space="preserve">
-    <value>Browser</value>
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;ExeBrowserButton.Name" xml:space="preserve">
     <value>ExeBrowserButton</value>
@@ -1780,7 +1780,7 @@
     <value>0</value>
   </data>
   <data name="SrcdsExeBrowserButton.Text" xml:space="preserve">
-    <value>Browser</value>
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;SrcdsExeBrowserButton.Name" xml:space="preserve">
     <value>SrcdsExeBrowserButton</value>

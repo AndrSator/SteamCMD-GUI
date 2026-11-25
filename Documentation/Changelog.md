@@ -19,6 +19,8 @@
 
 -	Fixed the error sound when installing any game
 
+-	Fixed the text of the Browse buttons ~ By jnorgan @ GitHub
+
 <br>
 
 ## 3.1.0.2

@@ -3,6 +3,12 @@
 
 <br>
 
+## 3.2.0.0 ( Unreleased )
+
+-	Removed the PayPal donate button
+
+<br>
+
 ## 3.1.0.2
 
 -	Custom Mod now is saved by XML config ~ By Melo88 @ GitHub

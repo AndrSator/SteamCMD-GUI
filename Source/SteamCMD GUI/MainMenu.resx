@@ -2361,33 +2361,6 @@
   <metadata name="SaveFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1093, 17</value>
   </metadata>
-  <data name="DonateButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="DonateButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="DonateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>469, 278</value>
-  </data>
-  <data name="DonateButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 26</value>
-  </data>
-  <data name="DonateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>101</value>
-  </data>
-  <data name="&gt;&gt;DonateButton.Name" xml:space="preserve">
-    <value>DonateButton</value>
-  </data>
-  <data name="&gt;&gt;DonateButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DonateButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;DonateButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="IPTextbox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>

@@ -130,7 +130,6 @@ Partial Class MainMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XmlConfigOpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.DonateButton = New System.Windows.Forms.PictureBox()
         Me.IPTextbox = New System.Windows.Forms.TextBox()
         Me.IPButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
@@ -147,7 +146,6 @@ Partial Class MainMenu
         Me.ConsoleTab.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        CType(Me.DonateButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GamesList
@@ -847,14 +845,6 @@ Partial Class MainMenu
         '
         Me.XmlConfigOpenFileDialog.RestoreDirectory = True
         '
-        'DonateButton
-        '
-        Me.DonateButton.BackgroundImage = Global.SteamCMD_GUI.My.Resources.Resources.PPDonateButton
-        resources.ApplyResources(Me.DonateButton, "DonateButton")
-        Me.DonateButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.DonateButton.Name = "DonateButton"
-        Me.DonateButton.TabStop = False
-        '
         'IPTextbox
         '
         Me.IPTextbox.Cursor = System.Windows.Forms.Cursors.IBeam
@@ -879,7 +869,6 @@ Partial Class MainMenu
         Me.Controls.Add(Me.IPTextbox)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.TabMenu)
-        Me.Controls.Add(Me.DonateButton)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.DonwloadBar)
@@ -911,7 +900,6 @@ Partial Class MainMenu
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.DonateButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1021,7 +1009,6 @@ Partial Class MainMenu
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CheckBoxConsole As System.Windows.Forms.CheckBox
     Friend WithEvents AddCustomGameButton As System.Windows.Forms.Button
-    Friend WithEvents DonateButton As System.Windows.Forms.PictureBox
     Friend WithEvents ConsoleIPPrint As System.Windows.Forms.Button
     Friend WithEvents IPTextbox As System.Windows.Forms.TextBox
     Friend WithEvents IPButton As System.Windows.Forms.Button

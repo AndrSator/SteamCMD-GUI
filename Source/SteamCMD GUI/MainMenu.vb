@@ -84,7 +84,6 @@ Public Class MainMenu
         ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
         ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
         ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
-        ToolTip1.SetToolTip(DonateButton, "Donate via PayPal")
         CantFindSteamCMDString = "Can't find the file 'steamcmd.exe'!"
     End Sub
 
@@ -110,7 +109,6 @@ Public Class MainMenu
             GroupBox3.Show()
             AboutButton.Show()
             ExitButton.Show()
-            DonateButton.Show()
             DonwloadBar.Show()
             TabMenu.Size = New Size(417, 303)
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
@@ -123,7 +121,6 @@ Public Class MainMenu
         GroupBox3.Hide()
         AboutButton.Hide()
         ExitButton.Hide()
-        DonateButton.Hide()
         DonwloadBar.Hide()
         TabMenu.Size = New Size(588, 303)
         ConsoleTab.Size = New Size(580, 277)
@@ -674,10 +671,6 @@ Public Class MainMenu
 
     Private Sub ExitButton_Click() Handles ExitButton.Click, ExitMenu.Click
         Close()
-    End Sub
-
-    Private Sub DonateButton_Click() Handles DonateButton.Click
-        Process.Start("https://www.paypal.me/DioJoestar")
     End Sub
 
     'Menu buttons

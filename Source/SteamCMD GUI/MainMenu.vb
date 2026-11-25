@@ -154,8 +154,7 @@ Public Class MainMenu
             Status.Text = "The file 'steamcmd.zip' has been downloaded. Please, unzip it."
             Status.BackColor = Color.FromArgb(240, 240, 240)
             DonwloadBar.Value = 0
-            My.Computer.Audio.PlaySystemSound( _
-              Media.SystemSounds.Exclamation)
+            'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
             SteamCMDDownloadButton.Enabled = True
         End If
     End Sub
@@ -305,8 +304,7 @@ Public Class MainMenu
                             If SteamAppID = "90" AndAlso GoldSrcMod = "" Then
                                 Status.Text = "Half-Life mod not defined. Installing a default one."
                                 Status.BackColor = Color.FromArgb(240, 200, 200)
-                                My.Computer.Audio.PlaySystemSound( _
-                                    Media.SystemSounds.Hand)
+                                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
                             Else
                                 Status.Text = "Installing/Updating..."
                                 Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -720,8 +718,7 @@ Public Class MainMenu
                 XmlWrt.Close()
                 Status.Text = Path.GetFileName(ConfigFile) & " file saved."
                 Status.BackColor = Color.FromArgb(240, 240, 240)
-                My.Computer.Audio.PlaySystemSound( _
-                  Media.SystemSounds.Exclamation)
+                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Exclamation)
             End If
         End If
     End Sub
@@ -872,8 +869,7 @@ Public Class MainMenu
             Else
                 Status.Text = "Seems that SourceMod isn't installed."
                 Status.BackColor = Color.FromArgb(240, 200, 200)
-                My.Computer.Audio.PlaySystemSound( _
-                    Media.SystemSounds.Hand)
+                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
             End If
         End If
     End Sub
@@ -925,8 +921,7 @@ Public Class MainMenu
                 End If
                 Status.Text = "SteamCMD closed."
                 Status.BackColor = Color.FromArgb(240, 200, 200)
-                My.Computer.Audio.PlaySystemSound( _
-                    Media.SystemSounds.Hand)
+                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
             End If
         Next proc
     End Sub

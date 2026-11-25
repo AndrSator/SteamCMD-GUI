@@ -37,6 +37,8 @@
 
 -	Fixed a crash at startup when the list of games had a repeated ID
 
+-	The sounds are only played when there is an error
+
 <br>
 
 ## 3.1.0.2

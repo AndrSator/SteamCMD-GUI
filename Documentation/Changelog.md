@@ -51,6 +51,8 @@
 
 -	Fixed that the RCON password was never sent to the server
 
+-	The Steam password can be left empty to use the session saved by SteamCMD, without typing the Steam Guard code again
+
 <br>
 
 ## 3.1.0.2

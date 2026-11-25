@@ -75,6 +75,7 @@ Public Class MainMenu
         ToolTip1.SetToolTip(OpenFolderButton, "Open current folder")
         ToolTip1.SetToolTip(CheckBoxMask, "Mask/Unmask RCON and login token")
         ToolTip1.SetToolTip(GsltTextBox, "Game Server Login Token: https://steamcommunity.com/dev/managegameservers")
+        ToolTip1.SetToolTip(PasswdTextBox, "Leave it empty to use the session saved by SteamCMD")
         ToolTip1.SetToolTip(RemoveGameButton, "Remove the selected game from the list")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
         ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
@@ -266,23 +267,16 @@ Public Class MainMenu
                 My.Computer.Audio.PlaySystemSound( _
                     Media.SystemSounds.Hand)
             Else
-                If AnonymousCheckBox.Checked = True Then
-                    Login = "anonymous"
-                Else
-                    Dim UserName As String
-                    Dim Passwd As String
-                    UserName = UsernameTextBox.Text
-                    Passwd = PasswdTextBox.Text
-                    Login = UserName & " " & Passwd
-                End If
+                Login = CommandLine.SteamLogin(AnonymousCheckBox.Checked, UsernameTextBox.Text, PasswdTextBox.Text)
                 If UsernameTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
                     Status.Text = "Please, type your Steam name."
                     Status.BackColor = Color.FromArgb(240, 200, 200)
                     My.Computer.Audio.PlaySystemSound( _
                         Media.SystemSounds.Hand)
                 Else
-                    If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False Then
-                        Status.Text = "Please, type your Steam password. You can install many games as 'anonymous'."
+                    ' SteamCMD can't ask for the password in the console of the GUI
+                    If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False AndAlso CheckBoxConsole.Checked Then
+                        Status.Text = "Please, type your Steam password, it's needed to use the console."
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)

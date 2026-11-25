@@ -120,6 +120,7 @@
     <Compile Include="SourceGames.vb" />
     <Compile Include="StartupOptions.vb" />
     <Compile Include="SteamCmdSettings.vb" />
+    <Compile Include="SteamLibrary.vb" />
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>

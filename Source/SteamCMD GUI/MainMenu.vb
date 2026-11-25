@@ -631,14 +631,17 @@ Public Class MainMenu
 
     ' Team Fortress 2 Classified uses the files of Team Fortress 2 (the game or its server)
     Private Function SelectTfPath() As Boolean
-        If TfPath IsNot Nothing AndAlso Directory.Exists(Path.Combine(TfPath, "tf")) Then Return True
+        If SteamLibrary.TeamFortress2In(TfPath) IsNot Nothing Then Return True
 
-        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of Team Fortress 2", FolderPicker.FirstExisting(TfPath, SrcdsExePath))
-        If folder IsNot Nothing AndAlso Directory.Exists(Path.Combine(folder, "tf")) Then
-            TfPath = folder
-            Return True
-        End If
-        Status.Text = "Can't find Team Fortress 2, it's needed to run Team Fortress 2 Classified."
+        TfPath = SteamLibrary.FindTeamFortress2(My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", Nothing))
+        If TfPath IsNot Nothing Then Return True
+
+        MessageBox.Show("Team Fortress 2 Classified needs the files of Team Fortress 2, the game or its dedicated server (Steam App ID 232250)." & vbCrLf & vbCrLf & "Select its folder, the one that has the folder 'tf' inside.", "Team Fortress 2 Classified")
+        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of Team Fortress 2", Nothing)
+        TfPath = SteamLibrary.TeamFortress2In(folder)
+        If TfPath IsNot Nothing Then Return True
+
+        Status.Text = If(folder = "", "Team Fortress 2 Classified needs the folder of Team Fortress 2.", "Team Fortress 2 isn't in '" & folder & "'.")
         Status.BackColor = Color.FromArgb(240, 200, 200)
         My.Computer.Audio.PlaySystemSound( _
             Media.SystemSounds.Hand)

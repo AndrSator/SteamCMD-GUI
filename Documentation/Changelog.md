@@ -65,6 +65,8 @@
 
 -	The Settings and Logs folders are always next to the program
 
+-	Team Fortress 2 is searched in the Steam libraries to run Team Fortress 2 Classified
+
 <br>
 
 ## 3.1.0.2

@@ -3,20 +3,14 @@
         CommandsTextbox.Text = AdditionalCommands
     End Sub
 
-    ' Disable close button
-    Private Const DisableClose As Integer = &H200
-    Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
-        Get
-            Dim myCp As CreateParams = MyBase.CreateParams
-            myCp.ClassStyle = myCp.ClassStyle Or DisableClose
-            Return myCp
-        End Get
-    End Property
-
-    Private Sub Test(sender As Object, e As Windows.Forms.KeyPressEventArgs) Handles CommandsTextbox.KeyPress
+    Private Sub CommandsTextbox_TextChanged() Handles CommandsTextbox.TextChanged
         AdditionalCommands = CommandsTextbox.Text
-        ' Close if press Enter
-        If e.KeyChar = ChrW(Keys.Enter) Then
+    End Sub
+
+    Private Sub CommandsTextbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CommandsTextbox.KeyPress
+        ' Close if press Enter or Escape
+        If e.KeyChar = ChrW(Keys.Enter) OrElse e.KeyChar = ChrW(Keys.Escape) Then
+            e.Handled = True
             Close()
         End If
     End Sub

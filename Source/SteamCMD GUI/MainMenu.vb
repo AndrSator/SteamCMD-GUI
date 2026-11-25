@@ -8,7 +8,7 @@ Imports System.Text
 Module Module1
     Public SteamCMDExePath, SteamAppID, Login, ServerPathInstallation, ValidateApp, GoldSrcMod, Program, Game, PathForLog As String
     ' Run Server
-    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters, TfPath As String
+    Public SrcdsExePath, GameMod, ServerName, ServerMap, NetworkType, MaxPlayers, RCON, UDPPort, DebugMode, SourceTV, ConsoleMode, InsecureMode, NoBots, DevMode, AdditionalCommands, Parameters As String
     Public GameServer As ServerType
     ' Strings
     Public CantFindSteamCMDString As String
@@ -22,7 +22,7 @@ Public Class MainMenu
     Dim LocalHost As String = Dns.GetHostName
     Dim IPs As IPHostEntry = Dns.GetHostEntry(LocalHost)
     Dim PublicIP As String
-    Dim Tf2Install, RunTfPath As String
+    Dim Tf2Install As String
 
     Private Const GamesListFile As String = "Settings/SteamCMDGames.xml"
     Private Const SteamCmdSettingsFile As String = "Settings/SteamCMDPath.xml"
@@ -342,8 +342,8 @@ Public Class MainMenu
     Private Function InstallTf2() As String
         If SteamAppID <> "3557020" Then Return ""
 
-        Dim folder As String = Path.Combine(ServerPath.Text, SteamLibrary.Tf2Subfolder)
-        If SteamLibrary.TeamFortress2In(folder) Is Nothing AndAlso MessageBox.Show("Team Fortress 2 Classified needs the dedicated server of Team Fortress 2 (about 14 GB)." & vbCrLf & vbCrLf & "Do you want to install it too in '" & folder & "'?", "Team Fortress 2 Classified", MessageBoxButtons.YesNo) = DialogResult.No Then
+        Dim folder As String = SourceGames.Tf2FolderOf(ServerPath.Text)
+        If SourceGames.TeamFortress2In(folder) Is Nothing AndAlso MessageBox.Show("Team Fortress 2 Classified needs the dedicated server of Team Fortress 2 (about 14 GB)." & vbCrLf & vbCrLf & "Do you want to install it too in '" & folder & "'?", "Team Fortress 2 Classified", MessageBoxButtons.YesNo) = DialogResult.No Then
             Return ""
         End If
         Return CommandLine.AlsoInstall(CommandLine.QuotePath(folder), "232250", ValidateApp)
@@ -597,7 +597,7 @@ Public Class MainMenu
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)
-                    ElseIf GameServer <> ServerType.Classified OrElse SelectTfPath() Then
+                    ElseIf GameServer <> ServerType.Classified OrElse SetTfPath() Then
                         Parameters = DebugMode & SourceTV & ConsoleMode & InsecureMode & NoBots & DevMode
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
@@ -629,7 +629,6 @@ Public Class MainMenu
             .Server = GameServer
             .Switches = Parameters
             .Folder = GameMod
-            .TfPath = RunTfPath
             .Port = UDPPort
             .HostName = ServerName
             .Map = ServerMap
@@ -642,29 +641,31 @@ Public Class MainMenu
         Return Options
     End Function
 
-    ' Team Fortress 2 Classified uses the files of Team Fortress 2 (the game or its server)
-    Private Function SelectTfPath() As Boolean
-        ' It can also be another one, set in the additional parameters
+    ' Team Fortress 2 Classified uses the files of Team Fortress 2. Their folder is set in the additional parameters
+    Private Function SetTfPath() As Boolean
         If CommandLine.HasParameter(AdditionalCommands, "-tf_path") Then Return True
 
-        RunTfPath = SteamLibrary.TeamFortress2For(SrcdsExePathTextBox.Text, TfPath, My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", Nothing))
-        If RunTfPath IsNot Nothing Then Return True
-
-        MessageBox.Show("Team Fortress 2 Classified needs the files of Team Fortress 2, the game or its dedicated server." & vbCrLf & vbCrLf & "The server can be installed with Team Fortress 2 Classified in the Update/Install tab. If you already have it, select its folder, the one that has the folder 'tf' inside.", "Team Fortress 2 Classified")
-        Dim folder As String = FolderPicker.Show(Handle, "Select the folder of Team Fortress 2", Nothing)
-        RunTfPath = SteamLibrary.TeamFortress2In(folder)
-        If RunTfPath IsNot Nothing Then
-            ' Only the folder selected by the user is saved in the config
-            TfPath = RunTfPath
-            Return True
+        Dim folder As String = SourceGames.TeamFortress2In(SourceGames.Tf2FolderOf(SrcdsExePathTextBox.Text))
+        If folder Is Nothing Then
+            MessageBox.Show("Team Fortress 2 Classified needs the files of Team Fortress 2. Its dedicated server can be installed with Team Fortress 2 Classified in the Update/Install tab." & vbCrLf & vbCrLf & "If you already have it, select its folder. It will be added to the Custom Commands, where it can be changed. Don't use the folder of the game if you want to play while the server is running.", "Team Fortress 2 Classified")
+            Dim selected As String = FolderPicker.Show(Handle, "Select the folder of the Team Fortress 2 server", Nothing)
+            folder = SourceGames.TeamFortress2In(selected)
+            If folder Is Nothing Then
+                Status.Text = If(selected = "", "Team Fortress 2 Classified needs the folder of Team Fortress 2.", "Team Fortress 2 isn't in '" & selected & "'.")
+                Status.BackColor = Color.FromArgb(240, 200, 200)
+                My.Computer.Audio.PlaySystemSound( _
+                    Media.SystemSounds.Hand)
+                Return False
+            End If
         End If
-
-        Status.Text = If(folder = "", "Team Fortress 2 Classified needs the folder of Team Fortress 2.", "Team Fortress 2 isn't in '" & folder & "'.")
-        Status.BackColor = Color.FromArgb(240, 200, 200)
-        My.Computer.Audio.PlaySystemSound( _
-            Media.SystemSounds.Hand)
-        Return False
+        SetAdditionalCommands(CommandLine.AddPath(AdditionalCommands, "-tf_path", folder))
+        Return True
     End Function
+
+    Private Sub SetAdditionalCommands(ByVal Commands As String)
+        AdditionalCommands = Commands
+        If CommandLineOptionsWindow.Visible Then CommandLineOptionsWindow.CommandsTextbox.Text = Commands
+    End Sub
 
     ' Tools buttons
     Private Sub VDCButton_Click() Handles VDCButton.Click
@@ -713,7 +714,6 @@ Public Class MainMenu
                 Dim Config As New ServerConfig()
                 With Config
                     .Path = SrcdsExePath
-                    .Tf2Path = TfPath
                     .HostName = ServerName
                     If ModList.Enabled Then
                         .GameName = ModList.Text
@@ -806,8 +806,7 @@ Public Class MainMenu
         End If
         ' These are not saved when they are empty, so the ones of the previous config have to be removed
         GsltTextBox.Text = Config.Gslt
-        AdditionalCommands = Config.AdditionalCommands
-        TfPath = Config.Tf2Path
+        SetAdditionalCommands(Config.AdditionalCommands)
 
         TabMenu.SelectedTab = RunTab
         GroupBox1.Show()

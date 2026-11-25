@@ -49,6 +49,21 @@ Friend Module SourceGames
         Return servers.Any(Function(s) File.Exists(Path.Combine(folder, Executable(s))))
     End Function
 
+    ' Folder of Team Fortress 2 if that folder is it, or the 'tf' one inside it
+    Public Function TeamFortress2In(folder As String) As String
+        If String.IsNullOrEmpty(folder) Then Return Nothing
+        If File.Exists(Path.Combine(folder, "tf\gameinfo.txt")) Then Return folder
+        If String.Equals(Path.GetFileName(folder), "tf", StringComparison.OrdinalIgnoreCase) AndAlso File.Exists(Path.Combine(folder, "gameinfo.txt")) Then
+            Return Path.GetDirectoryName(folder)
+        End If
+        Return Nothing
+    End Function
+
+    ' Where the server of Team Fortress 2 is installed with the one of Team Fortress 2 Classified
+    Public Function Tf2FolderOf(serverFolder As String) As String
+        Return Path.Combine(serverFolder, "tf2")
+    End Function
+
     Public Function Maps(folder As String, server As ServerType) As List(Of String)
         Dim pattern As String = If(server = ServerType.Source2, "*.vpk", "*.bsp")
         Dim names As IEnumerable(Of String) = Directory.GetFiles(folder, pattern).Select(Function(f) Path.GetFileNameWithoutExtension(f))

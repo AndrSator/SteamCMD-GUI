@@ -6,7 +6,6 @@ Imports System.Xml
 Friend Class ServerConfig
     Public SteamCmdPath As String
     Public Path As String
-    Public Tf2Path As String
     Public HostName As String
     Public GameName As String
     Public CustomMod As String
@@ -27,7 +26,6 @@ Friend Class ServerConfig
         Dim c As New ServerConfig()
         c.SteamCmdPath = value("SteamCMD")
         c.Path = value("Path")
-        c.Tf2Path = value("TF2Path")
         c.HostName = value("HostName")
         c.GameName = value("Mod")
         c.CustomMod = value("CustomMod")
@@ -50,7 +48,6 @@ Friend Class ServerConfig
             xml.WriteStartElement("Config")
             xml.WriteStartElement("Srcds-Config")
             xml.WriteElementString("Path", Path)
-            If Not String.IsNullOrEmpty(Tf2Path) Then xml.WriteElementString("TF2Path", Tf2Path)
             xml.WriteEndElement()
             xml.WriteStartElement("Server-Config")
             xml.WriteElementString("HostName", HostName)

@@ -34,6 +34,12 @@ Friend Module CommandLine
         Return line IsNot Nothing AndAlso Regex.IsMatch(line, "(^|\s)" & Regex.Escape(parameter) & "(\s|$)", RegexOptions.IgnoreCase)
     End Function
 
+    ' Doesn't replace the parameter if it's already there
+    Public Function AddPath(line As String, parameter As String, path As String) As String
+        If HasParameter(line, parameter) Then Return line
+        Return (parameter & " " & QuotePath(path) & " " & line).Trim()
+    End Function
+
     Public Function ForServer(o As ServerOptions) As String
         Dim switches As String = o.Switches
         Dim settings As String = " +hostname " & Chr(34) & o.HostName & Chr(34)
@@ -48,10 +54,8 @@ Friend Module CommandLine
         If o.Server = ServerType.Source2 Then
             Return "-dedicated " & switches & "-port " & o.Port & " -maxplayers " & o.MaxPlayers & settings & " +map " & o.Map & " +sv_lan " & o.Lan & " " & o.Additional
         End If
-        Dim game As String = "-game " & o.Folder & " "
-        If o.Server = ServerType.Classified Then
-            game = If(HasParameter(o.Additional, "-tf_path"), "", "-tf_path " & QuotePath(o.TfPath) & " ")
-        End If
+        ' Team Fortress 2 Classified needs -tf_path instead, it's in the additional parameters
+        Dim game As String = If(o.Server = ServerType.Classified, "", "-game " & o.Folder & " ")
         Return switches & game & "-port " & o.Port & settings & " +map " & o.Map & " +maxplayers " & o.MaxPlayers & " +sv_lan " & o.Lan & " " & o.Additional
     End Function
 End Module
@@ -60,7 +64,6 @@ Friend Class ServerOptions
     Public Server As ServerType
     Public Switches As String ' -console -insecure...
     Public Folder As String
-    Public TfPath As String
     Public Port As String
     Public HostName As String
     Public Map As String

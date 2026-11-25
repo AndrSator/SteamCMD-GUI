@@ -1552,12 +1552,15 @@
     <value>Half-Life 2: Deathmatch</value>
   </data>
   <data name="ModList.Items8" xml:space="preserve">
-    <value>Left 4 Dead</value>
+    <value>Insurgency</value>
   </data>
   <data name="ModList.Items9" xml:space="preserve">
-    <value>Left 4 Dead 2</value>
+    <value>Left 4 Dead</value>
   </data>
   <data name="ModList.Items10" xml:space="preserve">
+    <value>Left 4 Dead 2</value>
+  </data>
+  <data name="ModList.Items11" xml:space="preserve">
     <value>Team Fortress 2</value>
   </data>
   <data name="ModList.Location" type="System.Drawing.Point, System.Drawing">

@@ -22,6 +22,8 @@ Public Class MainMenu
     Dim IPs As IPHostEntry = Dns.GetHostEntry(LocalHost)
     Dim PublicIP As String
 
+    Private Const GamesListFile As String = "Settings/SteamCMDGames.xml"
+
     Private Declare Function GetInputState Lib "user32" () As Int32
 
     Private Sub Form1_Load() Handles MyBase.Load
@@ -61,11 +63,7 @@ Public Class MainMenu
             End While
             XmlConfig.Close()
         End If
-        If File.Exists("Settings/SteamCMDGames.xml") Then
-            LoadGamesList()
-        Else
-            InitializeDefaultGamesList()
-        End If
+        GameDictionary = GameCatalog.LoadOrCreate(GamesListFile)
         GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
         GamesList.DisplayMember = "Value"
         GamesList.ValueMember = "Key"
@@ -421,36 +419,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub ModList_SelectedIndex() Handles ModList.SelectedIndexChanged, ModList.EnabledChanged
-        If ModList.Text = "Alien Swarm" Then
-            GameMod = "alienswarm"
-        End If
-        If ModList.Text = "Counter-Strike: Global Offensive" Then
-            GameMod = "csgo"
-        End If
-        If ModList.Text = "Counter-Strike: Source" Then
-            GameMod = "cstrike"
-        End If
-        If ModList.Text = "Day of Defeat: Source" Then
-            GameMod = "dod"
-        End If
-        If ModList.Text = "Dota 2" Then
-            GameMod = "dota"
-        End If
-        If ModList.Text = "Garry's Mod" Then
-            GameMod = "garrysmod"
-        End If
-        If ModList.Text = "Half-Life 2: Deathmatch" Then
-            GameMod = "hl2mp"
-        End If
-        If ModList.Text = "Left 4 Dead" Then
-            GameMod = "left4dead"
-        End If
-        If ModList.Text = "Left 4 Dead 2" Then
-            GameMod = "left4dead2"
-        End If
-        If ModList.Text = "Team Fortress 2" Then
-            GameMod = "tf"
-        End If
+        GameMod = SourceGames.FolderOf(ModList.Text)
         Status.Text = "Game/Mod to run: " & ModList.Text & " - Game parameter: " & GameMod
         Status.BackColor = Color.FromArgb(240, 240, 240)
     End Sub
@@ -1016,68 +985,11 @@ Public Class MainMenu
 
         GameDictionary.Add(ID, Name)
         'GamesList.DataSource.ResetBindings(False)
-        WriteOutDictionaryAsXml(GameDictionary)
+        GameCatalog.Save(GamesListFile, GameDictionary)
         GamesList.DataSource = New BindingSource(GameDictionary, Nothing)
 
         GamesList.SelectedIndex = GamesList.FindStringExact(Name)
 
-    End Sub
-
-    Private Sub LoadGamesList()
-        Dim XmlDoc As XmlReader = New XmlTextReader("Settings/SteamCMDGames.xml")
-        'XmlDoc.ReadToFollowing("Games")
-        While (XmlDoc.Read())
-            Dim type = XmlDoc.NodeType
-            If (type = XmlNodeType.Element) Then
-                If (XmlDoc.Name = "Game") Then
-                    XmlDoc.MoveToAttribute("id")
-                    Dim ID As String = XmlDoc.Value
-                    XmlDoc.Read() 'move pointer to next node part
-                    If (XmlDoc.NodeType = XmlNodeType.Text) Then
-                        Dim Name As String = XmlDoc.Value
-                        GameDictionary.Add(ID, Name)
-                    End If
-                End If
-            End If
-
-        End While
-        XmlDoc.Close()
-    End Sub
-
-    Private Sub InitializeDefaultGamesList()
-        GameDictionary.Add("635", "Alien Swarm")
-        GameDictionary.Add("740", "Counter-Strike: Global Offensive")
-        GameDictionary.Add("232330", "Counter-Strike: Source")
-        GameDictionary.Add("232290", "Day of Defeat: Source")
-        GameDictionary.Add("570", "Dota 2")
-        GameDictionary.Add("4020", "Garry's Mod")
-        GameDictionary.Add("90", "Half-Life Dedicated Server")
-        GameDictionary.Add("232370", "Half-Life 2: Deathmatch")
-        GameDictionary.Add("510", "Left 4 Dead")
-        GameDictionary.Add("222860", "Left 4 Dead 2")
-        GameDictionary.Add("232250", "Team Fortress 2")
-        WriteOutDictionaryAsXml(GameDictionary)
-    End Sub
-
-    Private Sub WriteOutDictionaryAsXml(ByVal dict As Dictionary(Of String, String))
-        Dim XmlSettings As XmlWriterSettings = New XmlWriterSettings()
-        XmlSettings.Indent = True
-        Dim XmlWrt As XmlWriter = XmlWriter.Create("Settings/SteamCMDGames.xml", XmlSettings)
-
-        XmlWrt.WriteStartDocument()
-        XmlWrt.WriteComment("Custom Games Config used by SteamCMD GUI")
-        XmlWrt.WriteComment("This config is loaded automatically.")
-        XmlWrt.WriteStartElement("SteamCMD-Games")
-
-        For Each kvp As KeyValuePair(Of String, String) In dict
-            XmlWrt.WriteStartElement("Game")
-            XmlWrt.WriteAttributeString("id", kvp.Key)
-            XmlWrt.WriteString(kvp.Value)
-            XmlWrt.WriteEndElement()
-        Next
-        XmlWrt.WriteEndElement()
-        XmlWrt.WriteEndDocument()
-        XmlWrt.Close()
     End Sub
 
     Private Sub IPButton_Click() Handles IPButton.Click

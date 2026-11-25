@@ -21,6 +21,8 @@
 
 -	Fixed the text of the Browse buttons ~ By jnorgan @ GitHub
 
+-	Added Insurgency to the game lists
+
 <br>
 
 ## 3.1.0.2

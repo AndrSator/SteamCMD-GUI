@@ -15,3 +15,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+
+# Reference assemblies cache and release packages created by build.ps1
+/.tools/
+/dist/

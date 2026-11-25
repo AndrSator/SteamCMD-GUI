@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Config used by SteamCMD GUI-->
+<Config>
+  <Srcds-Config>
+    <Path>C:\Server\Path</Path>
+  </Srcds-Config>
+  <Server-Config>
+    <Mod>Counter-Strike: Global Offensive</Mod>
+    <HostName>Source Dedicated Server</HostName>
+    <Map>de_aztec</Map>
+    <Network>0</Network>
+    <Players>24</Players>
+    <RCON>passwd</RCON>
+    <Port>27015</Port>
+  </Server-Config>
+</Config>

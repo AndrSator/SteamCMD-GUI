@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "type": "process",
+    "command": "powershell",
+    "presentation": { "clear": true },
+    "problemMatcher": "$msCompile",
+    "tasks": [
+        {
+            "label": "Build (Debug)",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build.ps1", "Build"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "Build (Release)",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build.ps1", "Build", "-Configuration", "Release"],
+            "group": "build"
+        },
+        {
+            "label": "Run",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build.ps1", "Run"]
+        },
+        {
+            "label": "Package release",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build.ps1", "Package"]
+        }
+    ]
+}

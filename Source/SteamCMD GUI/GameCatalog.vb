@@ -5,8 +5,8 @@ Imports System.Xml
 
 ' Games of the Update/Install tab (Settings/SteamCMDGames.xml)
 Friend Module GameCatalog
-    ' Games added to the defaults after this version also reach the lists already saved by the users
-    Private Const CurrentVersion As Integer = 2
+    ' Has to be increased each time that games are added, so they also reach the lists already saved by the users
+    Private Const CurrentVersion As Integer = 3
 
     Public Function LoadOrCreate(path As String) As Dictionary(Of String, String)
         Dim games As New Dictionary(Of String, String)
@@ -30,7 +30,7 @@ Friend Module GameCatalog
         End If
 
         If version < CurrentVersion Then
-            ReplaceId(games, "510", "222840", "Left 4 Dead")
+            If version < 2 Then ReplaceId(games, "510", "222840", "Left 4 Dead")
             AddDefaults(games, version)
             Try
                 Save(path, games)
@@ -51,7 +51,7 @@ Friend Module GameCatalog
 
         add(1, "635", "Alien Swarm")
         add(1, "740", "Counter-Strike: Global Offensive")
-        add(2, "730", "Counter-Strike 2")
+        add(3, "730", "Counter-Strike 2")
         add(1, "232330", "Counter-Strike: Source")
         add(1, "232290", "Day of Defeat: Source")
         add(1, "570", "Dota 2")
@@ -63,7 +63,7 @@ Friend Module GameCatalog
         add(1, "222840", "Left 4 Dead")
         add(1, "222860", "Left 4 Dead 2")
         add(1, "232250", "Team Fortress 2")
-        add(2, "3557020", "Team Fortress 2 Classified")
+        add(3, "3557020", "Team Fortress 2 Classified")
     End Sub
 
     ' Entries renamed by the user are left untouched

@@ -12,6 +12,10 @@ Partial Public Class MainMenu
     Private ServerPort As Integer
     Private SteamCmdInput As Boolean
     Private ReadOnly SentCommands As New List(Of String)
+    ' What the server writes (with RCON, its answers), kept while the console of SteamCMD is shown
+    Private ReadOnly ServerTerminal As New TerminalBuffer(ConsoleColumns, ConsoleRows, ConsoleHistory, Function(previous, line) False)
+    Private CurrentView As ConsoleView
+    Private ShownTerminal As TerminalBuffer
     Private SentIndex As Integer
 
     Private ReadOnly Property ServerSelected As Boolean
@@ -39,7 +43,9 @@ Partial Public Class MainMenu
     End Sub
 
     Private Sub ToggleServerConnection()
-        If ServerSession IsNot Nothing Then
+        If ServerConsoleIsRunning Then
+            StopServerInConsole(True)
+        ElseIf ServerSession IsNot Nothing Then
             DisconnectFromServer()
             ShowServerMessage("Disconnected from the server.", False)
         ElseIf String.IsNullOrEmpty(RCON) Then
@@ -101,22 +107,45 @@ Partial Public Class MainMenu
 
     Private Sub WriteServerText(text As String)
         Dim lines As String = text.TrimEnd()
-        If lines = "" Then Return ' SelectedText = "" beeps in a read-only box
-        ConsoleOutput.AppendText(If(ConsoleOutput.TextLength > 0, vbLf, "") & lines)
-        ConsoleOutput.SelectionStart = ConsoleOutput.TextLength
-        ConsoleOutput.ScrollToCaret()
+        If lines = "" Then Return
+        ServerTerminal.Feed(lines.Replace(vbCrLf, vbLf).Replace(vbLf, vbCrLf) & vbCrLf)
+        RenderConsole(ServerTerminal)
+    End Sub
+
+    ' The console chosen in ConsoleCommandList, each one keeps its lines while the other one is shown
+    Private Sub ShowConsole()
+        ShownTerminal = If(ServerSelected, ServerTerminal, SteamTerminal)
+        If ShownTerminal Is Nothing Then
+            CurrentView = Nothing
+            ConsoleOutput.Clear()
+        Else
+            CurrentView = New ConsoleView(ConsoleOutput, ShownTerminal)
+            CurrentView.Render()
+        End If
+    End Sub
+
+    Private Sub RenderConsole(terminal As TerminalBuffer)
+        If terminal Is ShownTerminal AndAlso CurrentView IsNot Nothing Then CurrentView.Render()
+    End Sub
+
+    ' Clear button: only the console that is shown
+    Private Sub ClearConsole()
+        If ShownTerminal IsNot Nothing Then ShownTerminal.Clear()
+        ShowConsole()
     End Sub
 
     Private Sub RefreshConsole()
-        Dim canWrite As Boolean = If(ServerSelected, ServerState = RconState.Connected, SteamCmdInput)
+        Dim canWrite As Boolean = If(ServerSelected, ServerConsoleIsRunning OrElse ServerState = RconState.Connected, SteamCmdInput)
         ConsoleInput.Enabled = canWrite
         ConsoleButton.Enabled = canWrite
         ConsoleConnect.Enabled = ServerSelected OrElse SteamCmdInput
-        ToolTip1.SetToolTip(ConsoleConnect, If(Not ServerSelected, "Stop SteamCMD", If(ServerSession Is Nothing, "Connect to server", "Disconnect from server")))
+        ToolTip1.SetToolTip(ConsoleConnect, If(Not ServerSelected, "Stop SteamCMD", If(ServerConsoleIsRunning, "Stop the server", If(ServerSession Is Nothing, "Connect to server", "Disconnect from server"))))
     End Sub
 
     Private Sub ConsoleCommandList_SelectedIndexChanged() Handles ConsoleCommandList.SelectedIndexChanged
         ConsoleInput.Clear() ' What was typed for one isn't for the other
+        MaskConsoleInput(Not ServerSelected AndAlso SteamSession IsNot Nothing AndAlso SteamState.Prompt = SteamCmdPrompt.Password)
+        ShowConsole()
         RefreshConsole()
     End Sub
 
@@ -124,8 +153,8 @@ Partial Public Class MainMenu
     Private Function SendToServer() As Boolean
         If Not ServerSelected Then Return False
         Dim command As String = ConsoleInput.Text.Trim()
-        If command <> "" AndAlso ServerState = RconState.Connected Then
-            ServerSession.Send(command)
+        If command <> "" AndAlso (ServerConsoleIsRunning OrElse ServerState = RconState.Connected) Then
+            If ServerConsoleIsRunning Then ServerConsole.WriteLine(command) Else ServerSession.Send(command)
             If SentCommands.LastOrDefault() <> command Then SentCommands.Add(command)
             SentIndex = SentCommands.Count
             ConsoleInput.Clear()

@@ -77,6 +77,7 @@ Partial Class MainMenu
         Me.RconTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.GsltLabel = New System.Windows.Forms.Label()
         Me.GsltTextBox = New System.Windows.Forms.TextBox()
+        Me.ServerInConsoleCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.NetworkComboBox = New System.Windows.Forms.ComboBox()
@@ -441,6 +442,7 @@ Partial Class MainMenu
         Me.GroupBox6.Controls.Add(Me.Label5)
         Me.GroupBox6.Controls.Add(Me.GsltLabel)
         Me.GroupBox6.Controls.Add(Me.GsltTextBox)
+        Me.GroupBox6.Controls.Add(Me.ServerInConsoleCheckBox)
         resources.ApplyResources(Me.GroupBox6, "GroupBox6")
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.TabStop = False
@@ -534,6 +536,12 @@ Partial Class MainMenu
         resources.ApplyResources(Me.GsltTextBox, "GsltTextBox")
         Me.GsltTextBox.Name = "GsltTextBox"
         Me.GsltTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        '
+        'ServerInConsoleCheckBox
+        '
+        resources.ApplyResources(Me.ServerInConsoleCheckBox, "ServerInConsoleCheckBox")
+        Me.ServerInConsoleCheckBox.Name = "ServerInConsoleCheckBox"
+        Me.ServerInConsoleCheckBox.UseVisualStyleBackColor = True
         '
         'Label11
         '
@@ -980,6 +988,7 @@ Partial Class MainMenu
     Friend WithEvents RconTextBox As System.Windows.Forms.MaskedTextBox
     Friend WithEvents GsltLabel As System.Windows.Forms.Label
     Friend WithEvents GsltTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ServerInConsoleCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents UDPPortTexBox As System.Windows.Forms.NumericUpDown
     Friend WithEvents CheckBoxMask As System.Windows.Forms.CheckBox

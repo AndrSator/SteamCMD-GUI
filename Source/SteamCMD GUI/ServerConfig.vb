@@ -16,6 +16,7 @@ Friend Class ServerConfig
     Public Gslt As String
     Public Port As String
     Public AdditionalCommands As String
+    Public UseConsole As Boolean
 
     ' Throws XmlException if it isn't a config file. The missing values are Nothing
     Public Shared Function Load(file As String) As ServerConfig
@@ -36,6 +37,7 @@ Friend Class ServerConfig
         c.Gslt = value("GSLT")
         c.Port = value("Port")
         c.AdditionalCommands = value("AdditionalCommands")
+        c.UseConsole = value("UseConsole") = "True"
         Return c
     End Function
 
@@ -63,6 +65,7 @@ Friend Class ServerConfig
             If Not String.IsNullOrEmpty(Gslt) Then xml.WriteElementString("GSLT", Gslt)
             xml.WriteElementString("Port", Port)
             If Not String.IsNullOrEmpty(AdditionalCommands) Then xml.WriteElementString("AdditionalCommands", AdditionalCommands)
+            If UseConsole Then xml.WriteElementString("UseConsole", "True")
             xml.WriteEndDocument()
         End Using
     End Sub

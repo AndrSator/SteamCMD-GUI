@@ -78,6 +78,7 @@ Public Class MainMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 
+        ShowHiddenServer()
         If ConfigFile IsNot Nothing Then LoadServerConfig(ConfigFile)
     End Sub
 
@@ -102,8 +103,8 @@ Public Class MainMenu
     End Sub
 
     ' Autosave log
-    Private Sub SaveLog()
-        Dim ConsoleContent As String = DateTime.Now & " from " & Program & vbCrLf & "______________________" & vbCrLf & Game & vbCrLf & PathForLog & vbCrLf & "______________________" & vbCrLf & ConsoleOutput.Text
+    Private Sub SaveLog(Optional ByVal Content As String = Nothing)
+        Dim ConsoleContent As String = DateTime.Now & " from " & Program & vbCrLf & "______________________" & vbCrLf & Game & vbCrLf & PathForLog & vbCrLf & "______________________" & vbCrLf & If(Content, ConsoleOutput.Text)
 
         Dim LogFileName As String = Program & " Log-" & DateTime.Now.ToString("dd.MM.yyyy") & " @ " & DateTime.Now.ToString("HH;mm")
         File.WriteAllText("Logs\" & LogFileName & ".txt", ConsoleContent)
@@ -421,6 +422,7 @@ Public Class MainMenu
             BotsCheckBox.Enabled = True
             DevModeCheckBox.Enabled = True
         End If
+        RefreshConsoleMode()
     End Sub
 
     Private Sub ServerNameTextBox_TextChanged() Handles ServerNameTextBox.TextChanged
@@ -555,17 +557,21 @@ Public Class MainMenu
                         Status.Text = "Running server..."
                         Status.BackColor = Color.FromArgb(240, 240, 240)
 
-                        Dim p As New Process
-                        With (p.StartInfo)
-                            .FileName = ServerExe
-                            .WorkingDirectory = Path.GetDirectoryName(ServerExe)
-                            .UseShellExecute = False
-                            .CreateNoWindow = False
-                            .Arguments = CommandLine.ForServer(CurrentServerOptions())
-                        End With
+                        If ServerInConsoleCheckBox.Checked Then
+                            RunServerInConsole(ServerExe, CommandLine.ForServer(CurrentServerOptions()), Path.GetDirectoryName(ServerExe))
+                        Else
+                            Dim p As New Process
+                            With (p.StartInfo)
+                                .FileName = ServerExe
+                                .WorkingDirectory = Path.GetDirectoryName(ServerExe)
+                                ' Its own console, also while the program is attached to the one of a server
+                                .UseShellExecute = True
+                                .Arguments = CommandLine.ForServer(CurrentServerOptions())
+                            End With
 
-                        p.Start()
-                        ServerStarted(p)
+                            p.Start()
+                            ServerStarted(p)
+                        End If
                     End If
                 End If
             End If
@@ -590,6 +596,7 @@ Public Class MainMenu
             .Lan = NetworkComboBox.SelectedIndex
             .Rcon = RCON
             .Gslt = GsltTextBox.Text
+            .InConsole = ServerInConsoleCheckBox.Checked
             .Additional = AdditionalCommands
         End With
         Return Options
@@ -681,6 +688,7 @@ Public Class MainMenu
                     .Gslt = GsltTextBox.Text
                     .Port = UDPPort
                     .AdditionalCommands = AdditionalCommands
+                    .UseConsole = ServerInConsoleCheckBox.Checked
                 End With
                 Try
                     Config.Save(SaveFileDialog1.FileName)
@@ -752,6 +760,7 @@ Public Class MainMenu
         ' These are not saved when they are empty, so the ones of the previous config have to be removed
         GsltTextBox.Text = Config.Gslt
         SetAdditionalCommands(Config.AdditionalCommands)
+        ServerInConsoleCheckBox.Checked = Config.UseConsole
 
         TabMenu.SelectedTab = RunTab
         GroupBox1.Show()
@@ -902,7 +911,7 @@ Public Class MainMenu
     Private Sub ConsoleClearLog_Click() Handles ConsoleClearLog.Click
         Dim result As Integer = MessageBox.Show("Really want to clear all the content?", "Clear console", MessageBoxButtons.YesNo)
         If result = DialogResult.Yes Then
-            ConsoleOutput.Clear()
+            ClearConsole()
             Status.Text = "The console has been cleaned."
         End If
     End Sub

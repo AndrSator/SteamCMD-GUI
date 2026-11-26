@@ -14,7 +14,6 @@ Partial Public Class MainMenu
     Private WithEvents ConsoleTimer As Timer
     Private SteamSession As PseudoConsoleProcess
     Private SteamTerminal As TerminalBuffer
-    Private SteamView As ConsoleView
     Private SteamState As SteamCmdStatus
     Private SteamMessage As String
     Private SteamStopped As Boolean
@@ -51,7 +50,8 @@ Partial Public Class MainMenu
         Dim p As New Process
         With (p.StartInfo)
             .FileName = SteamCMDExePath & "\steamcmd.exe"
-            .UseShellExecute = False
+            ' Its own console, also while the program is attached to the one of a server
+            .UseShellExecute = True
             .Arguments = arguments
         End With
         p.Start()
@@ -81,7 +81,6 @@ Partial Public Class MainMenu
         ConsoleTab_Click()
         TabMenu.SelectedTab = ConsoleTab
         SteamTerminal = terminal
-        SteamView = New ConsoleView(ConsoleOutput, terminal)
         SteamState = New SteamCmdStatus()
         SteamMessage = Nothing
         SteamStopped = False
@@ -91,6 +90,7 @@ Partial Public Class MainMenu
         PathForLog = "Server path: " & ServerPathInstallation
 
         SetSteamCmdInput(True)
+        ShowConsole()
         ConsoleInput.Select()
         If ConsoleTimer Is Nothing Then ConsoleTimer = New Timer(components)
         ConsoleTimer.Interval = ConsoleInterval
@@ -112,10 +112,10 @@ Partial Public Class MainMenu
         Dim scrolled As List(Of String) = SteamTerminal.Feed(text)
         Dim reply As String = SteamTerminal.TakeReply()
         If reply <> "" Then SteamSession.Write(reply)
-        SteamView.Render()
+        RenderConsole(SteamTerminal)
         SteamState.Read(SteamTerminal, scrolled)
         DonwloadBar.Value = SteamState.Percent
-        MaskConsoleInput(SteamState.Prompt = SteamCmdPrompt.Password)
+        MaskConsoleInput(Not ServerSelected AndAlso SteamState.Prompt = SteamCmdPrompt.Password)
 
         Dim message As String = SteamState.Result
         If SteamState.IsWorking Then message = If(SteamMessage Is Nothing, Nothing, "SteamCMD is working...")
@@ -169,7 +169,7 @@ Partial Public Class MainMenu
 
     Private Sub SaveStoppedLog()
         Try
-            SaveLog()
+            SaveLog(String.Join(vbCrLf, SteamTerminal.Lines().ToArray()))
         Catch ex As IOException
             ShowStatus("The log can't be saved: " & ex.Message, True)
         Catch ex As UnauthorizedAccessException

@@ -42,6 +42,8 @@ Friend Module CommandLine
 
     Public Function ForServer(o As ServerOptions) As String
         Dim switches As String = o.Switches
+        ' In the Console tab of the program it has to use its text console
+        If o.InConsole AndAlso Not HasParameter(switches, "-console") Then switches = "-console " & switches
         Dim settings As String = " +hostname " & Chr(34) & o.HostName & Chr(34)
         If Not String.IsNullOrEmpty(o.Rcon) Then
             ' The quotes can't be escaped, they would end the password
@@ -71,5 +73,6 @@ Friend Class ServerOptions
     Public Lan As Integer
     Public Rcon As String
     Public Gslt As String
+    Public InConsole As Boolean ' Run in the Console tab of the program
     Public Additional As String
 End Class

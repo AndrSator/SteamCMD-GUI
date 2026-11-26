@@ -96,6 +96,20 @@ Friend NotInheritable Class TerminalBuffer
         End Get
     End Property
 
+    ' Empties the history and the screen. The numbers of the lines keep growing.
+    Public Sub Clear()
+        DroppedCount += History.Count
+        History.Clear()
+        ScrolledCount += Row + 1
+        For Each line As StringBuilder In Screen
+            line.Length = 0
+        Next
+        Row = 0
+        Column = 0
+        SavedRow = 0
+        SavedColumn = 0
+    End Sub
+
     ' What has to be answered to the pseudoconsole, it can ask for the type of terminal and the position of the cursor
     Public Function TakeReply() As String
         Dim text As String = Reply.ToString()

@@ -81,6 +81,10 @@
 
 -	The console can send commands to the server with RCON, choosing Server in the list next to the text-box. It connects by itself when a server is run with a RCON password
 
+-	The server can run in the Console tab, with its output as it happens and its commands typed in the program, ticking In Console in the Run Server tab. When the program is closed, the server can be stopped or kept running in its own window
+
+-	Fixed that the log saved when SteamCMD was stopped could have the text of the other console
+
 <br>
 
 ## 3.1.0.2

@@ -1182,6 +1182,30 @@
   <data name="&gt;&gt;ConsoleCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="ServerInConsoleCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ServerInConsoleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 155</value>
+  </data>
+  <data name="ServerInConsoleCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="ServerInConsoleCheckBox.Text" xml:space="preserve">
+    <value>In Console</value>
+  </data>
+  <data name="&gt;&gt;ServerInConsoleCheckBox.Name" xml:space="preserve">
+    <value>ServerInConsoleCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ServerInConsoleCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ServerInConsoleCheckBox.Parent" xml:space="preserve">
+    <value>GroupBox6</value>
+  </data>
+  <data name="&gt;&gt;ServerInConsoleCheckBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
   <data name="BotsCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

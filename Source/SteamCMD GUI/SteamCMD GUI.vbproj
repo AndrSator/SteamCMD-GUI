@@ -79,6 +79,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="AttachedConsole.vb" />
     <Compile Include="CommandLine.vb" />
     <Compile Include="CommandsWindow.Designer.vb">
       <DependentUpon>CommandsWindow.vb</DependentUpon>
@@ -90,6 +92,9 @@
     <Compile Include="FolderPicker.vb" />
     <Compile Include="GameCatalog.vb" />
     <Compile Include="MainMenu.Rcon.vb">
+      <DependentUpon>MainMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.Server.vb">
       <DependentUpon>MainMenu.vb</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.vb">

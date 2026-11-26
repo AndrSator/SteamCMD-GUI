@@ -79,6 +79,8 @@
 
 -	The Stop button of the console only stops the SteamCMD started by the program
 
+-	The console can send commands to the server with RCON, choosing Server in the list next to the text-box. It connects by itself when a server is run with a RCON password
+
 <br>
 
 ## 3.1.0.2

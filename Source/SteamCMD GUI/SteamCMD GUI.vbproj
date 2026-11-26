@@ -89,6 +89,9 @@
     <Compile Include="ConsoleView.vb" />
     <Compile Include="FolderPicker.vb" />
     <Compile Include="GameCatalog.vb" />
+    <Compile Include="MainMenu.Rcon.vb">
+      <DependentUpon>MainMenu.vb</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +125,7 @@
     </Compile>
     <Compile Include="PseudoConsoleProcess.vb" />
     <Compile Include="ServerConfig.vb" />
+    <Compile Include="RconClient.vb" />
     <Compile Include="SourceGames.vb" />
     <Compile Include="StartupOptions.vb" />
     <Compile Include="SteamCmdOutput.vb" />

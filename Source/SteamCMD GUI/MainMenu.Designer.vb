@@ -709,7 +709,7 @@ Partial Class MainMenu
         '
         Me.ConsoleCommandList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ConsoleCommandList.FormattingEnabled = True
-        Me.ConsoleCommandList.Items.AddRange(New Object() {resources.GetString("ConsoleCommandList.Items"), resources.GetString("ConsoleCommandList.Items1"), resources.GetString("ConsoleCommandList.Items2"), resources.GetString("ConsoleCommandList.Items3")})
+        Me.ConsoleCommandList.Items.AddRange(New Object() {resources.GetString("ConsoleCommandList.Items"), resources.GetString("ConsoleCommandList.Items1")})
         resources.ApplyResources(Me.ConsoleCommandList, "ConsoleCommandList")
         Me.ConsoleCommandList.Name = "ConsoleCommandList"
         '

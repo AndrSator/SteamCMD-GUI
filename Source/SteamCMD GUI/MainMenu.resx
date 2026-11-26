@@ -2095,16 +2095,10 @@
     <value>4</value>
   </data>
   <data name="ConsoleCommandList.Items" xml:space="preserve">
-    <value>None</value>
+    <value>SteamCMD</value>
   </data>
   <data name="ConsoleCommandList.Items1" xml:space="preserve">
-    <value>say</value>
-  </data>
-  <data name="ConsoleCommandList.Items2" xml:space="preserve">
-    <value>rcon</value>
-  </data>
-  <data name="ConsoleCommandList.Items3" xml:space="preserve">
-    <value>echo</value>
+    <value>Server</value>
   </data>
   <data name="ConsoleCommandList.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 250</value>

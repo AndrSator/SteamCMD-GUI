@@ -88,7 +88,6 @@ Public Class MainMenu
         ToolTip1.SetToolTip(PasswdTextBox, "Leave it empty to use the session saved by SteamCMD")
         ToolTip1.SetToolTip(RemoveGameButton, "Remove the selected game from the list")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
-        ToolTip1.SetToolTip(ConsoleConnect, "Stop SteamCMD")
         ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
         ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
         ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
@@ -566,6 +565,7 @@ Public Class MainMenu
                         End With
 
                         p.Start()
+                        ServerStarted(p)
                     End If
                 End If
             End If

@@ -90,9 +90,7 @@ Partial Public Class MainMenu
         Game = "Game: " & GamesList.Text
         PathForLog = "Server path: " & ServerPathInstallation
 
-        ConsoleInput.Enabled = True
-        ConsoleButton.Enabled = True
-        ConsoleConnect.Enabled = True
+        SetSteamCmdInput(True)
         ConsoleInput.Select()
         If ConsoleTimer Is Nothing Then ConsoleTimer = New Timer(components)
         ConsoleTimer.Interval = ConsoleInterval
@@ -147,9 +145,7 @@ Partial Public Class MainMenu
         SteamSession.Dispose()
         SteamSession = Nothing
         SteamQuitting = Nothing
-        ConsoleInput.Enabled = False
-        ConsoleButton.Enabled = False
-        ConsoleConnect.Enabled = False
+        SetSteamCmdInput(False)
         MaskConsoleInput(False)
         ConsoleInput.Clear()
         DonwloadBar.Value = 0
@@ -188,6 +184,7 @@ Partial Public Class MainMenu
     End Sub
 
     Private Sub ExecuteButton_Click() Handles ConsoleButton.Click
+        If SendToServer() Then Return
         If SteamSession Is Nothing OrElse SteamQuitting IsNot Nothing Then Return
         SteamSession.WriteLine(ConsoleInput.Text)
         SteamState.InputSent(SteamTerminal)
@@ -203,6 +200,10 @@ Partial Public Class MainMenu
 
     ' Stop
     Private Sub ConsoleConnect_Click() Handles ConsoleConnect.Click
+        If ServerSelected Then
+            ToggleServerConnection()
+            Return
+        End If
         Dim session As PseudoConsoleProcess = SteamSession
         If session Is Nothing Then Return
         If SteamCmdHasWork Then

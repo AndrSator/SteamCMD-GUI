@@ -250,6 +250,8 @@ Partial Class MainMenu
         'CheckBoxConsole
         '
         resources.ApplyResources(Me.CheckBoxConsole, "CheckBoxConsole")
+        Me.CheckBoxConsole.Checked = True
+        Me.CheckBoxConsole.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxConsole.Name = "CheckBoxConsole"
         Me.CheckBoxConsole.UseVisualStyleBackColor = True
         '
@@ -540,6 +542,8 @@ Partial Class MainMenu
         'ServerInConsoleCheckBox
         '
         resources.ApplyResources(Me.ServerInConsoleCheckBox, "ServerInConsoleCheckBox")
+        Me.ServerInConsoleCheckBox.Checked = True
+        Me.ServerInConsoleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ServerInConsoleCheckBox.Name = "ServerInConsoleCheckBox"
         Me.ServerInConsoleCheckBox.UseVisualStyleBackColor = True
         '

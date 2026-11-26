@@ -85,6 +85,8 @@
 
 -	Fixed that the log saved when SteamCMD was stopped could have the text of the other console
 
+-	The console is used by default, both to install and to run servers
+
 <br>
 
 ## 3.1.0.2

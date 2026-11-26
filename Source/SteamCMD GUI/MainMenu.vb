@@ -760,7 +760,7 @@ Public Class MainMenu
         ' These are not saved when they are empty, so the ones of the previous config have to be removed
         GsltTextBox.Text = Config.Gslt
         SetAdditionalCommands(Config.AdditionalCommands)
-        ServerInConsoleCheckBox.Checked = Config.UseConsole
+        If Config.UseConsole.HasValue Then ServerInConsoleCheckBox.Checked = Config.UseConsole.Value
 
         TabMenu.SelectedTab = RunTab
         GroupBox1.Show()

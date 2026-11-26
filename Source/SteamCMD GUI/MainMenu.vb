@@ -46,7 +46,6 @@ Public Class MainMenu
 
         Icon = My.Resources.SteamCMDGUI_Icon
         TabMenu.Size = New Size(417, 303)
-        ThrSteamCMD = New Thread(AddressOf ThreadTaskSteamCMD)
         ModList.SelectedIndex = 1
         NetworkComboBox.SelectedIndex = 0
         ConsoleCommandList.SelectedIndex = 0
@@ -89,7 +88,7 @@ Public Class MainMenu
         ToolTip1.SetToolTip(PasswdTextBox, "Leave it empty to use the session saved by SteamCMD")
         ToolTip1.SetToolTip(RemoveGameButton, "Remove the selected game from the list")
         ToolTip1.SetToolTip(AddButton, "Add more command-line parameters")
-        ToolTip1.SetToolTip(ConsoleConnect, "Connect to server")
+        ToolTip1.SetToolTip(ConsoleConnect, "Stop SteamCMD")
         ToolTip1.SetToolTip(ConsoleOpenLog, "Open logs folder")
         ToolTip1.SetToolTip(ConsoleSaveLog, "Save the current log")
         ToolTip1.SetToolTip(ConsoleClearLog, "Clear log")
@@ -271,6 +270,7 @@ Public Class MainMenu
     End Sub
 
     Private Sub UpdateServerButton_Click() Handles UpdateServerButton.Click
+        If CheckBoxConsole.Checked AndAlso SteamCmdIsBusy() Then Return
         If My.Computer.FileSystem.FileExists(SteamCMDExePath & "\steamcmd.exe") Then
             If SteamAppID = Nothing Then
                 Status.Text = "Steam App ID not defined"
@@ -285,47 +285,29 @@ Public Class MainMenu
                     My.Computer.Audio.PlaySystemSound( _
                         Media.SystemSounds.Hand)
                 Else
-                    ' SteamCMD can't ask for the password in the console of the GUI
-                    If PasswdTextBox.Text = Nothing AndAlso AnonymousCheckBox.Checked = False AndAlso CheckBoxConsole.Checked Then
-                        Status.Text = "Please, type your Steam password, it's needed to use the console."
+                    If ServerPath.Text = Nothing Then
+                        Status.Text = "Please, select the path where you want to install the server."
                         Status.BackColor = Color.FromArgb(240, 200, 200)
                         My.Computer.Audio.PlaySystemSound( _
                             Media.SystemSounds.Hand)
                     Else
-                        If ServerPath.Text = Nothing Then
-                            Status.Text = "Please, select the path where you want to install the server."
+                        GoldSrcMod = CommandLine.GoldSrcModConfig(SteamAppID, GoldSrcModInput.Text)
+                        ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
+                        Tf2Install = InstallTf2()
+                        If SteamAppID = "90" AndAlso GoldSrcMod = "" Then
+                            Status.Text = "Half-Life mod not defined. Installing a default one."
                             Status.BackColor = Color.FromArgb(240, 200, 200)
-                            My.Computer.Audio.PlaySystemSound( _
-                                Media.SystemSounds.Hand)
+                            'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
                         Else
-                            GoldSrcMod = CommandLine.GoldSrcModConfig(SteamAppID, GoldSrcModInput.Text)
-                            ServerPathInstallation = CommandLine.QuotePath(ServerPath.Text)
-                            Tf2Install = InstallTf2()
-                            If SteamAppID = "90" AndAlso GoldSrcMod = "" Then
-                                Status.Text = "Half-Life mod not defined. Installing a default one."
-                                Status.BackColor = Color.FromArgb(240, 200, 200)
-                                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
-                            Else
-                                Status.Text = "Installing/Updating..."
-                                Status.BackColor = Color.FromArgb(240, 240, 240)
-                            End If
+                            Status.Text = "Installing/Updating..."
+                            Status.BackColor = Color.FromArgb(240, 240, 240)
+                        End If
 
-                            If CheckBoxConsole.Checked = False Then
-                                p = New Process
-                                With (p.StartInfo)
-                                    .FileName = SteamCMDExePath & "\steamcmd.exe"
-                                    .UseShellExecute = False
-                                    .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp) & Tf2Install
-                                End With
-                                p.Start()
-                            Else
-                                ConsoleTab_Click()
-                                TabMenu.SelectedTab = ConsoleTab
-
-                                ' Clear console, Run subprocess and stream
-                                ConsoleOutput.Clear()
-                                ThrSteamCMD.Start()
-                            End If
+                        Dim Arguments As String = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp) & Tf2Install
+                        If CheckBoxConsole.Checked Then
+                            RunSteamCmdInConsole(Arguments)
+                        Else
+                            RunSteamCmdInWindow(Arguments)
                         End If
                     End If
                 End If
@@ -348,54 +330,6 @@ Public Class MainMenu
         End If
         Return CommandLine.AlsoInstall(CommandLine.QuotePath(folder), "232250", ValidateApp)
     End Function
-
-    Private ThrSteamCMD As Thread
-    Private WithEvents p As Process
-
-    Private Sub ThreadTaskSteamCMD()
-        Control.CheckForIllegalCrossThreadCalls = False
-        p = New Process
-        With (p.StartInfo)
-            .FileName = SteamCMDExePath & "\steamcmd.exe"
-            .UseShellExecute = False
-            .CreateNoWindow = True
-            .RedirectStandardOutput = True
-            .RedirectStandardInput = True
-            .RedirectStandardError = True
-            .Arguments = CommandLine.ForSteamCmd(ServerPathInstallation, Login, GoldSrcMod, SteamAppID, ValidateApp) & Tf2Install
-        End With
-
-        p.Start()
-
-        If CheckBoxConsole.Checked = True Then
-            Dim pStreamWriter As StreamWriter = p.StandardInput
-            p.BeginOutputReadLine()
-            p.BeginErrorReadLine()
-            ConsoleInput.Enabled = True
-            ConsoleButton.Enabled = True
-            p.WaitForExit()
-        End If
-    End Sub
-
-    Private Sub p_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles p.OutputDataReceived
-        AppendOutputText(vbCrLf & e.Data)
-    End Sub
-
-    Private Sub ExecuteButton_Click() Handles ConsoleButton.Click
-        p.StandardInput.WriteLine(ConsoleInput.Text)
-        p.StandardInput.Flush()
-        ConsoleInput.Text = ""
-    End Sub
-
-    Private Delegate Sub AppendOutputTextDelegate(ByVal text As String)
-    Private Sub AppendOutputText(ByVal text As String)
-        If ConsoleOutput.InvokeRequired Then
-            Dim myDelegate As New AppendOutputTextDelegate(AddressOf AppendOutputText)
-            Me.Invoke(myDelegate, text)
-        Else
-            ConsoleOutput.AppendText(text)
-        End If
-    End Sub
 
     'Run server inputs
     Private Sub SrcdsExePath_Browser() Handles SrcdsExePathTextBox.Click, SrcdsExeBrowserButton.Click
@@ -947,27 +881,6 @@ Public Class MainMenu
     End Sub
 
     ' Console Tab
-    Private Sub ConsoleConnect_Click() Handles ConsoleConnect.Click
-        'Stop steamcmd.exe
-        For Each proc As Process In Process.GetProcessesByName("steamcmd")
-            Dim result As Integer = MessageBox.Show("Really want to stop and close SteamCMD?", "Stop SteamCMD", MessageBoxButtons.YesNo)
-            If result = DialogResult.Yes Then
-                If Not proc.HasExited Then
-                    Game = "Game: " & GamesList.Text
-                    Program = "SteamCmd.exe"
-                    PathForLog = "Server path: " & ServerPathInstallation
-                    SaveLog()
-                    proc.Kill()
-                    ConsoleInput.Enabled = False
-                    ConsoleButton.Enabled = False
-                End If
-                Status.Text = "SteamCMD closed."
-                Status.BackColor = Color.FromArgb(240, 200, 200)
-                'My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Hand)
-            End If
-        Next proc
-    End Sub
-
     Private Sub ConsoleOpenLog_Click() Handles ConsoleOpenLog.Click
         Process.Start("explorer.exe", ".\Logs")
     End Sub

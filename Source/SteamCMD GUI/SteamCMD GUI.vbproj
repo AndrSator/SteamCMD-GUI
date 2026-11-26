@@ -86,10 +86,14 @@
     <Compile Include="CommandsWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConsoleView.vb" />
     <Compile Include="FolderPicker.vb" />
     <Compile Include="GameCatalog.vb" />
     <Compile Include="MainMenu.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Console.vb">
+      <DependentUpon>MainMenu.vb</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.Designer.vb">
       <DependentUpon>MainMenu.vb</DependentUpon>
@@ -116,9 +120,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PseudoConsoleProcess.vb" />
     <Compile Include="ServerConfig.vb" />
     <Compile Include="SourceGames.vb" />
     <Compile Include="StartupOptions.vb" />
+    <Compile Include="SteamCmdOutput.vb" />
     <Compile Include="SteamCmdSettings.vb" />
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
@@ -126,6 +132,7 @@
     <Compile Include="LoadingScreen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TerminalBuffer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommandsWindow.resx">

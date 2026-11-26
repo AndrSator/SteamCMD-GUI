@@ -73,6 +73,12 @@
 
 -	The game configuration is enabled when the path of the server is correct, and the game is detected automatically
 
+-	The console shows the output of SteamCMD as it happens, with its progress, and its commands, password and Steam Guard code can be typed in it
+
+-	Fixed that the console could only be used once, and that SteamCMD kept running hidden after closing the program
+
+-	The Stop button of the console only stops the SteamCMD started by the program
+
 <br>
 
 ## 3.1.0.2
